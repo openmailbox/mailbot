@@ -36,14 +36,13 @@ class Twitch
 
         ready[0].each do |s|
           line    = s.gets
-          match   = line.match(/PRIVMSG #(.+) :(.+)$/)
-          message = match && match[2]
+          match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+          message = match && match[4]
 
           if message =~ /^!hello/
-            logger.info "COMMAND RECEIVED"
-            send "PRIVMSG #open_mailbox :Hello, World from the bot!"
-          else
-            logger.info message.inspect
+            user = match[1]
+            logger.info "USER COMMAND: #{user} - !hello"
+            send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
           end
 
           logger.info "> #{line}"
