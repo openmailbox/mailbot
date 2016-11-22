@@ -1,22 +1,24 @@
 require 'socket'
+require 'logger'
 
 Thread.abort_on_exception = true
 
 class Twitch
-  attr_reader :running, :socket
+  attr_reader :logger, :running, :socket
 
-  def initialize
+  def initialize(logger = nil)
+    @logger  = logger || Logger.new(STDOUT)
     @running = false
     @socket  = nil
   end
 
   def send(message)
-    puts "< #{message}"
+    logger.info "< #{message}"
     socket.puts(message)
   end
 
   def run
-    puts 'Preparing to connect...'
+    logger.info 'Preparing to connect...'
 
     @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
     @running = true
@@ -24,15 +26,27 @@ class Twitch
     socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
     socket.puts("NICK open_mailbox")
 
-    puts 'Connected...'
+    logger.info 'Connected...'
+
+    # :rerespek!rerespek@rerespek.tmi.twitch.tv PRIVMSG #open_mailbox :so ez :) thanks for the lesson
 
     Thread.start do
       while (running) do
         ready = IO.select([socket])
 
         ready[0].each do |s|
-          line = s.gets
-          puts s.gets
+          line    = s.gets
+          match   = line.match(/PRIVMSG #(.+) :(.+)$/)
+          message = match && match[2]
+
+          if message =~ /^!hello/
+            logger.info "COMMAND RECEIVED"
+            send "PRIVMSG #open_mailbox :Hello, World from the bot!"
+          else
+            logger.info message.inspect
+          end
+
+          logger.info "> #{line}"
         end
       end
     end
