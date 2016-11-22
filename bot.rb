@@ -2,35 +2,57 @@ require 'socket'
 
 Thread.abort_on_exception = true
 
-puts 'Preparing to connect...'
+class Twitch
+  attr_reader :running, :socket
 
-socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
-running = true
+  def initialize
+    @running = false
+    @socket  = nil
+  end
 
-puts 'Connected...'
+  def send(message)
+    puts "< #{message}"
+    socket.puts(message)
+  end
 
-socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
-socket.puts("NICK open_mailbox")
+  def run
+    puts 'Preparing to connect...'
 
-Thread.start do 
-  while (running) do
-    ready = IO.select([socket])
+    @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
+    @running = true
 
-    ready[0].each do |s|
-      line = s.gets
-      puts s.gets
+    socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
+    socket.puts("NICK open_mailbox")
+
+    puts 'Connected...'
+
+    Thread.start do
+      while (running) do
+        ready = IO.select([socket])
+
+        ready[0].each do |s|
+          line = s.gets
+          puts s.gets
+        end
+      end
     end
+  end
+
+  def stop
+    @running = false
   end
 end
 
-while (running) do
+bot = Twitch.new
+bot.run
+
+while (bot.running) do
   command = gets.chomp
 
   if command == 'quit'
-    running = false
+    bot.stop
   else
-    puts "< #{command}"
-    socket.puts(command)
+    bot.send(command)
   end
 end
 
