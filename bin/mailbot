@@ -4,19 +4,10 @@ $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 require 'mailbot'
 
-Thread.abort_on_exception = true
-
-channel = Mailbot::Twitch.new
-channel.listen
-
-while (channel.running) do
-  command = gets.chomp
-
-  if command == 'quit'
-    channel.stop
-  else
-    channel.send(command)
-  end
+Mailbot.configure do |config|
+  config.twitch_api_token = ENV['TWITCH_CHAT_TOKEN']
 end
+
+Mailbot.start
 
 puts 'Exited.'

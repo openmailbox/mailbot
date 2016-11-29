@@ -4,10 +4,12 @@ module Mailbot
   class Configuration
     SETTINGS_FILE = Mailbot.root + '/config/settings.yml'
 
-    attr_reader :settings
+    attr_accessor :twitch_api_token, :twitch_username
 
     def initialize
-      @settings = YAML.load_file(SETTINGS_FILE)
+      hash = YAML.load_file(SETTINGS_FILE)
+
+      @twitch_username = hash['twitch']['username']
     end
   end
 end

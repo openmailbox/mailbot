@@ -2,12 +2,13 @@ require 'socket'
 require 'logger'
 
 module Mailbot
-  class Twitch < Channel
-    attr_reader :socket
+  class Twitch
+    attr_reader :logger, :running, :socket
 
-    def initialize(*args)
-      super
-      @socket = nil
+    def initialize(logger = nil)
+      @logger  = logger || Logger.new(STDOUT)
+      @running = false
+      @socket  = nil
     end
 
     def send(message)
@@ -15,45 +16,55 @@ module Mailbot
       socket.puts(message)
     end
 
+    def stop
+      @running = false
+    end
+
+    # Single iteration of the loop
+    # override
+    def listen
+      initialize_channel
+
+      Thread.start do
+        while running do
+          ready = IO.select([socket])
+
+          ready[0].each do |s|
+            line    = s.gets
+            match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+            message = match && match[4]
+
+            if message =~ /^!hello/
+              user = match[1]
+              logger.info "USER COMMAND: #{user} - !hello"
+              send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
+            elsif message =~ /^!roll/
+              user = match[1]
+              logger.info "USER COMMAND: #{user} - !roll"
+              result = ((Random.rand * 19) + 1).round
+              send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
+            end
+
+            logger.info "> #{line}"
+          end
+        end
+      end
+    end
+
     private
 
     def initialize_channel
-      username = Mailbot.config.settings['twitch']['username']
+      @running = true
+      username = Mailbot.configuration.twitch_username
 
       logger.info "Preparing to connect to Twitch as #{username}..."
 
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
 
-      socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
+      socket.puts("PASS #{Mailbot.configuration.twitch_api_token}")
       socket.puts("NICK #{username}")
 
       logger.info 'Connected...'
     end
-
-    # Single iteration of the loop
-    # override
-    def run
-      ready = IO.select([socket])
-
-      ready[0].each do |s|
-        line    = s.gets
-        match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
-        message = match && match[4]
-
-        if message =~ /^!hello/
-          user = match[1]
-          logger.info "USER COMMAND: #{user} - !hello"
-          send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
-        elsif message =~ /^!roll/
-          user = match[1]
-          logger.info "USER COMMAND: #{user} - !roll"
-          result = ((Random.rand * 19) + 1).round
-          send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
-        end
-
-        logger.info "> #{line}"
-      end
-    end
-
   end
 end
