@@ -15,6 +15,19 @@ module Mailbot
       socket.puts(message)
     end
 
+    private
+
+    def initialize_channel
+      logger.info 'Preparing to connect...'
+
+      @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
+
+      socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
+      socket.puts("NICK open_mailbox")
+
+      logger.info 'Connected...'
+    end
+
     # Single iteration of the loop
     # override
     def run
@@ -35,21 +48,5 @@ module Mailbot
       end
     end
 
-    def stop
-      @running = false
-    end
-
-    private
-
-    def initialize_channel
-      logger.info 'Preparing to connect...'
-
-      @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
-
-      socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
-      socket.puts("NICK open_mailbox")
-
-      logger.info 'Connected...'
-    end
   end
 end

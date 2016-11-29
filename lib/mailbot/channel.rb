@@ -30,5 +30,9 @@ module Mailbot
     def run
       raise NotImplementedError.new('Subclasses must implement behavior.')
     end
+
+    def stop
+      @running = false
+    end
   end
 end
