@@ -44,6 +44,11 @@ module Mailbot
           user = match[1]
           logger.info "USER COMMAND: #{user} - !hello"
           send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
+        elsif message =~ /^!roll/
+          user = match[1]
+          logger.info "USER COMMAND: #{user} - !roll"
+          result = ((Random.rand * 19) + 1).round
+          send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
         end
 
         logger.info "> #{line}"
