@@ -6,16 +6,16 @@ require 'mailbot'
 
 Thread.abort_on_exception = true
 
-bot = Mailbot::Twitch.new
-bot.run
+channel = Mailbot::Twitch.new
+channel.listen
 
-while (bot.running) do
+while (channel.running) do
   command = gets.chomp
 
   if command == 'quit'
-    bot.stop
+    channel.stop
   else
-    bot.send(command)
+    channel.send(command)
   end
 end
 

@@ -2,13 +2,12 @@ require 'socket'
 require 'logger'
 
 module Mailbot
-  class Twitch
-    attr_reader :logger, :running, :socket
+  class Twitch < Channel
+    attr_reader :socket
 
-    def initialize(logger = nil)
-      @logger  = logger || Logger.new(STDOUT)
-      @running = false
-      @socket  = nil
+    def initialize(*args)
+      super
+      @socket = nil
     end
 
     def send(message)
@@ -16,42 +15,41 @@ module Mailbot
       socket.puts(message)
     end
 
+    # Single iteration of the loop
+    # override
     def run
-      logger.info 'Preparing to connect...'
+      ready = IO.select([socket])
 
-      @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
-      @running = true
+      ready[0].each do |s|
+        line    = s.gets
+        match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+        message = match && match[4]
 
-      socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
-      socket.puts("NICK open_mailbox")
-
-      logger.info 'Connected...'
-
-      # :rerespek!rerespek@rerespek.tmi.twitch.tv PRIVMSG #open_mailbox :so ez :) thanks for the lesson
-
-      Thread.start do
-        while (running) do
-          ready = IO.select([socket])
-
-          ready[0].each do |s|
-            line    = s.gets
-            match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
-            message = match && match[4]
-
-            if message =~ /^!hello/
-              user = match[1]
-              logger.info "USER COMMAND: #{user} - !hello"
-              send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
-            end
-
-            logger.info "> #{line}"
-          end
+        if message =~ /^!hello/
+          user = match[1]
+          logger.info "USER COMMAND: #{user} - !hello"
+          send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
         end
+
+        logger.info "> #{line}"
       end
     end
 
     def stop
       @running = false
+    end
+
+    private
+
+    def initialize_channel
+      logger.info 'Preparing to connect...'
+
+      @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
+
+      socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
+      socket.puts("NICK open_mailbox")
+
+      logger.info 'Connected...'
     end
   end
 end
