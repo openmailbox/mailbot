@@ -18,12 +18,14 @@ module Mailbot
     private
 
     def initialize_channel
-      logger.info 'Preparing to connect...'
+      username = Mailbot.config.settings['twitch']['username']
+
+      logger.info "Preparing to connect to Twitch as #{username}..."
 
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
 
       socket.puts("PASS #{ENV['TWITCH_CHAT_TOKEN']}")
-      socket.puts("NICK open_mailbox")
+      socket.puts("NICK #{username}")
 
       logger.info 'Connected...'
     end
