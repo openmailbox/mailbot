@@ -3,12 +3,11 @@ require 'logger'
 
 module Mailbot
   class Twitch
-    attr_reader :logger, :running, :socket
+    attr_reader :logger, :running, :socket, :thread
 
     def initialize(logger = nil)
       @logger  = logger || Logger.new(STDOUT)
       @running = false
-      @socket  = nil
     end
 
     def send(message)
@@ -20,12 +19,10 @@ module Mailbot
       @running = false
     end
 
-    # Single iteration of the loop
-    # override
-    def listen
+    def start
       initialize_channel
 
-      Thread.start do
+      @thread = Thread.start do
         while running do
           ready = IO.select([socket])
 

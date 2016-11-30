@@ -1,6 +1,8 @@
 Thread.abort_on_exception = true
 
 module Mailbot
+  VERSION = '0.1.0'
+
   def self.configuration
     @configuration ||= Configuration.new
   end
@@ -14,20 +16,14 @@ module Mailbot
   end
 
   def self.start
-    channel = Mailbot::Twitch.new
-    channel.listen
+    Mailbot::Bot.new.run
+  end
 
-    while (channel.running) do
-      command = gets.chomp
-
-      if command == 'quit'
-        channel.stop
-      else
-        channel.send(command)
-      end
-    end
+  def self.version
+    VERSION
   end
 end
 
+require 'mailbot/bot'
 require 'mailbot/configuration'
 require 'mailbot/twitch'
