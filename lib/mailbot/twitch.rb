@@ -3,11 +3,10 @@ require 'logger'
 
 module Mailbot
   class Twitch
-    attr_reader :logger, :running, :socket, :thread
+    attr_reader :logger, :socket, :thread
 
     def initialize(logger = nil)
-      @logger  = logger || Logger.new(STDOUT)
-      @running = false
+      @logger = logger || Logger.new(STDOUT)
     end
 
     def send(message)
@@ -16,34 +15,36 @@ module Mailbot
     end
 
     def stop
-      @running = false
+      logger.info 'Disconnecting from Twitch...'
+      thread.exit
+      socket.close
     end
 
     def start
+      return if socket && !socket.closed?
+
       initialize_channel
 
       @thread = Thread.start do
-        while running do
-          ready = IO.select([socket])
+        ready = IO.select([socket])
 
-          ready[0].each do |s|
-            line    = s.gets
-            match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
-            message = match && match[4]
+        ready[0].each do |s|
+          line    = s.gets
+          match   = line.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+          message = match && match[4]
 
-            if message =~ /^!hello/
-              user = match[1]
-              logger.info "USER COMMAND: #{user} - !hello"
-              send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
-            elsif message =~ /^!roll/
-              user = match[1]
-              logger.info "USER COMMAND: #{user} - !roll"
-              result = ((Random.rand * 19) + 1).round
-              send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
-            end
-
-            logger.info "> #{line}"
+          if message =~ /^!hello/
+            user = match[1]
+            logger.info "USER COMMAND: #{user} - !hello"
+            send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
+          elsif message =~ /^!roll/
+            user = match[1]
+            logger.info "USER COMMAND: #{user} - !roll"
+            result = ((Random.rand * 19) + 1).round
+            send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
           end
+
+          logger.info "> #{line}"
         end
       end
     end
@@ -51,7 +52,6 @@ module Mailbot
     private
 
     def initialize_channel
-      @running = true
       username = Mailbot.configuration.twitch_username
 
       logger.info "Preparing to connect to Twitch as #{username}..."
