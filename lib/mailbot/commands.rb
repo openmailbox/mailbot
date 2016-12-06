@@ -1,9 +1,11 @@
 require 'mailbot/commands/hello'
+require 'mailbot/commands/roll'
 
 module Mailbot
   module Commands
     COMMANDS = {
-      hello: Commands::Hello
+      hello: Commands::Hello,
+      roll:  Commands::Roll
     }
 
     def self.from_input(user, message)
