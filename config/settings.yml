@@ -1,2 +1,3 @@
+log_file: logs/mailbot.log
 twitch:
   username: open_mailbox

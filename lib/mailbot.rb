@@ -14,7 +14,7 @@ module Mailbot
   end
 
   def self.logger
-    @logger ||= Logger.new(STDOUT)
+    @logger ||= Logger.new(configuration.log_file)
   end
 
   def self.root

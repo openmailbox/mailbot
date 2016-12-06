@@ -2,14 +2,10 @@ require 'socket'
 
 module Mailbot
   class Twitch
-    attr_reader :logger, :socket, :thread
-
-    def initialize(logger = nil)
-      @logger = logger || Logger.new(STDOUT)
-    end
+    attr_reader :socket, :thread
 
     def send(message)
-      logger.info "< #{message}"
+      Mailbot.logger.info "< #{message}"
       socket.puts(message)
     end
 
@@ -18,7 +14,7 @@ module Mailbot
     end
 
     def stop
-      logger.info 'Disconnecting from Twitch...'
+      Mailbot.logger.info 'Disconnecting from Twitch...'
       thread.exit
       socket.close
     end
@@ -36,7 +32,7 @@ module Mailbot
             line    = s.gets
             command = parse(line)
 
-            logger.info "> #{line}"
+            Mailbot.logger.info "> #{line}"
 
             command.execute(self) if command
           end
@@ -60,14 +56,14 @@ module Mailbot
     def initialize_channel
       username = Mailbot.configuration.twitch_username
 
-      logger.info "Preparing to connect to Twitch as #{username}..."
+      Mailbot.logger.info "Preparing to connect to Twitch as #{username}..."
 
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
 
       socket.puts("PASS #{Mailbot.configuration.twitch_api_token}")
       socket.puts("NICK #{username}")
 
-      logger.info 'Connected...'
+      Mailbot.logger.info 'Connected...'
     end
   end
 end
