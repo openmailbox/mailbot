@@ -42,7 +42,9 @@ module Mailbot
     end
 
     def parse(input)
-      match   = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+      return pong if input =~ /^PING/
+
+      match = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
 
       return unless match
 
@@ -66,6 +68,11 @@ module Mailbot
       socket.puts("JOIN ##{Mailbot.configuration.twitch.channel}")
 
       Mailbot.logger.info 'Connected...'
+    end
+
+    def pong
+      send("PONG #{Mailbot.configuration.twitch.username}")
+      nil
     end
   end
 end
