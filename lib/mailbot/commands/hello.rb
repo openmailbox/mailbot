@@ -3,13 +3,14 @@ module Mailbot
     class Hello
       attr_reader :user
 
+      # @param [User] user The instance of user
       def initialize(user)
         @user = user
       end
 
       def execute(context)
-        Mailbot.logger.info "USER COMMAND: #{user} - !hello"
-        context.send_string("Hello, #{user} from Mailbot!")
+        Mailbot.logger.info "USER COMMAND: #{user.name} - !hello"
+        context.send_string("Hello, #{user.name} from Mailbot!")
       end
     end
   end

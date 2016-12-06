@@ -49,7 +49,7 @@ module Mailbot
 
       return unless match
 
-      user    = match[1]
+      user    = User.find_or_initialize(match[1])
       message = match[4]
 
       Commands.from_input(user, message)
