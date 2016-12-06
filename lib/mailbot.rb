@@ -1,3 +1,5 @@
+require 'logger'
+
 Thread.abort_on_exception = true
 
 module Mailbot
@@ -9,6 +11,10 @@ module Mailbot
 
   def self.configure
     yield configuration
+  end
+
+  def self.logger
+    @logger ||= Logger.new(STDOUT)
   end
 
   def self.root
@@ -25,5 +31,6 @@ module Mailbot
 end
 
 require 'mailbot/bot'
+require 'mailbot/commands'
 require 'mailbot/configuration'
 require 'mailbot/twitch'
