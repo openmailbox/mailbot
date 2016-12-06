@@ -3,13 +3,13 @@
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 File.open('tmp/mailbot.pid', 'w') do |file|
-  file.write(Process.pid + "\n")
+  file.write(Process.pid)
 end
 
 require 'mailbot'
 
 Mailbot.configure do |config|
-  config.twitch_api_token = ENV['TWITCH_CHAT_TOKEN']
+  config.twitch.api_token = ENV['TWITCH_CHAT_TOKEN']
 end
 
 Mailbot.start
