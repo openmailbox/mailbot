@@ -10,7 +10,9 @@ module Mailbot
 
     def self.from_input(user, message)
       typed_command = message.split.first[1..-1]
-      COMMANDS[typed_command.to_sym].new(user)
+      klass         = COMMANDS[typed_command.to_sym]
+
+      klass && klass.new(user)
     end
   end
 end

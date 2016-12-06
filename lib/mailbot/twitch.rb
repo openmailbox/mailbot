@@ -39,23 +39,10 @@ module Mailbot
             logger.info "> #{line}"
 
             command.execute(self) if command
-
-            #if message =~ /^!hello/
-            #  user = match[1]
-            #  logger.info "USER COMMAND: #{user} - !hello"
-            #  send "PRIVMSG #open_mailbox :Hello, #{user} from Mailbot!"
-            #elsif message =~ /^!roll/
-            #  user = match[1]
-            #  logger.info "USER COMMAND: #{user} - !roll"
-            #  result = ((Random.rand * 19) + 1).round
-            #  send "PRIVMSG #open_mailbox :#{user} rolled 1d20 and got #{result}!"
-            #end
           end
         end
       end
     end
-
-    # :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv PRIVMSG #open_mailbox :!hello
 
     def parse(input)
       match   = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
