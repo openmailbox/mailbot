@@ -1,3 +1,4 @@
+require 'active_record'
 require 'logger'
 
 Thread.abort_on_exception = true

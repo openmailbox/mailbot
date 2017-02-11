@@ -1,0 +1,4 @@
+host: '/var/run/postgresql'
+adapter: 'postgresql'
+encoding: 'utf-8'
+database: 'mailbot_development'
