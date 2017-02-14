@@ -3,7 +3,7 @@
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 File.open('tmp/mailbot.pid', 'w') do |file|
-  file.write(Process.pid + "\n")
+  file.write(Process.pid.to_s + "\n")
 end
 
 require 'mailbot'

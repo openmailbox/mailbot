@@ -45,7 +45,7 @@ module Mailbot
 
       return unless match
 
-      user    = User.find_or_initialize(match[1])
+      user    = User.find_or_create_by(name: match[1])
       message = match[4]
 
       Commands.from_input(user, message)

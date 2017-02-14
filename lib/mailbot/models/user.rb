@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id   :integer          not null, primary key
+#  name :string
+#
+
 require 'set'
 
 module Mailbot
