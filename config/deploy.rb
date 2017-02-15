@@ -31,3 +31,8 @@ set :repo_url, "ssh://git@bitbucket.org/blrice/twitch_streams.git"
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+after 'deploy:finishing', :restart do
+  on roles(:app) do
+  end
+end
