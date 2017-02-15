@@ -1,0 +1,248 @@
+# Logfile created on 2016-12-05 23:12:48 -0500 by logger.rb/47272
+I, [2016-12-05T23:12:48.070000 #17953]  INFO -- : Preparing to connect to Twitch as open_mailbox...
+I, [2016-12-05T23:12:48.202895 #17953]  INFO -- : Connected...
+I, [2016-12-05T23:12:48.463026 #17953]  INFO -- : > :tmi.twitch.tv 001 open_mailbox :Welcome, GLHF!
+
+I, [2016-12-05T23:12:48.463124 #17953]  INFO -- : > :tmi.twitch.tv 002 open_mailbox :Your host is tmi.twitch.tv
+
+I, [2016-12-05T23:12:48.463149 #17953]  INFO -- : > :tmi.twitch.tv 003 open_mailbox :This server is rather new
+
+I, [2016-12-05T23:12:48.463172 #17953]  INFO -- : > :tmi.twitch.tv 004 open_mailbox :-
+
+I, [2016-12-05T23:12:48.463194 #17953]  INFO -- : > :tmi.twitch.tv 375 open_mailbox :-
+
+I, [2016-12-05T23:12:48.463215 #17953]  INFO -- : > :tmi.twitch.tv 372 open_mailbox :You are in a maze of twisty passages, all alike.
+
+I, [2016-12-05T23:12:48.463241 #17953]  INFO -- : > :tmi.twitch.tv 376 open_mailbox :>
+
+I, [2016-12-05T23:13:26.051714 #17953]  INFO -- : < JOIN #open_mailbox
+I, [2016-12-05T23:13:26.266632 #17953]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv JOIN #open_mailbox
+
+I, [2016-12-05T23:13:26.266863 #17953]  INFO -- : > :open_mailbox.tmi.twitch.tv 353 open_mailbox = #open_mailbox :open_mailbox
+
+I, [2016-12-05T23:13:26.266994 #17953]  INFO -- : > :open_mailbox.tmi.twitch.tv 366 open_mailbox #open_mailbox :End of /NAMES list
+
+I, [2016-12-05T23:13:34.529651 #17953]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv PRIVMSG #open_mailbox :!who
+
+I, [2016-12-05T23:13:34.529747 #17953]  INFO -- : < PRIVMSG #open_mailbox :Users the bot knows about: open_mailbox
+I, [2016-12-05T23:15:22.465709 #17953]  INFO -- : > :jtv!jtv@jtv.tmi.twitch.tv PRIVMSG open_mailbox :iLeikCheez is now auto hosting you.
+
+I, [2016-12-05T23:15:49.641983 #17953]  INFO -- : > :tr1bunal!tr1bunal@tr1bunal.tmi.twitch.tv PRIVMSG #open_mailbox :you bot use mysql?
+
+I, [2016-12-05T23:17:02.933890 #17953]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-05T23:21:34.942451 #17953]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-05T23:22:29.935080 #17953]  INFO -- : Disconnecting from Twitch...
+I, [2016-12-05T23:22:38.404340 #20449]  INFO -- : Preparing to connect to Twitch as open_mailbox...
+I, [2016-12-05T23:22:38.532171 #20449]  INFO -- : Connected...
+I, [2016-12-05T23:22:38.779842 #20449]  INFO -- : > :tmi.twitch.tv 001 open_mailbox :Welcome, GLHF!
+
+I, [2016-12-05T23:22:38.780014 #20449]  INFO -- : > :tmi.twitch.tv 002 open_mailbox :Your host is tmi.twitch.tv
+
+I, [2016-12-05T23:22:38.780078 #20449]  INFO -- : > :tmi.twitch.tv 003 open_mailbox :This server is rather new
+
+I, [2016-12-05T23:22:38.780197 #20449]  INFO -- : > :tmi.twitch.tv 004 open_mailbox :-
+
+I, [2016-12-05T23:22:38.780258 #20449]  INFO -- : > :tmi.twitch.tv 375 open_mailbox :-
+
+I, [2016-12-05T23:22:38.780316 #20449]  INFO -- : > :tmi.twitch.tv 372 open_mailbox :You are in a maze of twisty passages, all alike.
+
+I, [2016-12-05T23:22:38.780375 #20449]  INFO -- : > :tmi.twitch.tv 376 open_mailbox :>
+
+I, [2016-12-05T23:26:50.038667 #20449]  INFO -- : < JOIN #open_mailbox
+I, [2016-12-05T23:26:50.245784 #20449]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv JOIN #open_mailbox
+
+I, [2016-12-05T23:26:50.245885 #20449]  INFO -- : > :open_mailbox.tmi.twitch.tv 353 open_mailbox = #open_mailbox :open_mailbox
+
+I, [2016-12-05T23:26:50.245918 #20449]  INFO -- : > :open_mailbox.tmi.twitch.tv 366 open_mailbox #open_mailbox :End of /NAMES list
+
+I, [2016-12-05T23:26:57.790475 #20449]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv PRIVMSG #open_mailbox :!roll
+
+I, [2016-12-05T23:26:57.790677 #20449]  INFO -- : USER COMMAND: open_mailbox - !roll
+I, [2016-12-05T23:26:57.790778 #20449]  INFO -- : < PRIVMSG #open_mailbox :open_mailbox rolled 1d20 and got 5!
+I, [2016-12-05T23:27:11.910722 #20449]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-05T23:32:02.170252 #20449]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-05T23:36:35.634448 #20449]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T12:58:04.261710 #22355]  INFO -- : Preparing to connect to Twitch as open_mailbox...
+I, [2016-12-06T12:58:04.384861 #22355]  INFO -- : Connected...
+I, [2016-12-06T12:58:04.624930 #22355]  INFO -- : > :tmi.twitch.tv 001 open_mailbox :Welcome, GLHF!
+
+I, [2016-12-06T12:58:04.625058 #22355]  INFO -- : > :tmi.twitch.tv 002 open_mailbox :Your host is tmi.twitch.tv
+
+I, [2016-12-06T12:58:04.625120 #22355]  INFO -- : > :tmi.twitch.tv 003 open_mailbox :This server is rather new
+
+I, [2016-12-06T12:58:04.625176 #22355]  INFO -- : > :tmi.twitch.tv 004 open_mailbox :-
+
+I, [2016-12-06T12:58:04.625232 #22355]  INFO -- : > :tmi.twitch.tv 375 open_mailbox :-
+
+I, [2016-12-06T12:58:04.625288 #22355]  INFO -- : > :tmi.twitch.tv 372 open_mailbox :You are in a maze of twisty passages, all alike.
+
+I, [2016-12-06T12:58:04.625343 #22355]  INFO -- : > :tmi.twitch.tv 376 open_mailbox :>
+
+I, [2016-12-06T12:58:04.672137 #22355]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv JOIN #open_mailbox
+
+I, [2016-12-06T12:58:04.672249 #22355]  INFO -- : > :open_mailbox.tmi.twitch.tv 353 open_mailbox = #open_mailbox :open_mailbox
+
+I, [2016-12-06T12:58:04.672354 #22355]  INFO -- : > :open_mailbox.tmi.twitch.tv 366 open_mailbox #open_mailbox :End of /NAMES list
+
+I, [2016-12-06T13:02:42.017264 #22355]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T13:06:45.864239 #22355]  INFO -- : < PONG
+I, [2016-12-06T13:07:01.448321 #22355]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T13:07:08.587703 #22355]  INFO -- : < PONG
+I, [2016-12-06T13:11:22.962559 #22355]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T13:15:54.719325 #22355]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T13:55:10.130649 #26337]  INFO -- : Preparing to connect to Twitch as open_mailbox...
+I, [2016-12-06T13:55:10.259668 #26337]  INFO -- : Connected...
+I, [2016-12-06T13:55:10.547917 #26337]  INFO -- : > :tmi.twitch.tv 001 open_mailbox :Welcome, GLHF!
+
+I, [2016-12-06T13:55:10.548165 #26337]  INFO -- : > :tmi.twitch.tv 002 open_mailbox :Your host is tmi.twitch.tv
+
+I, [2016-12-06T13:55:10.548265 #26337]  INFO -- : > :tmi.twitch.tv 003 open_mailbox :This server is rather new
+
+I, [2016-12-06T13:55:10.548353 #26337]  INFO -- : > :tmi.twitch.tv 004 open_mailbox :-
+
+I, [2016-12-06T13:55:10.548441 #26337]  INFO -- : > :tmi.twitch.tv 375 open_mailbox :-
+
+I, [2016-12-06T13:55:10.548518 #26337]  INFO -- : > :tmi.twitch.tv 372 open_mailbox :You are in a maze of twisty passages, all alike.
+
+I, [2016-12-06T13:55:10.548584 #26337]  INFO -- : > :tmi.twitch.tv 376 open_mailbox :>
+
+I, [2016-12-06T13:55:10.597506 #26337]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv JOIN #open_mailbox
+
+I, [2016-12-06T13:55:10.597678 #26337]  INFO -- : > :open_mailbox.tmi.twitch.tv 353 open_mailbox = #open_mailbox :open_mailbox
+
+I, [2016-12-06T13:55:10.597817 #26337]  INFO -- : > :open_mailbox.tmi.twitch.tv 366 open_mailbox #open_mailbox :End of /NAMES list
+
+I, [2016-12-06T13:59:45.214468 #26337]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T13:59:49.985881 #26337]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:04:22.003928 #26337]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:04:27.174783 #26337]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:05:33.816658 #26337]  INFO -- : Disconnecting from Twitch...
+I, [2016-12-06T14:05:35.100308 #27398]  INFO -- : Preparing to connect to Twitch as open_mailbox...
+I, [2016-12-06T14:05:35.229411 #27398]  INFO -- : Connected...
+I, [2016-12-06T14:05:35.476682 #27398]  INFO -- : > :tmi.twitch.tv 001 open_mailbox :Welcome, GLHF!
+
+I, [2016-12-06T14:05:35.476807 #27398]  INFO -- : > :tmi.twitch.tv 002 open_mailbox :Your host is tmi.twitch.tv
+
+I, [2016-12-06T14:05:35.476858 #27398]  INFO -- : > :tmi.twitch.tv 003 open_mailbox :This server is rather new
+
+I, [2016-12-06T14:05:35.476887 #27398]  INFO -- : > :tmi.twitch.tv 004 open_mailbox :-
+
+I, [2016-12-06T14:05:35.476911 #27398]  INFO -- : > :tmi.twitch.tv 375 open_mailbox :-
+
+I, [2016-12-06T14:05:35.476949 #27398]  INFO -- : > :tmi.twitch.tv 372 open_mailbox :You are in a maze of twisty passages, all alike.
+
+I, [2016-12-06T14:05:35.476985 #27398]  INFO -- : > :tmi.twitch.tv 376 open_mailbox :>
+
+I, [2016-12-06T14:05:35.521715 #27398]  INFO -- : > :open_mailbox!open_mailbox@open_mailbox.tmi.twitch.tv JOIN #open_mailbox
+
+I, [2016-12-06T14:05:35.521832 #27398]  INFO -- : > :open_mailbox.tmi.twitch.tv 353 open_mailbox = #open_mailbox :open_mailbox
+
+I, [2016-12-06T14:05:35.521866 #27398]  INFO -- : > :open_mailbox.tmi.twitch.tv 366 open_mailbox #open_mailbox :End of /NAMES list
+
+I, [2016-12-06T14:09:42.845053 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:09:42.845257 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:14:34.130338 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:14:34.130528 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:19:13.383051 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:19:13.383224 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:24:02.156241 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:24:02.156410 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:28:10.337298 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:28:10.337465 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:33:10.282442 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:33:10.282607 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:38:00.469644 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:38:00.469729 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:42:10.786691 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:42:10.786855 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:47:01.196865 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:47:01.197051 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:51:19.307669 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:51:19.307833 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T14:55:46.847144 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T14:55:46.847348 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:00:45.643067 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:00:45.643244 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:05:11.314441 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:05:11.314538 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:10:01.227728 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:10:01.227909 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:14:54.545358 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:14:54.545520 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:19:15.549192 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:19:15.549388 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:23:36.858429 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:23:36.858593 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:27:49.545050 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:27:49.545217 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:32:10.728842 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:32:10.729005 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:36:26.107926 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:36:26.108128 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:40:45.160054 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:40:45.160221 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:45:17.241530 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:45:17.241690 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:49:42.722929 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:49:42.723130 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:54:15.982799 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:54:15.982890 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T15:59:08.252990 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T15:59:08.253156 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:03:32.284940 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:03:32.285037 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:08:24.122276 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:08:24.122437 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:12:47.003874 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:12:47.004039 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:17:16.990932 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:17:16.991043 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:21:45.631120 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:21:45.631345 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:26:23.230356 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:26:23.230522 #27398]  INFO -- : < PONG open_mailbox
+I, [2016-12-06T16:30:59.525008 #27398]  INFO -- : > PING :tmi.twitch.tv
+
+I, [2016-12-06T16:30:59.525100 #27398]  INFO -- : < PONG open_mailbox
