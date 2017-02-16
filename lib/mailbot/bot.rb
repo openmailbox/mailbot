@@ -37,6 +37,11 @@ module Mailbot
       threads.each(&:join)
     end
 
+    def stop
+      @running = false
+      twitch.stop
+    end
+
     private
 
     def prompt

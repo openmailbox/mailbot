@@ -28,7 +28,8 @@ module Mailbot
 
   def self.start
     Mailbot.logger.info "Starting bot in #{Mailbot.env} environment..."
-    Mailbot::Bot.new.run
+    @bot = Mailbot::Bot.new
+    @bot.run
   end
 
   def self.version
