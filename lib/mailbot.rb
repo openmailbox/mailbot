@@ -32,6 +32,10 @@ module Mailbot
     @bot.run
   end
 
+  def self.stop
+    @bot.stop
+  end
+
   def self.version
     VERSION
   end

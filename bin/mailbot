@@ -8,6 +8,12 @@ Mailbot.configure do |config|
   config.twitch.api_token ||= ENV['TWITCH_API_TOKEN']
 end
 
+Signal.trap('TERM') do
+  Thread.new do
+    Mailbot.stop
+  end
+end
+
 Mailbot.start
 
 puts 'Exited.'
