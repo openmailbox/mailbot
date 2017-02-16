@@ -2,10 +2,6 @@
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
-File.open('tmp/mailbot.pid', 'w') do |file|
-  file.write(Process.pid)
-end
-
 require 'mailbot'
 
 Mailbot.configure do |config|
