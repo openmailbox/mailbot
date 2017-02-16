@@ -9,7 +9,7 @@ end
 require 'mailbot'
 
 Mailbot.configure do |config|
-  config.twitch.api_token = ENV['TWITCH_CHAT_TOKEN']
+  config.twitch.api_token ||= ENV['TWITCH_API_TOKEN']
 end
 
 Mailbot.start
