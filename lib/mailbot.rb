@@ -18,6 +18,7 @@ module Mailbot
   end
 
   def self.logger
+    STDOUT.sync = true if Mailbot.env == 'production'
     @logger ||= Logger.new(STDOUT)
   end
 
