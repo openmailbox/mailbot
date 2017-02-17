@@ -14,6 +14,8 @@ module Mailbot
       if Mailbot.env == 'development'
         main_thread = Thread.start do
           while running do
+            ARGV.clear
+
             print prompt
 
             command = gets.chomp
