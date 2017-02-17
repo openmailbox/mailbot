@@ -32,7 +32,8 @@ append :linked_dirs, "log", "tmp"
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:finishing', :restart do
+after 'deploy:publishing', 'deploy:restart' do
   on roles(:app) do
+    execute :service, 'mailbot', 'restart'
   end
 end
