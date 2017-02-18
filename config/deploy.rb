@@ -21,7 +21,7 @@ set :repo_url, "ssh://git@bitbucket.org/blrice/twitch_streams.git"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/secrets.yml"
+append :linked_files, "config/secrets.yml", "config/database.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp"
