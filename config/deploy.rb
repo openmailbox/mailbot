@@ -1,6 +1,9 @@
 # config valid only for current version of Capistrano
 lock "3.7.2"
 
+# rvm stuff
+set :rvm_ruby_version, '2.3.3@mailbot'
+
 set :application, "mailbot"
 set :repo_url, "ssh://git@bitbucket.org/blrice/twitch_streams.git"
 
