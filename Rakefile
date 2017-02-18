@@ -9,8 +9,10 @@ task :console do
 end
 
 namespace :db do
-  db_config       = YAML.load_file(Mailbot.root + '/config/database.yml')
-  db_config_admin = db_config.merge('schema_search_path' => 'public', 'database' => 'postgres')
+  db_config       = YAML.load_file(Mailbot.root + '/config/database.yml')[Mailbot.env]
+  db_config_admin = db_config.dup
+
+  db_config_admin.delete('database')
 
   desc 'Create the database'
   task :create do

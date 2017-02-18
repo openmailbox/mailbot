@@ -6,6 +6,6 @@ module Mailbot
 
     configuration = YAML.load_file(Mailbot.root + '/config/database.yml')
 
-    ActiveRecord::Base.establish_connection(configuration)
+    ActiveRecord::Base.establish_connection(configuration[Mailbot.env])
   end
 end

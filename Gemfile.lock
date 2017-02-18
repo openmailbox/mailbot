@@ -36,10 +36,10 @@ GEM
     i18n (0.8.0)
     method_source (0.8.2)
     minitest (5.10.1)
+    mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
-    pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -62,7 +62,7 @@ DEPENDENCIES
   capistrano (~> 3.7)
   capistrano-bundler (~> 1.2)
   capistrano-rvm
-  pg
+  mysql2
   pry
   rake
 
