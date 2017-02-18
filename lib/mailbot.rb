@@ -14,8 +14,13 @@ module Mailbot
     yield configuration
   end
 
+  def self.env
+    @env ||= (ENV['MAILBOT_ENV'] || 'development')
+  end
+
   def self.logger
-    @logger ||= Logger.new(configuration.log_file)
+    STDOUT.sync = true if Mailbot.env == 'production'
+    @logger ||= Logger.new(STDOUT)
   end
 
   def self.root
@@ -23,7 +28,13 @@ module Mailbot
   end
 
   def self.start
-    Mailbot::Bot.new.run
+    Mailbot.logger.info "Starting bot in #{Mailbot.env} environment..."
+    @bot = Mailbot::Bot.new
+    @bot.run
+  end
+
+  def self.stop
+    @bot.stop
   end
 
   def self.version

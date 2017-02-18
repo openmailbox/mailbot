@@ -29,10 +29,11 @@ module Mailbot
           ready = IO.select([socket])
 
           ready[0].each do |s|
-            line    = s.gets
-            command = parse(line)
+            line = s.gets
 
             Mailbot.logger.info "> #{line}"
+
+            command = parse(line)
 
             command.execute(self) if command
           end
@@ -41,7 +42,9 @@ module Mailbot
     end
 
     def parse(input)
-      match   = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+      return pong if input =~ /^PING/
+
+      match = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
 
       return unless match
 
@@ -54,16 +57,22 @@ module Mailbot
     private
 
     def initialize_channel
-      username = Mailbot.configuration.twitch_username
+      username = Mailbot.configuration.twitch.username
 
       Mailbot.logger.info "Preparing to connect to Twitch as #{username}..."
 
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
 
-      socket.puts("PASS #{Mailbot.configuration.twitch_api_token}")
+      socket.puts("PASS #{Mailbot.configuration.twitch.api_token}")
       socket.puts("NICK #{username}")
+      socket.puts("JOIN ##{Mailbot.configuration.twitch.channel}")
 
       Mailbot.logger.info 'Connected...'
+    end
+
+    def pong
+      send("PONG #{Mailbot.configuration.twitch.username}")
+      nil
     end
   end
 end

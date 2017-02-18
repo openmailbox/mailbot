@@ -1,3 +1,4 @@
 .*.swp
-logs/*.log
+log/*.log
 tmp/*.pid
+config/secrets.yml

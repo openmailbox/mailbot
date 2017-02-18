@@ -2,16 +2,38 @@
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
-File.open('tmp/mailbot.pid', 'w') do |file|
-  file.write(Process.pid.to_s + "\n")
-end
-
 require 'mailbot'
 
-Mailbot.configure do |config|
-  config.twitch_api_token = ENV['TWITCH_CHAT_TOKEN']
+if ARGV[0] == 'start'
+  File.open('tmp/mailbot.pid', 'w') do |file|
+    file.write(Process.pid.to_s)
+  end
+
+  Mailbot.configure do |config|
+    config.twitch.api_token ||= ENV['TWITCH_API_TOKEN']
+  end
+
+  Signal.trap('TERM') do
+    Thread.new do
+      Mailbot.stop
+    end
+  end
+
+  Signal.trap('INT') do
+    Thread.new do
+      Mailbot.stop
+    end
+  end
+
+  Mailbot.start
+
+  puts 'Exited.'
+elsif ARGV[0] == 'stop'
+  pid = File.read('tmp/mailbot.pid')
+
+  Process.kill(0, pid.to_i) # make sure process exists
+
+  Process.kill('INT', pid.to_i)
+else
+  puts "Command not recognized. Try 'start' or 'stop'."
 end
-
-Mailbot.start
-
-puts 'Exited.'
