@@ -1,11 +1,13 @@
 module Mailbot
   module Commands
     class Roll
-      attr_reader :user
+      attr_reader :user, :args
 
       # @param [User] user The instance of a user
-      def initialize(user)
+      # @param [Array<String>] args
+      def initialize(user, args)
         @user = user
+        @args = args
       end
 
       def execute(context)

@@ -1,11 +1,12 @@
 module Mailbot
   module Commands
     class Hello
-      attr_reader :user
+      attr_reader :user, :args
 
       # @param [User] user The instance of user
-      def initialize(user)
+      def initialize(user, args)
         @user = user
+        @args = args
       end
 
       def execute(context)

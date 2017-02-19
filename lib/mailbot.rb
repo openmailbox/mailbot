@@ -1,5 +1,6 @@
 require 'active_record'
 require 'logger'
+require 'httparty'
 
 Thread.abort_on_exception = true
 
