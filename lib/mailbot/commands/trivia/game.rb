@@ -3,9 +3,11 @@ require 'json'
 module Mailbot
   module Commands
     class Trivia
-      BASE_URL = 'https://www.opentdb.com/api.php'
-
       class Game
+        BASE_URL = 'https://www.opentdb.com/api.php'
+
+        attr_reader :questions
+
         def self.current
           @@game
         end
@@ -14,6 +16,14 @@ module Mailbot
           @@game     = self
           @round     = 1
           @questions = fetch_questions
+        end
+
+        def current_question
+          questions[round - 1]
+        end
+
+        def advance
+          @round += 1
         end
 
         private
