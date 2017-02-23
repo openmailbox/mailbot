@@ -1,8 +1,8 @@
 module Mailbot
   module Commands
     class Trivia
-      ROUND_TIME = 30 # seconds
-      BREAK_TIME = 60
+      ROUND_TIME = 300 # seconds
+      BREAK_TIME = 120
 
       attr_reader :user, :args, :context
 
