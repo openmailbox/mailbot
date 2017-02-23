@@ -6,7 +6,12 @@ module Mailbot
 
         @@game = nil
 
-        attr_reader :questions, :current_choices, :current_question, :round, :round_started_at, :scores, :answers
+        attr_reader :answers,
+                    :current_choices, 
+                    :questions,
+                    :round, 
+                    :round_started_at, 
+                    :scores
 
         def self.current
           @@game
@@ -38,6 +43,14 @@ module Mailbot
           answers[choice - 1] << user
         end
 
+        def current_correct_index
+          decoder = HTMLEntities.new
+
+          current_choices.index do |answer|
+            answer == decoder.decode(current_question['correct_answer'])
+          end
+        end
+
         def current_question
           questions[round - 1]
         end
@@ -46,10 +59,13 @@ module Mailbot
           @@game = nil
         end
 
+        def leaderboard
+          scores.sort_by { |user, score| score }.reverse.map(&:first)[0..2]
+        end
+
         def winners
           if round > 0
-            correct_index = current_choices.index { |i| i == current_question['correct_answer'] }
-            answers[correct_index] || []
+            answers[current_correct_index] || []
           else
             []
           end

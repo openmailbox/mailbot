@@ -84,9 +84,11 @@ module Mailbot
         text << "The following players had the correct answer: #{current_game.winners.map(&:name).join(', ')}. "
 
         if current_game.round >= current_game.questions.length
-          winner, score = current_game.scores.sort_by { |i, j| j }.last
+          winner = current_game.leaderboard.first
 
-          text << "Game over! #{winner.name} wins with a score of #{score}!"
+          Mailbot.logger.info("TRIVIA: Ending game. Scores: #{current_game.scores.inspect}")
+
+          text << "Game over! #{winner.name} wins with a score of #{current_game.scores[winner]}!"
 
           current_game.game_over
 

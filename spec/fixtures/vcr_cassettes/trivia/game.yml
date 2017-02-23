@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.opentdb.com/api.php?amount=10
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Date:
+      - Thu, 23 Feb 2017 18:25:15 GMT
+      Server:
+      - Apache
+      Location:
+      - https://opentdb.com/api.php?amount=10
+      Content-Length:
+      - '245'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>301 Moved Permanently</title>
+        </head><body>
+        <h1>Moved Permanently</h1>
+        <p>The document has moved <a href="https://opentdb.com/api.php?amount=10">here</a>.</p>
+        </body></html>
+    http_version: 
+  recorded_at: Thu, 23 Feb 2017 18:25:15 GMT
+- request:
+    method: get
+    uri: https://opentdb.com/api.php?amount=10
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 23 Feb 2017 18:25:15 GMT
+      Server:
+      - Apache
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Set-Cookie:
+      - PHPSESSID=cT8eg3IdgB5CVEAhknd5x2; path=/
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"response_code":0,"results":[{"category":"Animals","type":"boolean","difficulty":"easy","question":"The
+        Axolotl is an amphibian that can spend its whole life in a larval state.","correct_answer":"True","incorrect_answers":["False"]},{"category":"Entertainment:
+        Music","type":"multiple","difficulty":"medium","question":"Which of these
+        is NOT the name of an album released by Miami-based producer DJ Khaled?","correct_answer":"Don&#039;t
+        Ever Play Yourself","incorrect_answers":["Major Key","Suffering From Success","I
+        Changed A Lot"]},{"category":"Entertainment: Video Games","type":"multiple","difficulty":"medium","question":"Which
+        of these &quot;Worms&quot; games featured 3D gameplay?","correct_answer":"Worms
+        4: Mayhem","incorrect_answers":["Worms W.M.D","Worms Reloaded","Worms: Open
+        Warfare 2"]},{"category":"Entertainment: Video Games","type":"boolean","difficulty":"medium","question":"In
+        &quot;Team Fortress 2&quot;, the &quot;Bill&#039;s Hat&quot; is a reference
+        to the game &quot;Dota 2&quot;.","correct_answer":"False","incorrect_answers":["True"]},{"category":"Science
+        & Nature","type":"multiple","difficulty":"hard","question":"Which of the following
+        plastic is commonly used for window frames, gutters and drain pipes?","correct_answer":"Polyvinylchloride
+        (PVC) ","incorrect_answers":["Polyethylene (PE)","Polypropylene (PP)","Polystyrene
+        (PS)"]},{"category":"Entertainment: Video Games","type":"multiple","difficulty":"hard","question":"In
+        Monster Hunter Generations, which of these hunter arts are exclusive to the
+        Longsword?","correct_answer":"Unhinged Spirit","incorrect_answers":["Shoryugeki","Provoke","Demon
+        Riot"]},{"category":"Entertainment: Music","type":"multiple","difficulty":"medium","question":"Who
+        recorded the album called &quot;Down to the Moon&quot; in 1986?","correct_answer":"Andreas
+        Vollenweider","incorrect_answers":["Jean-Michel Jarre","Bing Crosby","Enya"]},{"category":"Science:
+        Computers","type":"multiple","difficulty":"hard","question":"Who is the original
+        author of the realtime physics engine called PhysX?","correct_answer":"NovodeX","incorrect_answers":["Ageia","Nvidia","AMD"]},{"category":"Sports","type":"multiple","difficulty":"easy","question":"What
+        team won the 2016 MLS Cup?","correct_answer":"Seattle Sounders","incorrect_answers":["Colorado
+        Rapids","Toronto FC","Montreal Impact"]},{"category":"Entertainment: Video
+        Games","type":"multiple","difficulty":"medium","question":"Who is the main
+        character in most of the games of the YS series?","correct_answer":"Adol Christin
+        ","incorrect_answers":["Character doesn&#039;t have a name","Estelle Bright","Roger
+        Wilco"]}]}'
+    http_version: 
+  recorded_at: Thu, 23 Feb 2017 18:25:15 GMT
+recorded_with: VCR 3.0.3

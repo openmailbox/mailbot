@@ -14,3 +14,9 @@ group :development do
   gem 'capistrano-rvm'
   gem 'pry'
 end
+
+group :development, :test do
+  gem 'rspec'
+  gem 'vcr'
+  gem 'webmock'
+end
