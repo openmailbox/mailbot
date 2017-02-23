@@ -5,6 +5,7 @@ gem 'activerecord'
 gem 'mysql2'
 gem 'rake'
 gem 'httparty'
+gem 'htmlentities'
 
 group :development do
   gem 'annotate'

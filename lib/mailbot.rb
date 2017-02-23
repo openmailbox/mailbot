@@ -1,6 +1,9 @@
 require 'active_record'
 require 'logger'
 require 'httparty'
+require 'htmlentities'
+require 'json'
+require 'time'
 
 Thread.abort_on_exception = true
 

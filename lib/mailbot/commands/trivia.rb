@@ -37,15 +37,19 @@ module Mailbot
             context.send_string('There is already a game in progress!')
           end
         elsif args.first == 'answer'
-          if args[1] =~ /\d/ && args[1].to_i <= current_game.current_choices.length
-            if current_game.answers.values.flatten.find { |i| i == user }
-              context.send_string("TRIVIA: Sorry, #{user.name}. You can't change your answer.")
-            else
-              current_game.answer(user, args[1].to_i)
-              context.send_string("TRIVIA: #{user.name}, your answer has been submitted.")
-            end
+          if current_game.nil?
+            context.send_string("There is no trivia game in progress. Start a new game with '!trivia start'.")
           else
-            context.send_string("TRIVIA: Sorry, #{user.name}. That is not a valid answer choice.")
+            if args[1] =~ /\d/ && args[1].to_i <= current_game.current_choices.length
+              if current_game.answers.values.flatten.find { |i| i == user }
+                context.send_string("TRIVIA: Sorry, #{user.name}. You can't change your answer.")
+              else
+                current_game.answer(user, args[1].to_i)
+                context.send_string("TRIVIA: #{user.name}, your answer has been submitted.")
+              end
+            else
+              context.send_string("TRIVIA: Sorry, #{user.name}. That is not a valid answer choice.")
+            end
           end
         end
       end
@@ -59,10 +63,10 @@ module Mailbot
       end
 
       def ask_question
-        question  = current_game.current_question
+        question  = HTMLEntities.new.decode(current_game.current_question['question'])
         remaining = ROUND_TIME - (Time.now.to_i - current_game.round_started_at)
 
-        text  = "TRIVIA QUESTION: '#{question['question']}' --- "
+        text  = "TRIVIA QUESTION: '#{question}' --- "
         text << "ANSWERS: '#{answers(question).join(' ')}' --- "
         text << "Use '!trivia answer <number>' to pick an answer. "
         text << "#{remaining} seconds remaining to submit an answer for this round."
@@ -95,6 +99,10 @@ module Mailbot
           start_timer(BREAK_TIME) do
             current_game.advance
             ask_question
+
+            start_timer(ROUND_TIME) do
+              end_round
+            end
           end
         end
       end

@@ -1,6 +1,3 @@
-require 'json'
-require 'time'
-
 module Mailbot
   module Commands
     class Trivia
@@ -37,8 +34,8 @@ module Mailbot
         end
 
         def answer(user, choice)
-          answers[choice] ||= []
-          answers[choice] << user
+          answers[choice - 1] ||= []
+          answers[choice - 1] << user
         end
 
         def current_question
@@ -68,6 +65,11 @@ module Mailbot
 
         def initialize_choices
           @current_choices = current_question['incorrect_answers'] << current_question['correct_answer']
+          coder            = HTMLEntities.new
+
+          @current_choices = current_choices.map do |choice|
+            coder.decode(choice)
+          end
 
           current_choices.shuffle!
         end
