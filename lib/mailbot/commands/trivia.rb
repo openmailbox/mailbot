@@ -57,6 +57,7 @@ module Mailbot
         text
       end
 
+
       def start_round
         start_timer(ROUND_TIME) { end_round }
       end
@@ -78,7 +79,8 @@ module Mailbot
 
         Mailbot.logger.info("TRIVIA: Ending game. Scores: #{current_game.scores.inspect}")
 
-        text = end_round_text + "Game over! #{winner.name} wins with a score of #{current_game.scores[winner]}!"
+        text = end_round_text + "Game over! "
+        text << "#{winner.name} wins with a score of #{current_game.scores[winner]}!" if winner
 
         current_game.game_over
 
