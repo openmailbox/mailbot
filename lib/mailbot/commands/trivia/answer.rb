@@ -16,6 +16,11 @@ module Mailbot
             context.send_string("TRIVIA: Sorry, #{user.name}. That is not a valid answer choice.")
           elsif already_answered?
             context.send_string("TRIVIA: Sorry, #{user.name}. You can't change your answer.")
+          elsif between_rounds?
+            remaining = Trivia::BREAK_TIME - (Time.now.to_i - (current_game.round_started_at + Trivia::ROUND_TIME))
+            time      = trivia.remaining_time(remaining)
+            
+            context.send_string("TRIVIA: Sorry, #{user.name}. This round is over. Next round starts in #{time}.")
           else
             current_game.answer(user, answer.to_i)
             context.send_string("TRIVIA: #{user.name}, your answer has been submitted.")
@@ -27,6 +32,10 @@ module Mailbot
         def already_answered?
           existing = current_game.answers.values.flatten.find { |i| i == user }
           !existing.nil?
+        end
+
+        def between_rounds?
+          trivia.between_rounds?
         end
 
         def context

@@ -12,14 +12,19 @@ module Mailbot
       end
 
       def ask_question
-        question = HTMLEntities.new.decode(current_game.current_question['question'])
+        question  = HTMLEntities.new.decode(current_game.current_question['question'])
+        remaining = ROUND_TIME - (Time.now.to_i - current_game.round_started_at)
 
-        text  = "TRIVIA QUESTION: '#{question}' --- "
+        text  = "TRIVIA QUESTION #{current_game.round} of 10: '#{question}' --- "
         text << "ANSWERS: '#{answers(question).join(' ')}' --- "
         text << "Use '!trivia answer <number>' to pick an answer. "
-        text << "#{remaining_time} remaining to submit an answer for this round."
+        text << "#{remaining_time(remaining)} remaining to submit an answer for this round."
 
         context.send_string(text)
+      end
+
+      def between_rounds?
+        Time.now.to_i > (current_game.round_started_at + ROUND_TIME)
       end
 
       def execute(context)
@@ -33,13 +38,23 @@ module Mailbot
         when 'answer'
           Trivia::Answer.new(self).execute
         else
-          if current_game
+          if !current_game
+            context.send_string("There is no trivia game in progress. Start a new game with '!trivia start'.")
+          elsif between_rounds?
+            remaining = BREAK_TIME - (Time.now.to_i - (current_game.round_started_at + ROUND_TIME))
+            context.send_string("Trivia in progress. #{remaining_time(remaining)} until the next round starts.")
+          else
             context.send_string("Trivia in progress. Currently on question #{current_game.round} of 10.")
             ask_question
-          else
-            context.send_string("There is no trivia game in progress. Start a new game with '!trivia start'.")
           end
         end
+      end
+
+      def remaining_time(total_seconds)
+        minutes = total_seconds / 60
+        text    = "#{total_seconds % 60} seconds"
+        text    = "#{minutes} minutes, #{text}" if minutes > 0
+        text
       end
 
       def start_round
@@ -74,7 +89,7 @@ module Mailbot
         if game_over?
           end_game
         else
-          text = end_round_text + "The next round will start in #{BREAK_TIME} seconds."
+          text = end_round_text + "The next round will start in #{BREAK_TIME / 60} minutes."
 
           context.send_string(text)
 
@@ -91,14 +106,6 @@ module Mailbot
 
       def game_over?
         current_game.round >= current_game.questions.length
-      end
-
-      def remaining_time
-        total_seconds = ROUND_TIME - (Time.now.to_i - current_game.round_started_at)
-        minutes       = total_seconds / 60
-        text          = "#{total_seconds % 60} seconds"
-        text          = "#{minutes} minutes, #{text}" if minutes > 0
-        text
       end
 
       def start_break

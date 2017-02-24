@@ -75,6 +75,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thread_safe (0.3.5)
+    timecop (0.8.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     vcr (3.0.3)
@@ -98,8 +99,9 @@ DEPENDENCIES
   pry
   rake
   rspec
+  timecop
   vcr
   webmock
 
 BUNDLED WITH
-   1.14.3
+   1.14.4

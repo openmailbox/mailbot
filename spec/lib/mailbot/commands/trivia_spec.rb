@@ -50,7 +50,25 @@ describe Mailbot::Commands::Trivia do
 
         command.execute(context)
 
-        expect(context.buffer.last).to match(/^TRIVIA QUESTION: '#{question}'/)
+        expect(context.buffer.last).to match(/^TRIVIA QUESTION 1 of 10: '#{question}'/)
+      end
+
+      context 'when we are in between rounds' do
+        before(:each) do
+          game = Mailbot::Commands::Trivia::Game.current
+
+          Timecop.freeze(Time.now - (described_class::ROUND_TIME + 30)) do
+            game.advance
+          end
+        end
+
+        it 'reports how long until the next round starts' do
+          command  = described_class.new(user, [])
+
+          command.execute(context)
+
+          expect(context.buffer.last).to match(/until the next round starts./)
+        end
       end
     end
   end
@@ -78,7 +96,7 @@ describe Mailbot::Commands::Trivia do
         command.execute(context)
 
         expect(Mailbot::Commands::Trivia::Game.current).not_to be_nil
-        expect(context.buffer.last).to match(/^TRIVIA QUESTION: /)
+        expect(context.buffer.last).to match(/^TRIVIA QUESTION 1 of 10: /)
       end
     end
   end # !trivia start
@@ -140,6 +158,24 @@ describe Mailbot::Commands::Trivia do
           next_command.execute(context)
 
           expect(context.buffer.last).to match(/^TRIVIA: Sorry, Tester\. You can't change your answer/)
+        end
+      end
+
+      context 'when we are in between rounds' do
+        before(:each) do
+          game = Mailbot::Commands::Trivia::Game.current
+
+          Timecop.freeze(Time.now - (described_class::ROUND_TIME + 30)) do
+            game.advance
+          end
+        end
+
+        it 'shows an error' do
+          command = described_class.new(user, ['answer', '1'])
+
+          command.execute(context)
+
+          expect(context.buffer.last).to match(/^TRIVIA: Sorry, Tester. This round is over/)
         end
       end
     end # when there is a game in progress

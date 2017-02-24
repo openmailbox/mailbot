@@ -17,6 +17,7 @@ end
 
 group :development, :test do
   gem 'rspec'
+  gem 'timecop'
   gem 'vcr'
   gem 'webmock'
 end
