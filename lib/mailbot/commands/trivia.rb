@@ -102,7 +102,7 @@ module Mailbot
       def end_round_text
         text =  "TRIVIA: Round ended. "
         text << "The correct answer was: #{current_game.current_question['correct_answer']}. "
-        text << "The following players had the correct answer: #{current_game.winners.map(&:name).join(', ')}. "
+        text << "The following players had the correct answer: #{current_game.winners.map { |i| i.user.name }.join(', ')}. "
         text
       end
 
