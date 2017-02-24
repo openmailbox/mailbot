@@ -7,10 +7,10 @@ module Mailbot
         @@game = nil
 
         attr_reader :answers,
-                    :current_choices, 
+                    :current_choices,
                     :questions,
-                    :round, 
-                    :round_started_at, 
+                    :round,
+                    :round_started_at,
                     :scores
 
         def self.current
