@@ -35,12 +35,11 @@ describe Mailbot::Commands::Trivia::Game do
 
     game.advance
 
-    expect(game.answers[1]).to be_nil
+    expect(game.answers).to be_empty
 
     game.answer(user, 2)
 
-    expect(game.answers[1]).not_to be_empty
-    expect(game.answers[1].first).to eq(user)
+    expect(game.answers.length).to eq(1)
   end
 
   it 'keeps score' do
@@ -58,16 +57,15 @@ describe Mailbot::Commands::Trivia::Game do
 
     game.advance
 
-    expect(game.scores[loser]).to eq(1)
-    expect(game.scores[winner]).to eq(1)
+    expect(game.scores[loser]).to be > 0
+    expect(game.scores[winner]).to be > 0
 
     game.answer(loser, game.current_correct_index + 2)
     game.answer(winner, game.current_correct_index + 1)
 
     game.advance
 
-    expect(game.scores[loser]).to eq(1)
-    expect(game.scores[winner]).to eq(2)
+    expect(game.scores[winner]).to be > game.scores[loser]
     expect(game.leaderboard.first).to eq(winner)
   end
 end

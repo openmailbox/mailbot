@@ -124,7 +124,7 @@ describe Mailbot::Commands::Trivia do
         command.execute(context)
 
         expect(context.buffer.last).to match(/^TRIVIA: Tester, your answer has been submitted/)
-        expect(Mailbot::Commands::Trivia::Game.current.answers[0]).not_to be_empty
+        expect(Mailbot::Commands::Trivia::Game.current.answers).not_to be_empty
       end
 
       context 'when the answer is not an integer' do

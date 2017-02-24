@@ -30,7 +30,10 @@ module Mailbot
         private
 
         def already_answered?
-          existing = current_game.answers.values.flatten.find { |i| i == user }
+          existing = current_game.answers.find do |answer|
+            answer.user == user
+          end
+
           !existing.nil?
         end
 

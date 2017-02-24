@@ -2,7 +2,9 @@ module Mailbot
   module Commands
     class Trivia
       class Game
-        BASE_URL = 'https://www.opentdb.com/api.php'
+        Answer     = Struct.new(:user, :time, :choice)
+        BASE_URL   = 'https://www.opentdb.com/api.php'
+        MAX_POINTS = 50
 
         @@game = nil
 
@@ -22,15 +24,17 @@ module Mailbot
           @round     = 0
           @scores    = {}
           @questions = fetch_questions
+          @answers   = []
         end
 
         def advance
-          winners.each do |user|
-            scores[user] ||= 0
-            scores[user] += 1
+          winners.each do |answer|
+            score = MAX_POINTS - ((answer.time - round_started_at) % MAX_POINTS)
+            scores[answer.user] ||= 0
+            scores[answer.user] += score
           end
 
-          @answers          = {}
+          @answers          = []
           @round_started_at = Time.now.to_i
 
           @round += 1
@@ -39,8 +43,7 @@ module Mailbot
         end
 
         def answer(user, choice)
-          answers[choice - 1] ||= []
-          answers[choice - 1] << user
+          answers << Answer.new(user, Time.now.to_i, choice)
         end
 
         def current_correct_index
@@ -64,10 +67,12 @@ module Mailbot
         end
 
         def winners
-          if round > 0
-            answers[current_correct_index] || []
-          else
-            []
+          return [] unless round > 0
+
+          correct_choice = current_correct_index + 1
+
+          answers.select do |answer|
+            answer.choice == correct_choice
           end
         end
 
