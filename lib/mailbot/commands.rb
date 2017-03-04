@@ -1,6 +1,4 @@
-require 'mailbot/commands/hello'
 require 'mailbot/commands/roll'
-require 'mailbot/commands/who'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
@@ -9,9 +7,7 @@ require 'mailbot/commands/trivia/answer'
 module Mailbot
   module Commands
     COMMANDS = {
-      hello:  Commands::Hello,
       roll:   Commands::Roll,
-      #who:    Commands::Who,
       trivia: Commands::Trivia
     }
 
