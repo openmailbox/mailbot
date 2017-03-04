@@ -11,11 +11,17 @@ module Mailbot
       end
 
       def execute(context)
-        Mailbot.logger.info "USER COMMAND: #{user.name} - !roll"
+        Mailbot.logger.info "USER COMMAND: #{user.name} - !roll #{args}"
 
-        result = ((Random.rand * 19) + 1).round
+        match = args.any? && args.first.match(/^(\d+)d(\d+)$/)
 
-        context.send_string("#{user.name} rolled 1d20 and got #{result}!")
+        if !match
+          context.send_string("Invalid roll command. Try '!roll 1d20' or '!roll 4d8'.")
+        else
+          result = (1..match[1].to_i).inject(0) { |i| i += rand(match[2].to_i) + 1 }
+
+          context.send_string("#{user.name} rolls #{match[0]} and gets #{result}!")
+        end
       end
     end
   end

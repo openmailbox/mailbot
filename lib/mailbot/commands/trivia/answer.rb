@@ -19,7 +19,7 @@ module Mailbot
           elsif between_rounds?
             remaining = Trivia::BREAK_TIME - (Time.now.to_i - (current_game.round_started_at + Trivia::ROUND_TIME))
             time      = trivia.remaining_time(remaining)
-            
+
             context.send_string("TRIVIA: Sorry, #{user.name}. This round is over. Next round starts in #{time}.")
           else
             current_game.answer(user, answer.to_i)
