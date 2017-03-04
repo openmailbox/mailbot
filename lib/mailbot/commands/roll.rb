@@ -1,18 +1,21 @@
 module Mailbot
   module Commands
-    class Who
+    class Roll
       attr_reader :user, :args
 
       # @param [User] user The instance of a user
+      # @param [Array<String>] args
       def initialize(user, args)
         @user = user
         @args = args
       end
 
       def execute(context)
-        name_list = User.list.map(&:name)
+        Mailbot.logger.info "USER COMMAND: #{user.name} - !roll"
 
-        context.send_string("Users the bot knows about: #{name_list.join(', ')}")
+        result = ((Random.rand * 19) + 1).round
+
+        context.send_string("#{user.name} rolled 1d20 and got #{result}!")
       end
     end
   end
