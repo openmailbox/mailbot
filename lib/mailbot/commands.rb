@@ -1,4 +1,6 @@
+require 'mailbot/commands/bnet'
 require 'mailbot/commands/roll'
+require 'mailbot/commands/steam'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
@@ -7,7 +9,9 @@ require 'mailbot/commands/trivia/answer'
 module Mailbot
   module Commands
     COMMANDS = {
+      bnet:   Commands::Bnet,
       roll:   Commands::Roll,
+      steam:  Commands::Steam,
       trivia: Commands::Trivia
     }
 
