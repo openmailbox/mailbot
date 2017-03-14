@@ -2,6 +2,12 @@ require 'socket'
 
 module Mailbot
   class Twitch
+    Context = Struct.new(:user, :channel, :command) do
+      def send_string(message)
+        channel.send_message(message)
+      end
+    end
+
     attr_reader :socket, :thread
 
     def send(message)
@@ -9,8 +15,8 @@ module Mailbot
       socket.puts(message)
     end
 
-    def send_string(string)
-      send("PRIVMSG #open_mailbox :#{string}")
+    def send_string(channel_name, message)
+      send("PRIVMSG ##{channel_name} :#{message}")
     end
 
     def stop
@@ -22,7 +28,7 @@ module Mailbot
     def start
       return if socket && !socket.closed?
 
-      initialize_channel
+      initialize_channels
 
       @thread = Thread.start do
         loop do
@@ -33,9 +39,10 @@ module Mailbot
 
             Mailbot.logger.info "> #{line}"
 
-            command = parse(line)
+            context = parse(line)
+            command = context && context.command
 
-            command.execute(self) if command
+            command.execute(context) if command
           end
         end
       end
@@ -48,26 +55,29 @@ module Mailbot
 
       return unless match
 
-      user    = Mailbot::Models::User.find_or_create_by(name: match[1])
+      user    = Models::User.find_or_create_by(name: match[1])
+      channel = Models::Channel.find_by(name: match[3])
       message = match[4]
+      command = Commands.from_input(user, message)
 
-      Commands.from_input(user, message)
+      Context.new(user, channel, command)
     end
 
     private
 
-    def initialize_channel
+    def initialize_channels
       username = Mailbot.configuration.twitch.username
 
       Mailbot.logger.info "Preparing to connect to Twitch as #{username}..."
 
       @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
 
-      socket.puts("PASS #{Mailbot.configuration.twitch.api_token}")
-      socket.puts("NICK #{username}")
-      socket.puts("JOIN ##{Mailbot.configuration.twitch.channel}")
+      socket.puts("PASS #{Mailbot.configuration.twitch.api_token}") # socket.puts hidden from log
+      send("NICK #{username}")
 
-      Mailbot.logger.info 'Connected...'
+      Models::Channel.all.each do |channel|
+        send("JOIN ##{channel.name}")
+      end
     end
 
     def pong

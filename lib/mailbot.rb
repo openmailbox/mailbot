@@ -22,6 +22,10 @@ module Mailbot
     @env ||= (ENV['MAILBOT_ENV'] || 'development')
   end
 
+  def self.instance
+    @bot
+  end
+
   def self.logger
     STDOUT.sync = true if Mailbot.env == 'production'
     @logger ||= Logger.new(STDOUT)
