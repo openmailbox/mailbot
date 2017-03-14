@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id   :integer          not null, primary key
-#  name :string
+#  name :string(255)
 #
 
 module Mailbot
