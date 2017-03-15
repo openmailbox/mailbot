@@ -58,6 +58,11 @@ namespace :db do
       ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
     end
   end
+
+  desc 'Seed the database from db/seeds.rb'
+  task :seed do
+    load 'db/seeds.rb'
+  end
 end
 
 namespace :generate do
