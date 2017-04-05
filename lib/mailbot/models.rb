@@ -1,4 +1,5 @@
 require 'mailbot/models/channel'
+require 'mailbot/models/channel_membership'
 require 'mailbot/models/user'
 
 module Mailbot

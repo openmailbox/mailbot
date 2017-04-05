@@ -8,7 +8,11 @@ module Mailbot
       end
     end
 
-    attr_reader :socket, :thread
+    attr_reader :socket, :thread, :online
+
+    def initialize
+      @online = []
+    end
 
     def send(message)
       Mailbot.logger.info "< #{message}"
@@ -55,10 +59,14 @@ module Mailbot
 
       return unless match
 
-      user    = Models::User.find_or_create_by(name: match[1])
-      channel = Models::Channel.find_by(name: match[3])
-      message = match[4]
-      command = Commands.from_input(user, message)
+      user       = Models::User.find_or_create_by(name: match[1])
+      channel    = Models::Channel.find_by(name: match[3])
+      membership = membership(user, channel)
+      message    = match[4]
+      command    = Commands.from_input(user, message)
+
+      membership.last_message_at = DateTime.now
+      membership.save
 
       Context.new(user, channel, command)
     end
@@ -78,6 +86,21 @@ module Mailbot
       Models::Channel.all.each do |channel|
         send("JOIN ##{channel.name}")
       end
+
+      send('CAP REQ :twitch.tv/membership')
+    end
+
+    def membership(user, channel)
+      member = online.find do |membership|
+        membership.user == user && membership.channel == channel
+      end
+
+      unless member
+        member = channel.channel_memberships.find_or_initialize_by(user: user)
+        online << member
+      end
+
+      member
     end
 
     def pong

@@ -9,6 +9,7 @@
 module Mailbot
   module Models
     class User < ActiveRecord::Base
+      has_many :channel_memberships
     end
   end
 end
