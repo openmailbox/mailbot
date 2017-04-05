@@ -18,6 +18,8 @@ module Mailbot
     }
 
     def self.from_input(user, message)
+      return unless message[0] == '!'
+
       command, *args = message.split
       command        = command[1..-1] # strip the !
       klass          = COMMANDS[command.to_sym]

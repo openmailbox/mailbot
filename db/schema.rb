@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170405141157) do
   create_table "channel_memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "channel_id"
     t.integer  "user_id"
-    t.float    "points",          limit: 24
+    t.integer  "points",          default: 0
     t.datetime "last_message_at"
   end
 

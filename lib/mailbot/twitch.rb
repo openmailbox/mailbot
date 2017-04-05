@@ -55,18 +55,22 @@ module Mailbot
     def parse(input)
       return pong if input =~ /^PING/
 
-      match = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+      match = input.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
 
       return unless match
 
       user       = Models::User.find_or_create_by(name: match[1])
-      channel    = Models::Channel.find_by(name: match[3])
+      channel    = Models::Channel.find_by(name: match[4].split.first)
       membership = membership(user, channel)
-      message    = match[4]
-      command    = Commands.from_input(user, message)
+      message    = match[4].split[1..-1].join(' ')
+      command    = Commands.from_input(user, message.sub(/^:/, ''))
 
-      membership.last_message_at = DateTime.now
-      membership.save
+      if match[3] == 'PART'
+        online.delete_if { |i| i == membership }
+      elsif message.length > 0
+        membership.last_message_at = DateTime.now
+        membership.save
+      end
 
       Context.new(user, channel, command)
     end
@@ -96,7 +100,7 @@ module Mailbot
       end
 
       unless member
-        member = channel.channel_memberships.find_or_initialize_by(user: user)
+        member = channel.channel_memberships.find_or_create_by(user: user)
         online << member
       end
 

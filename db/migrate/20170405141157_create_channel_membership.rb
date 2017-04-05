@@ -3,7 +3,7 @@ class CreateChannelMembership < ActiveRecord::Migration[5.0]
     create_table :channel_memberships do |t|
       t.integer 'channel_id'
       t.integer 'user_id'
-      t.float 'points'
+      t.integer 'points', default: 0
       t.datetime 'last_message_at'
     end
   end
