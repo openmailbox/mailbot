@@ -15,32 +15,43 @@ module Mailbot
       # @return [Twitch::Context] a contextual object with the parsed/tokenized chat data
       def parse(line)
         context = Twitch::Context.new
-        match   = line.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
+        tokens  = tokenize(line)
 
-        return context unless match
+        return context unless tokens
 
-        user_name = match[1]
+        context.user    = Mailbot::Models::User.find_or_create_by(name: tokens[:user])
+        context.channel = Mailbot::Models::Channel.find_by(name: tokens[:channel])
+        membership      = twitch.find_or_create_membership(context.user, context.channel)
+
+        case tokens[:action]
+        when 'PART'
+          twitch.disconnect(membership)
+        when 'PRIVMSG'
+          membership.last_message_at = DateTime.now
+          membership.save
+
+          context.command = Mailbot::Commands.from_input(context.user, tokens[:message])
+        end
+
+        context
+      end
+
+      private
+
+      def tokenize(line)
+        match = line.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
+
+        return unless match
 
         channel_name, *message = match[4].split
 
-        message    = message.join(' ').sub(/^:/, '')
-        user       = match[1] && Mailbot::Models::User.find_or_create_by(name: match[1])
-        channel    = channel_name && Mailbot::Models::Channel.find_by(name: channel_name)
-        membership = twitch.find_or_create_membership(user, channel)
-        command    = Mailbot::Commands.from_input(user, message)
+        tokens           = {}
+        tokens[:user]    = match[1]
+        tokens[:action]  = match[3]
+        tokens[:channel] = channel_name
+        tokens[:message] = message.any? && message.join(' ').sub(/^:/, '')
 
-        if match[3] == 'PART'
-          twitch.disconnect(membership)
-        elsif message.length > 0
-          membership.last_message_at = DateTime.now
-          membership.save
-        end
-
-        context.user    = user
-        context.channel = channel
-        context.command = command
-
-        context
+        tokens
       end
     end
   end
