@@ -8,7 +8,11 @@ module Mailbot
       end
     end
 
-    attr_reader :socket, :thread
+    attr_reader :socket, :thread, :online
+
+    def initialize
+      @online = []
+    end
 
     def send(message)
       Mailbot.logger.info "< #{message}"
@@ -51,14 +55,22 @@ module Mailbot
     def parse(input)
       return pong if input =~ /^PING/
 
-      match = input.match(/^:(.+)!(.+) PRIVMSG #(.+) :(.+)$/)
+      match = input.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
 
       return unless match
 
-      user    = Models::User.find_or_create_by(name: match[1])
-      channel = Models::Channel.find_by(name: match[3])
-      message = match[4]
-      command = Commands.from_input(user, message)
+      user       = Models::User.find_or_create_by(name: match[1])
+      channel    = Models::Channel.find_by(name: match[4].split.first)
+      membership = membership(user, channel)
+      message    = match[4].split[1..-1].join(' ')
+      command    = Commands.from_input(user, message.sub(/^:/, ''))
+
+      if match[3] == 'PART'
+        online.delete_if { |i| i == membership }
+      elsif message.length > 0
+        membership.last_message_at = DateTime.now
+        membership.save
+      end
 
       Context.new(user, channel, command)
     end
@@ -78,6 +90,21 @@ module Mailbot
       Models::Channel.all.each do |channel|
         send("JOIN ##{channel.name}")
       end
+
+      send('CAP REQ :twitch.tv/membership')
+    end
+
+    def membership(user, channel)
+      member = online.find do |membership|
+        membership.user == user && membership.channel == channel
+      end
+
+      unless member
+        member = channel.channel_memberships.find_or_create_by(user: user)
+        online << member
+      end
+
+      member
     end
 
     def pong
