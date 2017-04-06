@@ -1,19 +1,45 @@
 require 'socket'
 
 module Mailbot
+  # The class that handles interaction with Twitch IRC-chat
+  #
+  # @attr_reader [Array<Mailbot::Models::ChannelMembership>] online currently connected chatters
+  # @attr_reader [Twitch::Parser] parser the parser/tokenizer for Twitch chat
+  # @attr_reader [TCPSocket] socket the socket connected to Twitch's chat server
+  # @attr_reader [Thread] thread the background thread for processing chat incoming from the server
   class Twitch
-    Context = Struct.new(:user, :channel, :command) do
-      def send_string(message)
-        channel.send_message(message)
-      end
-    end
-
-    attr_reader :socket, :thread, :online
+    attr_reader :online, :parser, :socket, :thread
 
     def initialize
       @online = []
+      @parser = Twitch::Parser.new(self)
     end
 
+    # @param [Mailbot::Models::ChannelMembership] membership the user and channel who disconnected
+    #
+    # @return [Mailbot::Models::ChannelMembership, nil] the membership that was removed or nil
+    def disconnect(membership)
+      online.delete_if { |i| i == membership }
+    end
+
+    # @param [Mailbot::Models::User] user the user who sent the message
+    # @param [Mailbot::Models::Channel] channel the channel the message originated from
+    #
+    # @return [Mailbot::Models::ChannelMembership] the membership for this user on this channel
+    def find_or_create_membership(user, channel)
+      member = online.find do |membership|
+        membership.user == user && membership.channel == channel
+      end
+
+      unless member
+        member = channel.channel_memberships.find_or_create_by(user: user)
+        online << member
+      end
+
+      member
+    end
+
+    # @return [nil]
     def send(message)
       Mailbot.logger.info "< #{message}"
       socket.puts(message)
@@ -43,36 +69,13 @@ module Mailbot
 
             Mailbot.logger.info "> #{line}"
 
-            context = parse(line)
-            command = context && context.command
+            context = parser.parse(line)
+            command = context.command
 
             command.execute(context) if command
           end
         end
       end
-    end
-
-    def parse(input)
-      return pong if input =~ /^PING/
-
-      match = input.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
-
-      return unless match
-
-      user       = Models::User.find_or_create_by(name: match[1])
-      channel    = Models::Channel.find_by(name: match[4].split.first)
-      membership = membership(user, channel)
-      message    = match[4].split[1..-1].join(' ')
-      command    = Commands.from_input(user, message.sub(/^:/, ''))
-
-      if match[3] == 'PART'
-        online.delete_if { |i| i == membership }
-      elsif message.length > 0
-        membership.last_message_at = DateTime.now
-        membership.save
-      end
-
-      Context.new(user, channel, command)
     end
 
     private
@@ -92,19 +95,6 @@ module Mailbot
       end
 
       send('CAP REQ :twitch.tv/membership')
-    end
-
-    def membership(user, channel)
-      member = online.find do |membership|
-        membership.user == user && membership.channel == channel
-      end
-
-      unless member
-        member = channel.channel_memberships.find_or_create_by(user: user)
-        online << member
-      end
-
-      member
     end
 
     def pong
