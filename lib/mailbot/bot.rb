@@ -1,11 +1,12 @@
 module Mailbot
   class Bot
-    attr_reader :threads, :running, :twitch
+    attr_reader :threads, :running, :twitch, :scheduler
 
     def initialize
-      @running = false
-      @twitch  = Mailbot::Twitch.new
-      @threads = []
+      @running   = false
+      @twitch    = Mailbot::Twitch.new
+      @scheduler = Mailbot::Scheduler.new
+      @threads   = []
     end
 
     def run
@@ -22,6 +23,7 @@ module Mailbot
 
             if command == 'quit'
               @running = false
+              scheduler.stop
               twitch.stop
             elsif !command.empty?
               twitch.send(command)
@@ -32,8 +34,10 @@ module Mailbot
         threads << main_thread
       end
 
+      scheduler.start
       twitch.start
 
+      threads << scheduler.thread
       threads << twitch.thread
 
       threads.each(&:join)
@@ -41,6 +45,7 @@ module Mailbot
 
     def stop
       @running = false
+      scheduler.stop
       twitch.stop
     end
 
