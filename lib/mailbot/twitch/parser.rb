@@ -15,7 +15,7 @@ module Mailbot
       # @return [Twitch::Context] a contextual object with the parsed/tokenized chat data
       def parse(line)
         context = Twitch::Context.new
-        tokens  = tokenize(line)
+        tokens  = line && tokenize(line)
 
         return context unless tokens
 
