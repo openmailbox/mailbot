@@ -14,6 +14,8 @@ module Mailbot
       #
       # @return [Twitch::Context] a contextual object with the parsed/tokenized chat data
       def parse(line)
+        return pong if line =~ /^PING/
+
         context = Twitch::Context.new
         tokens  = line && tokenize(line)
 
@@ -37,6 +39,11 @@ module Mailbot
       end
 
       private
+
+      def pong
+        twitch.send("PONG #{Mailbot.configuration.twitch.username}")
+        nil
+      end
 
       def tokenize(line)
         match = line.match(/^:(.+)!(.+) (JOIN|PART|PRIVMSG) #(.+)$/)
