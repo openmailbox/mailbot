@@ -68,7 +68,7 @@ module Mailbot
           ready[0].each do |s|
             line = s.gets
 
-            raise Exception.new("EOF in stream: #{s.inspect}") if line.nil?
+            raise Exception.new("EOF in stream: #{line.inspect}") if line.nil?
 
             Mailbot.logger.info "> #{line}"
 
