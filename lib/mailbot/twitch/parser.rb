@@ -14,13 +14,14 @@ module Mailbot
       #
       # @return [Twitch::Context] a contextual object with the parsed/tokenized chat data
       def parse(line)
+        context = Twitch::Context.new
+
         if line =~ /^PING/
           pong
           return context
         end
 
-        context = Twitch::Context.new
-        tokens  = line && tokenize(line)
+        tokens = line && tokenize(line)
 
         return context unless tokens
 
