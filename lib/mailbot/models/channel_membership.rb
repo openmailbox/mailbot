@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  channel_id      :integer
 #  user_id         :integer
-#  points          :float(24)
+#  points          :integer          default(0)
 #  last_message_at :datetime
 #
 
