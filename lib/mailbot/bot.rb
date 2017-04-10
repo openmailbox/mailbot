@@ -44,7 +44,6 @@ module Mailbot
       threads << twitch.thread
 
       threads.each(&:join)
-      discord.bot.sync # Thread#join under the hood
     end
 
     def stop
