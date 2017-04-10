@@ -7,6 +7,7 @@ gem 'rake'
 gem 'httparty'
 gem 'htmlentities'
 gem 'pry'
+gem 'discordrb'
 
 group :development do
   gem 'annotate'

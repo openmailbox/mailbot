@@ -1,2 +1,4 @@
 twitch:
   username: parcelbot
+discord:
+  client_id: ***REMOVED***

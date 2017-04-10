@@ -1,10 +1,11 @@
 module Mailbot
   class Bot
-    attr_reader :threads, :running, :twitch, :scheduler
+    attr_reader :threads, :running, :twitch, :discord, :scheduler
 
     def initialize
       @running   = false
       @twitch    = Mailbot::Twitch.new
+      @discord   = Mailbot::Discord.new
       @scheduler = Mailbot::Scheduler.new
       @threads   = []
     end
@@ -25,6 +26,7 @@ module Mailbot
               @running = false
               scheduler.stop
               twitch.stop
+              discord.stop
             elsif !command.empty?
               twitch.send(command)
             end
@@ -36,17 +38,20 @@ module Mailbot
 
       scheduler.start
       twitch.start
+      discord.start
 
       threads << scheduler.thread
       threads << twitch.thread
 
       threads.each(&:join)
+      discord.bot.sync # Thread#join under the hood
     end
 
     def stop
       @running = false
       scheduler.stop
       twitch.stop
+      discord.stop
     end
 
     private
