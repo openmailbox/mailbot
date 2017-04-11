@@ -12,9 +12,9 @@ module Mailbot
 
       # @param [String] line the line of text returned from the socket to IRC-chat
       #
-      # @return [Twitch::Context] a contextual object with the parsed/tokenized chat data
+      # @return [Context] a contextual object with the parsed/tokenized chat data
       def parse(line)
-        context = Twitch::Context.new
+        context = Context.new
 
         if line =~ /^PING/
           pong
@@ -26,7 +26,7 @@ module Mailbot
         return context unless tokens
 
         context.user    = Mailbot::Models::User.find_or_create_by(name: tokens[:user])
-        context.channel = Mailbot::Models::Channel.find_by(name: tokens[:channel])
+        context.service = Mailbot::Models::Channel.find_by(name: tokens[:channel])
         membership      = twitch.find_or_create_membership(context.user, context.channel)
 
         case tokens[:action]
