@@ -11,9 +11,15 @@
 
 module Mailbot
   module Models
+    # Represents a Discord community.
     class Community < ActiveRecord::Base
       belongs_to :platform
       belongs_to :user
+
+      # Makes this quack like a Channel. Mailbot::Discord sends whatever the return value was.
+      def send_message(message)
+        message
+      end
     end
   end
 end

@@ -6,17 +6,14 @@ module Mailbot
 
     def initialize
       config = Mailbot.configuration.discord
-      @bot = Discordrb::Commands::CommandBot.new(token: config.token, client_id: config.client_id, prefix: '!')
+      @bot   = Discordrb::Commands::CommandBot.new(token:     config.token, 
+                                                   client_id: config.client_id, 
+                                                   prefix:    '!')
 
       bot.command(:roll) do |event, value|
-        user = Mailbot::Models::User.new(name: event.author.username)
-        Commands::Roll.new(user, Array(value)).execute(self)
+        context = initialize_context(event)
+        Commands::Roll.new(context.user, Array(value)).execute(context)
       end
-    end
-
-    # Makes this quack like Twitch::Context so the command handling is the same
-    def send_string(message)
-      message
     end
 
     def start
@@ -28,6 +25,17 @@ module Mailbot
       bot.stop
       bot.sync
       Mailbot.logger.info 'Disconnected from Discord.'
+    end
+
+    private
+
+    def initialize_context(event)
+      context = Context.new
+
+      context.user    = Mailbot::Models::User.new(name: event.author.username)
+      context.service = Mailbot::Models::Community.new(name: event.server.id)
+
+      context
     end
   end
 end

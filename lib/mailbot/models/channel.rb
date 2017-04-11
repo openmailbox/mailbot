@@ -9,6 +9,7 @@
 
 module Mailbot
   module Models
+    # Represents a Twitch channel.
     class Channel < ActiveRecord::Base
       has_many :channel_memberships
 
