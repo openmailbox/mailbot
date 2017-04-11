@@ -53,6 +53,7 @@ end
 require 'mailbot/bot'
 require 'mailbot/commands'
 require 'mailbot/configuration'
+require 'mailbot/discord'
 require 'mailbot/scheduler'
 require 'mailbot/twitch'
 require 'mailbot/twitch/context'
