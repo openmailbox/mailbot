@@ -14,7 +14,7 @@ module Mailbot
       roll:     Commands::Roll,
       steam:    Commands::Steam,
       trivia:   Commands::Trivia,
-      giveaway: Commands::Giveaway
+      #giveaway: Commands::Giveaway
     }
 
     def self.from_input(user, message)
