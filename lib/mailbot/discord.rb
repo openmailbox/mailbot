@@ -17,7 +17,7 @@ module Mailbot
 
       bot.command(:trivia) do |event, command, answer|
         context = initialize_context(event)
-        Commands::Trivia.new(context.user, [command, answer])
+        Commands::Trivia.new(context.user, [command, answer]).execute(context)
       end
     end
 
