@@ -16,9 +16,13 @@ module Mailbot
       belongs_to :platform
       belongs_to :user
 
-      # Makes this quack like a Channel. Mailbot::Discord sends whatever the return value was.
-      def send_message(message)
-        message
+      # Send a message to a Discord server.
+      #
+      # @param [String] message the message to send
+      # @param [Hash] options
+      # @option options [Discordrb::Channel] :channel the channel to send the message on
+      def send_message(message, options = {})
+        options[:channel].send_message(message)
       end
     end
   end

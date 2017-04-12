@@ -13,11 +13,13 @@ module Mailbot
       bot.command(:roll) do |event, value|
         context = initialize_context(event)
         Commands::Roll.new(context.user, Array(value)).execute(context)
+        nil
       end
 
       bot.command(:trivia) do |event, command, answer|
         context = initialize_context(event)
         Commands::Trivia.new(context.user, [command, answer]).execute(context)
+        nil
       end
     end
 
