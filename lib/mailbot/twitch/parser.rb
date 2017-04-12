@@ -27,7 +27,7 @@ module Mailbot
 
         context.user    = Mailbot::Models::User.find_or_create_by(name: tokens[:user])
         context.service = Mailbot::Models::Channel.find_by(name: tokens[:channel])
-        membership      = twitch.find_or_create_membership(context.user, context.channel)
+        membership      = twitch.find_or_create_membership(context.user, context.service)
 
         case tokens[:action]
         when 'PART'
