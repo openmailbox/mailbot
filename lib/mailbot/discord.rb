@@ -14,6 +14,11 @@ module Mailbot
         context = initialize_context(event)
         Commands::Roll.new(context.user, Array(value)).execute(context)
       end
+
+      bot.command(:trivia) do |event, command, answer|
+        context = initialize_context(event)
+        Commands::Trivia.new(context.user, [command, answer])
+      end
     end
 
     def start
