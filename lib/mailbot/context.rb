@@ -13,7 +13,7 @@ module Mailbot
     #
     # @return [nil]
     def send_string(message)
-      service.send_message(message, channel: event.channel)
+      service.send_message(message, channel: event && event.channel)
     end
   end
 end
