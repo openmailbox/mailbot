@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-class TestContext
+class TestContext < Mailbot::Context
   attr_reader :buffer
 
   def initialize
@@ -20,12 +20,19 @@ describe Mailbot::Commands::Trivia do
   end
 
   after(:each) do
-    current_game = Mailbot::Commands::Trivia::Game.current
+    current_game = Mailbot::Commands::Trivia::Game.from_context(context)
     current_game && current_game.game_over
   end
 
-  let(:context) { TestContext.new }
   let(:user)    { Mailbot::Models::User.new(name: 'Tester') }
+
+  let(:context) do
+    context = TestContext.new
+
+    context.service = Mailbot::Models::Channel.new(name: 'test_channel')
+
+    context
+  end
 
   context 'with no arguments' do
     context 'when there is no game in progress' do
@@ -40,13 +47,13 @@ describe Mailbot::Commands::Trivia do
 
     context 'when there is a game in progress' do
       before(:each) do
-        game = Mailbot::Commands::Trivia::Game.new
+        game = Mailbot::Commands::Trivia::Game.new(context)
         game.advance
       end
 
       it 'shows the active question' do
         command  = described_class.new(user, [])
-        question = Mailbot::Commands::Trivia::Game.current.current_question['question']
+        question = Mailbot::Commands::Trivia::Game.from_context(context).current_question['question']
 
         command.execute(context)
 
@@ -55,7 +62,7 @@ describe Mailbot::Commands::Trivia do
 
       context 'when we are in between rounds' do
         before(:each) do
-          game = Mailbot::Commands::Trivia::Game.current
+          game = Mailbot::Commands::Trivia::Game.from_context(context)
 
           Timecop.freeze(Time.now - (described_class::ROUND_TIME + 30)) do
             game.advance
@@ -76,7 +83,7 @@ describe Mailbot::Commands::Trivia do
   describe '!trivia start' do
     context 'when there is already a game in progress' do
       before(:each) do
-        game = Mailbot::Commands::Trivia::Game.new
+        game = Mailbot::Commands::Trivia::Game.new(context)
         game.advance
       end
 
@@ -95,7 +102,7 @@ describe Mailbot::Commands::Trivia do
 
         command.execute(context)
 
-        expect(Mailbot::Commands::Trivia::Game.current).not_to be_nil
+        expect(Mailbot::Commands::Trivia::Game.from_context(context)).not_to be_nil
         expect(context.buffer.last).to match(/^TRIVIA QUESTION 1 of 10: /)
       end
     end
@@ -114,7 +121,7 @@ describe Mailbot::Commands::Trivia do
 
     context 'when there is a game in progress' do
       before(:each) do
-        game = Mailbot::Commands::Trivia::Game.new
+        game = Mailbot::Commands::Trivia::Game.new(context)
         game.advance
       end
 
@@ -124,7 +131,7 @@ describe Mailbot::Commands::Trivia do
         command.execute(context)
 
         expect(context.buffer.last).to match(/^TRIVIA: Tester, your answer has been submitted/)
-        expect(Mailbot::Commands::Trivia::Game.current.answers).not_to be_empty
+        expect(Mailbot::Commands::Trivia::Game.from_context(context).answers).not_to be_empty
       end
 
       context 'when the answer is not an integer' do
@@ -163,7 +170,7 @@ describe Mailbot::Commands::Trivia do
 
       context 'when we are in between rounds' do
         before(:each) do
-          game = Mailbot::Commands::Trivia::Game.current
+          game = Mailbot::Commands::Trivia::Game.from_context(context)
 
           Timecop.freeze(Time.now - (described_class::ROUND_TIME + 30)) do
             game.advance

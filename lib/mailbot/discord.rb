@@ -34,6 +34,7 @@ module Mailbot
 
       context.user    = Mailbot::Models::User.new(name: event.author.username)
       context.service = Mailbot::Models::Community.new(name: event.server.id)
+      context.event   = event
 
       context
     end

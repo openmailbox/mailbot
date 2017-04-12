@@ -5,8 +5,9 @@ module Mailbot
   # @attr_accessor [Mailbot::Models::Channel, Mailbot::Models::Community] service either the Channel (Twitch)
   #   or the Community (Discord) this message originated from
   # @attr_accessor [Object, #execute] command an object that responds to #execute from the Mailbot::Commands namespace
+  # @attr_accessor [Discordrb::Events::MessageEvent, nil] event the Discord event for this message (always nil for Twitch)
   class Context
-    attr_accessor :user, :service, :command
+    attr_accessor :user, :service, :command, :event
 
     # @param [String] message the message to send to @channel
     #

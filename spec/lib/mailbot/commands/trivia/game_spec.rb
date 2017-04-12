@@ -8,19 +8,29 @@ describe Mailbot::Commands::Trivia::Game do
   end
 
   after(:each) do
-    described_class.current && described_class.current.game_over
+    described_class.from_context(context).game_over
   end
 
-  it 'maintains a single instance of the current game' do
-    expect(described_class.current).to be_nil
+  let(:context) do
+    context = Mailbot::Context.new
 
-    described_class.new
+    context.service = Mailbot::Models::Channel.new(name: 'test_channel')
 
-    expect(described_class.current).not_to be_nil
+    context
+  end
+
+  it 'maintains a list of all running games' do
+    expect(described_class.games).to be_empty
+    expect(described_class.from_context(context)).to be_nil
+
+    described_class.new(context)
+
+    expect(described_class.games).not_to be_empty
+    expect(described_class.from_context(context)).not_to be_nil
   end
 
   it 'advances rounds' do
-    game = described_class.new
+    game = described_class.new(context)
 
     expect(game.round).to eq(0)
 
@@ -30,7 +40,7 @@ describe Mailbot::Commands::Trivia::Game do
   end
 
   it 'tracks user answers' do
-    game = described_class.new
+    game = described_class.new(context)
     user = Mailbot::Models::User.new(name: 'Tester')
 
     game.advance
@@ -43,7 +53,7 @@ describe Mailbot::Commands::Trivia::Game do
   end
 
   it 'keeps score' do
-    game   = described_class.new
+    game   = described_class.new(context)
     loser  = Mailbot::Models::User.new(name: 'Loser')
     winner = Mailbot::Models::User.new(name: 'Winner')
 

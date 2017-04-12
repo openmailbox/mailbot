@@ -46,7 +46,7 @@ module Mailbot
         end
 
         def current_game
-          Trivia::Game.current
+          @current_game ||= Trivia::Game.from_context(context)
         end
 
         def user

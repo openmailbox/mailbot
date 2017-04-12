@@ -25,11 +25,11 @@ module Mailbot
         end
 
         def current_game
-          Trivia::Game.current
+          Trivia::Game.from_context(context)
         end
 
         def start_game
-          Trivia::Game.new
+          Trivia::Game.new(context)
           current_game.advance
           trivia.ask_question
           trivia.start_round

@@ -6,25 +6,38 @@ module Mailbot
         BASE_URL   = 'https://www.opentdb.com/api.php'
         MAX_POINTS = 50
 
-        @@game = nil
+        @@games = {}
+
+        # @param [Mailbot::Context] context the context asking for some game
+        def self.from_context(context)
+          @@games[game_key(context)]
+        end
+
+        def self.game_key(context)
+          type = context.service.class.to_s.split('::').last
+          "#{type}-#{context.service.name}"
+        end
+
+        def self.games
+          @@games
+        end
 
         attr_reader :answers,
                     :current_choices,
                     :questions,
                     :round,
                     :round_started_at,
-                    :scores
+                    :scores,
+                    :key
 
-        def self.current
-          @@game
-        end
-
-        def initialize
-          @@game     = self
-          @round     = 0
-          @scores    = {}
-          @questions = fetch_questions
-          @answers   = []
+        # @param [Mailbot::Context] context the context of this command
+        def initialize(context)
+          @key         = self.class.game_key(context)
+          @@games[key] = self
+          @round       = 0
+          @scores      = {}
+          @questions   = fetch_questions
+          @answers     = []
         end
 
         def advance
@@ -59,7 +72,7 @@ module Mailbot
         end
 
         def game_over
-          @@game = nil
+          @@games.delete(key)
         end
 
         def leaderboard
