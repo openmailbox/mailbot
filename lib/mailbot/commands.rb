@@ -6,6 +6,7 @@ require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
 require 'mailbot/commands/trivia/answer'
+require 'mailbot/commands/zork'
 
 module Mailbot
   module Commands
@@ -14,6 +15,7 @@ module Mailbot
       roll:     Commands::Roll,
       steam:    Commands::Steam,
       trivia:   Commands::Trivia,
+      zork:     Commands::Zork,
       #giveaway: Commands::Giveaway
     }
 
