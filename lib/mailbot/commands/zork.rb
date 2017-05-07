@@ -1,6 +1,8 @@
 module Mailbot
   module Commands
     class Zork
+      attr_reader :user, :args
+
       def initialize(user, args)
         @user = user
         @args = args
