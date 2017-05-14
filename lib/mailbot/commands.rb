@@ -1,4 +1,5 @@
 require 'mailbot/commands/bnet'
+require 'mailbot/commands/game'
 require 'mailbot/commands/giveaway'
 require 'mailbot/commands/roll'
 require 'mailbot/commands/steam'
@@ -16,6 +17,7 @@ module Mailbot
       steam:    Commands::Steam,
       trivia:   Commands::Trivia,
       zork:     Commands::Zork,
+      game:     Commands::Game,
       #giveaway: Commands::Giveaway
     }
 
