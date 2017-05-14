@@ -18,6 +18,7 @@ module Mailbot
       trivia:   Commands::Trivia,
       zork:     Commands::Zork,
       game:     Commands::Game,
+      spaz:     Commands::Spaz,
       #giveaway: Commands::Giveaway
     }
 
