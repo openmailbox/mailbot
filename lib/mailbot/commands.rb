@@ -1,8 +1,7 @@
 require 'mailbot/commands/bnet'
-require 'mailbot/commands/game'
+require 'mailbot/commands/demo'
 require 'mailbot/commands/giveaway'
 require 'mailbot/commands/roll'
-require 'mailbot/commands/spaz'
 require 'mailbot/commands/steam'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
@@ -18,8 +17,7 @@ module Mailbot
       steam:    Commands::Steam,
       trivia:   Commands::Trivia,
       zork:     Commands::Zork,
-      game:     Commands::Game,
-      spaz:     Commands::Spaz,
+      demo:     Commands::Demo,
       #giveaway: Commands::Giveaway
     }
 

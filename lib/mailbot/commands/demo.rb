@@ -1,6 +1,6 @@
 module Mailbot
   module Commands
-    class Game
+    class Demo
       def initialize(user, args)
         @user = user
         @args = args
