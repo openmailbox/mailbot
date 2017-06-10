@@ -21,6 +21,11 @@ module Mailbot
         Commands::Trivia.new(context.user, [command, answer]).execute(context)
         nil
       end
+
+      bot.disconnected do |event|
+        Mailbot.logger.info("Disconnected from Discord: #{event.inspect}")
+        start
+      end
     end
 
     def start
