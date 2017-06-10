@@ -51,6 +51,7 @@ module Mailbot
       scheduler.stop
       twitch.stop
       discord.stop
+      Mailbot.logger.info 'Exited.'
     end
 
     private

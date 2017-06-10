@@ -26,8 +26,6 @@ if ARGV[0] == 'start'
   end
 
   Mailbot.start
-
-  puts 'Exited.'
 elsif ARGV[0] == 'stop'
   pid = File.read('tmp/mailbot.pid')
 

@@ -23,7 +23,7 @@ module Mailbot
       end
 
       bot.disconnected do |event|
-        Mailbot.logger.info("Disconnected from Discord: #{event.inspect}")
+        Mailbot.logger.info("Disconnected from Discord due to #{event.inspect}")
         start
       end
     end
