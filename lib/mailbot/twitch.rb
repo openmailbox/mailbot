@@ -79,6 +79,10 @@ module Mailbot
           end
         end
       end
+    rescue Errno::ETIMEDOUT => e
+      Mailbot.logger.warn "Timeout error. Restarting: #{e}"
+      @socket = nil
+      retry
     end
 
     private
