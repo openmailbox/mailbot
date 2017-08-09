@@ -2,7 +2,7 @@ require 'discordrb'
 
 module Mailbot
   class Discord
-    attr_reader :bot
+    attr_reader :bot, :thread
 
     def initialize
       config = Mailbot.configuration.discord
@@ -24,19 +24,29 @@ module Mailbot
 
       bot.disconnected do |event|
         Mailbot.logger.info("Disconnected from Discord due to #{event.inspect}")
-        start
       end
     end
 
     def start
       bot.run(:async)
+      
+      @thread = Thread.start do
+        if !bot.connected?
+          Mailbot.logger.info 'Attempting to reconnect to Discord.'
+          bot.run(:async)
+        end
+
+        sleep(60)
+      end
     end
 
     def stop
       Mailbot.logger.info 'Disconnecting from Discord...'
-      bot.stop
+      no_sync = Mailbot.env == 'production' ? true : false
+      bot.stop(no_sync)
       bot.sync
       Mailbot.logger.info 'Disconnected from Discord.'
+      thread.exit
     end
 
     private

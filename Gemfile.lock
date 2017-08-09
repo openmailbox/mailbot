@@ -48,7 +48,7 @@ GEM
       rest-client
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
-    event_emitter (0.2.5)
+    event_emitter (0.2.6)
     ffi (1.9.18)
     hashdiff (0.3.2)
     htmlentities (4.3.4)
@@ -78,7 +78,7 @@ GEM
     rake (11.3.0)
     rbnacl (3.4.0)
       ffi
-    rest-client (2.0.1)
+    rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -106,7 +106,7 @@ GEM
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.4)
     vcr (3.0.3)
     webmock (2.3.2)
       addressable (>= 2.3.6)
@@ -138,4 +138,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.14.4
+   1.15.1

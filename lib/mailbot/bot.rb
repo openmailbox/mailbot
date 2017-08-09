@@ -44,6 +44,8 @@ module Mailbot
       threads << twitch.thread
 
       threads.each(&:join)
+
+      Mailbot.logger.info 'Exited.'
     end
 
     def stop
@@ -51,7 +53,6 @@ module Mailbot
       scheduler.stop
       twitch.stop
       discord.stop
-      Mailbot.logger.info 'Exited.'
     end
 
     private

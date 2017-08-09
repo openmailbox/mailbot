@@ -8,7 +8,7 @@ require 'time'
 Thread.abort_on_exception = true
 
 module Mailbot
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 
   def self.configuration
     @configuration ||= Configuration.new
