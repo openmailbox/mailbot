@@ -42,6 +42,7 @@ module Mailbot
 
       threads << scheduler.thread
       threads << twitch.thread
+      threads << discord.thread
 
       threads.each(&:join)
 
