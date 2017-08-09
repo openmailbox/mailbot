@@ -1,9 +1,4 @@
-require 'mailbot/commands/bnet'
-require 'mailbot/commands/demo'
-require 'mailbot/commands/discord'
-require 'mailbot/commands/giveaway'
 require 'mailbot/commands/roll'
-require 'mailbot/commands/steam'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
@@ -13,14 +8,9 @@ require 'mailbot/commands/zork'
 module Mailbot
   module Commands
     COMMANDS = {
-      bnet:     Commands::Bnet,
       roll:     Commands::Roll,
-      steam:    Commands::Steam,
       trivia:   Commands::Trivia,
-      zork:     Commands::Zork,
-      demo:     Commands::Demo,
-      discord:  Commands::Discord,
-      #giveaway: Commands::Giveaway
+      #zork:     Commands::Zork,
     }
 
     def self.from_input(user, message)

@@ -17,7 +17,7 @@ module Mailbot
             if games.count == 1
               count   = games.first.reviews.count
               average = games.first.reviews.average(:rating)
-              
+
               message =  "#{games.first.name} has an average rating of #{average} stars "
               message << "across #{count} reviews in this community."
 
@@ -35,7 +35,7 @@ module Mailbot
         end
 
         private
-        
+
         def find_game(name)
           Models::Game.where("LOWER(name) REGEXP ?", name)
         end

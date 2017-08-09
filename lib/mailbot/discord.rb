@@ -6,8 +6,8 @@ module Mailbot
 
     def initialize
       config = Mailbot.configuration.discord
-      @bot   = Discordrb::Commands::CommandBot.new(token:     config.token, 
-                                                   client_id: config.client_id, 
+      @bot   = Discordrb::Commands::CommandBot.new(token:     config.token,
+                                                   client_id: config.client_id,
                                                    prefix:    '!')
 
       bot.command(:roll) do |event, value|
