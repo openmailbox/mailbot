@@ -44,6 +44,14 @@ module Mailbot
       threads << twitch.thread
       threads << discord.thread
 
+      # Test job
+      #job = Mailbot::Scheduling::Job.new(60) do 
+      #  Mailbot.logger.info("Sending message...")
+      #  Mailbot.instance.twitch.send_string(Mailbot::Scheduling::Job::TWITCH_CHANNEL, "Test job w/ 60 sec interval!")
+      #end
+
+      #scheduler.add(job)
+
       threads.each(&:join)
 
       Mailbot.logger.info 'Exited.'

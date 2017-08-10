@@ -3,4 +3,5 @@ module Mailbot
   end
 end
 
-require 'scheduling/scheduler'
+require 'mailbot/scheduling/job'
+require 'mailbot/scheduling/scheduler'
