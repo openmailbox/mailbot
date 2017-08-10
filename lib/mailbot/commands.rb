@@ -1,4 +1,5 @@
 require 'mailbot/commands/roll'
+require 'mailbot/commands/swanson'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
@@ -9,6 +10,7 @@ module Mailbot
   module Commands
     COMMANDS = {
       roll:     Commands::Roll,
+      swanson:  Commands::Swanson,
       trivia:   Commands::Trivia,
       #zork:     Commands::Zork,
     }
