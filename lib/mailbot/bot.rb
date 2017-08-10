@@ -6,7 +6,7 @@ module Mailbot
       @running   = false
       @twitch    = Mailbot::Twitch.new
       @discord   = Mailbot::Discord.new
-      @scheduler = Mailbot::Scheduler.new
+      @scheduler = Mailbot::Scheduling::Scheduler.new
       @threads   = []
     end
 

@@ -21,4 +21,5 @@ group :development, :test do
   gem 'timecop'
   gem 'vcr'
   gem 'webmock'
+  gem 'rubocop'
 end
