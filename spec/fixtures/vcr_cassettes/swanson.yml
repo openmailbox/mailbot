@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ron-swanson-quotes.herokuapp.com/v2/quotes
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '234'
+      Etag:
+      - W/"ea-nkNoSR/fdK86AKyNuTdGzw"
+      Date:
+      - Fri, 11 Aug 2017 19:43:20 GMT
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '["The less I know about other people''s affairs, the happier I am.
+        I''m not interested in caring about people. I once worked with a guy for three
+        years and never learned his name. Best friend I ever had. We still never talk
+        sometimes."]'
+    http_version: 
+  recorded_at: Fri, 11 Aug 2017 19:43:20 GMT
+recorded_with: VCR 3.0.3
