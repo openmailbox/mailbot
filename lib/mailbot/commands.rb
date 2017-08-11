@@ -9,13 +9,6 @@ require 'mailbot/commands/trivia/answer'
 
 module Mailbot
   module Commands
-    COMMANDS = {
-      roll:     Commands::Roll,
-      swanson:  Commands::Swanson,
-      trivia:   Commands::Trivia,
-      #zork:     Commands::Zork,
-    }
-
     def self.for_platform(name)
       Mailbot::Commands::Base.subclasses.select do |klass|
         klass.enabled_on?(name)
