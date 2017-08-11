@@ -1,6 +1,7 @@
 module Mailbot
   module Commands
     class Roll < Mailbot::Commands::Base
+      enable_platform :twitch
       enable_platform :discord
 
       def perform

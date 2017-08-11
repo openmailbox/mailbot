@@ -36,13 +36,26 @@ module Mailbot
           membership.last_message_at = DateTime.now
           membership.save
 
-          context.command = Mailbot::Commands.from_input(context.user, tokens[:message])
+          context.command = get_command(context.user, tokens[:message])
         end
 
         context
       end
 
       private
+
+      def get_command(user, message)
+        return unless message.to_s[0] == '!'
+
+        command, *args = message.split
+        command        = command[1..-1] # strip the !
+
+        klass = Mailbot::Commands.for_platform(:twitch).find do |command_klass|
+          command_klass.command_name == command
+        end
+
+        klass && klass.new(user, args)
+      end
 
       def pong
         twitch.send("PONG #{Mailbot.configuration.twitch.username}")

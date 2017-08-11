@@ -5,7 +5,7 @@ require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'
 require 'mailbot/commands/trivia/answer'
-require 'mailbot/commands/zork'
+#require 'mailbot/commands/zork'
 
 module Mailbot
   module Commands
@@ -20,16 +20,6 @@ module Mailbot
       Mailbot::Commands::Base.subclasses.select do |klass|
         klass.enabled_on?(name)
       end
-    end
-
-    def self.from_input(user, message)
-      return unless message.to_s[0] == '!'
-
-      command, *args = message.split
-      command        = command[1..-1] # strip the !
-      klass          = COMMANDS[command.to_sym]
-
-      klass && klass.new(user, args)
     end
   end
 end

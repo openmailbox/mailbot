@@ -13,6 +13,7 @@ module Mailbot
     #
     # @return [nil]
     def send_string(message)
+      Mailbot.logger.info("Sending #{message} to #{service.inspect}")
       service && service.send_message(message, channel: event && event.channel)
       message
     end
