@@ -1,8 +1,11 @@
 module Mailbot
   module Commands
-    class Trivia
+    class Trivia < Mailbot::Commands::Base
       ROUND_TIME = 300 # seconds
       BREAK_TIME = 120
+
+      enable_platform :twitch
+      enable_platform :discord
 
       attr_reader :user, :args, :context
 
@@ -27,10 +30,8 @@ module Mailbot
         Time.now.to_i > (current_game.round_started_at + ROUND_TIME)
       end
 
-      def execute(context)
-        Mailbot.logger.info "USER COMMAND: #{user.name} - !trivia #{args}"
-
-        @context = context
+      def perform
+        return unless context.service # Don't allow trivia games via private Discord message
 
         case args.first
         when 'start'
@@ -38,14 +39,15 @@ module Mailbot
         when 'answer'
           Trivia::Answer.new(self).execute
         else
-          if !current_game
-            context.send_string("There is no trivia game in progress. Start a new game with '!trivia start'.")
-          elsif between_rounds?
+          return "There is no trivia game in progress. Start a new game with '!trivia start'." unless current_game
+
+          if between_rounds?
             remaining = BREAK_TIME - (Time.now.to_i - (current_game.round_started_at + ROUND_TIME))
-            context.send_string("Trivia in progress. #{remaining_time(remaining)} until the next round starts.")
+            "Trivia in progress. #{remaining_time(remaining)} until the next round starts."
           else
             context.send_string("Trivia in progress. Currently on question #{current_game.round} of 10.")
             ask_question
+            nil
           end
         end
       end

@@ -9,6 +9,7 @@ class TestContext < Mailbot::Context
 
   def send_string(string)
     @buffer << string
+    string
   end
 end
 
@@ -18,6 +19,8 @@ describe Mailbot::Commands::Trivia do
       example.run
     end
   end
+
+  it_behaves_like 'a mailbot command'
 
   after(:each) do
     current_game = Mailbot::Commands::Trivia::Game.from_context(context)
@@ -57,6 +60,7 @@ describe Mailbot::Commands::Trivia do
 
         command.execute(context)
 
+        expect(context.buffer.first).to match(/^Trivia in progress/)
         expect(context.buffer.last).to match(/^TRIVIA QUESTION 1 of 10: '#{question}'/)
       end
 
@@ -104,6 +108,7 @@ describe Mailbot::Commands::Trivia do
 
         expect(Mailbot::Commands::Trivia::Game.from_context(context)).not_to be_nil
         expect(context.buffer.last).to match(/^TRIVIA QUESTION 1 of 10: /)
+        expect(context.buffer.first).to match(/^Starting a new trivia game!$/)
       end
     end
   end # !trivia start

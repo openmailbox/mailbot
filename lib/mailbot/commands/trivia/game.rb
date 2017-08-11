@@ -15,7 +15,7 @@ module Mailbot
 
         def self.game_key(context)
           type = context.service.class.to_s.split('::').last
-          "#{type}-#{context.service.name}"
+          "#{type}-#{context.service&.name}"
         end
 
         def self.games

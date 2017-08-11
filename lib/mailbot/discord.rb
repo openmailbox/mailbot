@@ -65,7 +65,9 @@ module Mailbot
       bot.command(command_klass.command_name.to_sym) do |event, *args|
         context = initialize_context(event)
 
-        command_klass.new(context.user, args).execute(context)
+        result = command_klass.new(context.user, args).execute(context)
+
+        context.service.nil? ? result : nil
       end
     end
   end

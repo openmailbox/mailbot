@@ -10,20 +10,18 @@ module Mailbot
         end
 
         def execute
-          if !current_game
-            context.send_string("There is no trivia game in progress. Start a new game with '!trivia start'.")
-          elsif !valid_answer?
-            context.send_string("TRIVIA: Sorry, #{user.name}. That is not a valid answer choice.")
-          elsif already_answered?
-            context.send_string("TRIVIA: Sorry, #{user.name}. You can't change your answer.")
-          elsif between_rounds?
+          return "There is no trivia game in progress. Start a new game with '!trivia start'." unless current_game
+          return "TRIVIA: Sorry, #{user.name}. That is not a valid answer choice." unless valid_answer?
+          return "TRIVIA: Sorry, #{user.name}. You can't change your answer." if already_answered?
+
+          if between_rounds?
             remaining = Trivia::BREAK_TIME - (Time.now.to_i - (current_game.round_started_at + Trivia::ROUND_TIME))
             time      = trivia.remaining_time(remaining)
 
-            context.send_string("TRIVIA: Sorry, #{user.name}. This round is over. Next round starts in #{time}.")
+            "TRIVIA: Sorry, #{user.name}. This round is over. Next round starts in #{time}."
           else
             current_game.answer(user, answer.to_i)
-            context.send_string("TRIVIA: #{user.name}, your answer has been submitted.")
+            "TRIVIA: #{user.name}, your answer has been submitted."
           end
         end
 

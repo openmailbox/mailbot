@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class MockContext
-  attr_reader :messages
+  attr_reader :messages, :service
 
   def initialize
     @messages = []

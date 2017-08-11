@@ -9,13 +9,13 @@ module Mailbot
         end
 
         def execute
-          if current_game
-            context.send_string('There is already a game in progress!')
-          else
-            context.send_string("Starting a new trivia game!")
+          return 'There is already a game in progress!' if current_game
 
-            start_game
-          end
+          context.send_string("Starting a new trivia game!")
+
+          start_game
+
+          nil
         end
 
         private
