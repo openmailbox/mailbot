@@ -1,5 +1,4 @@
 require 'active_record'
-require 'logger'
 require 'httparty'
 require 'htmlentities'
 require 'json'
@@ -27,8 +26,7 @@ module Mailbot
   end
 
   def self.logger
-    STDOUT.sync = true if Mailbot.env == 'production'
-    @logger ||= Logger.new(STDOUT)
+    configuration.logger
   end
 
   def self.root
@@ -36,7 +34,7 @@ module Mailbot
   end
 
   def self.start
-    Mailbot.logger.info "Starting bot in #{Mailbot.env} environment..."
+    logger.info "Starting bot in #{Mailbot.env} environment..."
     @bot = Mailbot::Bot.new
     @bot.run
   end
