@@ -19,11 +19,14 @@ module Mailbot
         @context = context
         result   = perform
 
-        result && context.send_string(result)
+        result && context.send_string(result.to_s)
       end
 
       protected
 
+      # Subclass implement this to define command behavior.
+      #
+      # @return [String, nil] Return the string to send back to the user or nil if not applicable.
       def perform
         raise NotImplementedError.new("Subclasses must implement #perform.")
       end
