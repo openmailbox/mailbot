@@ -5,25 +5,8 @@ module Mailbot
     attr_reader :bot, :thread
 
     def initialize
-      config = Mailbot.configuration.discord
-      @bot   = Discordrb::Commands::CommandBot.new(token:     config.token,
-                                                   client_id: config.client_id,
-                                                   prefix:    '!')
-
-      bot.command(:roll) do |event, value|
-        context = initialize_context(event)
-        Commands::Roll.new(context.user, Array(value)).execute(context)
-      end
-
-      bot.command(:trivia) do |event, command, answer|
-        context = initialize_context(event)
-        Commands::Trivia.new(context.user, [command, answer]).execute(context)
-        nil
-      end
-
-      bot.disconnected do |event|
-        Mailbot.logger.info("Disconnected from Discord due to #{event.inspect}")
-      end
+      initialize_bot
+      initialize_commands
     end
 
     def start
@@ -50,6 +33,24 @@ module Mailbot
 
     private
 
+    def initialize_bot
+      config = Mailbot.configuration.discord
+
+      @bot = Discordrb::Commands::CommandBot.new(token:     config.token,
+                                                 client_id: config.client_id,
+                                                 prefix:    '!')
+
+      bot.disconnected do |event|
+        Mailbot.logger.info("Disconnected from Discord due to #{event.inspect}")
+      end
+    end
+
+    def initialize_commands
+      Mailbot::Commands.for_platform(:discord).each do |command_klass|
+        register_command(command_klass)
+      end
+    end
+
     def initialize_context(event)
       context = Context.new
 
@@ -58,6 +59,14 @@ module Mailbot
       context.event   = event
 
       context
+    end
+
+    def register_command(command_klass)
+      bot.command(command_klass.command_name.to_sym) do |event, *args|
+        context = initialize_context(event)
+
+        command_klass.new(context.user, args).execute(context)
+      end
     end
   end
 end

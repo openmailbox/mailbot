@@ -1,6 +1,8 @@
 module Mailbot
   module Commands
     class Roll < Mailbot::Commands::Base
+      enable_platform :discord
+
       def perform
         match = args.any? && args.first.match(/^(\d+)d(\d+)$/)
 

@@ -16,6 +16,12 @@ module Mailbot
       #zork:     Commands::Zork,
     }
 
+    def self.for_platform(name)
+      Mailbot::Commands::Base.subclasses.select do |klass|
+        klass.enabled_on?(name)
+      end
+    end
+
     def self.from_input(user, message)
       return unless message.to_s[0] == '!'
 
