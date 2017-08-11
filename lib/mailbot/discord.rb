@@ -12,8 +12,8 @@ module Mailbot
 
       bot.command(:roll) do |event, value|
         context = initialize_context(event)
-        Commands::Roll.new(context.user, Array(value)).execute(context)
-        nil
+        #Commands::Roll.new(context.user, Array(value)).execute(context)
+        "test"
       end
 
       bot.command(:trivia) do |event, command, answer|
@@ -55,7 +55,7 @@ module Mailbot
       context = Context.new
 
       context.user    = Mailbot::Models::User.new(name: event.author.username)
-      context.service = Mailbot::Models::Community.new(name: event.server.id)
+      #context.service = Mailbot::Models::Community.new(name: event.server.id)
       context.event   = event
 
       context
