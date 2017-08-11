@@ -1,3 +1,4 @@
+require 'mailbot/commands/base'
 require 'mailbot/commands/roll'
 require 'mailbot/commands/swanson'
 require 'mailbot/commands/trivia'

@@ -75,7 +75,7 @@ module Mailbot
             context = parser.parse(line)
             command = context.command
 
-            command.execute(context) if command
+            command && command.execute(context)
           end
         end
       end
