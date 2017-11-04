@@ -1,4 +1,5 @@
 twitch:
   username: OpenMailbot
+  client_id: ***REMOVED***
 discord:
   client_id: ***REMOVED***

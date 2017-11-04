@@ -4,4 +4,5 @@ module Mailbot
 end
 
 require 'mailbot/scheduling/job'
+require 'mailbot/scheduling/jobs/kadgar'
 require 'mailbot/scheduling/scheduler'
