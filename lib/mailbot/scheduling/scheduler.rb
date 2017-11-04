@@ -22,8 +22,10 @@ module Mailbot
             Mailbot.logger.info("Running jobs...")
 
             jobs.each do |job|
+              next unless job.ready?
+
               Mailbot.logger.info("Running #{job.class}")
-              job.perform if job.ready?
+              job.perform
             end
 
             Mailbot.logger.info("Done running jobs...")
