@@ -47,8 +47,8 @@ module Mailbot
     def load_file(file)
       YAML.load_file(file)
     rescue Errno::ENOENT
-      Mailbot.logger.warn "Unable to load #{file}."
-      {}
+      puts "ERROR: Unable to load #{file}."
+      raise
     end
   end
 end
