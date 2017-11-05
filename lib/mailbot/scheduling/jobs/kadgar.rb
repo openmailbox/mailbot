@@ -2,8 +2,8 @@ module Mailbot
   module Scheduling
     class Kadgar < Job
       def perform
-        channels = Mailbot.configuration.kadgar['twitch_ids']
-        discord  = Mailbot.configuration.kadgar['discord_channel']
+        channels = Mailbot.configuration.discord.kadgar['twitch_ids']
+        discord  = Mailbot.configuration.discord.kadgar['discord_channel']
         query    = {'channel' => channels.join(',')}
         headers  = {
           'Client-ID' => Mailbot.configuration.twitch.client_id,
