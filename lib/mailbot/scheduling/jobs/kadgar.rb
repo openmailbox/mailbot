@@ -1,7 +1,7 @@
 module Mailbot
   module Scheduling
     class Kadgar < Job
-      DISCORD_CHANNEL_ID = '310845053658726410'
+      DISCORD_CHANNEL_ID = '342737052703391765'
       TWITCH_CHANNELS    = {'133652118' => 'open_mailbox',
                             '122233584' => 'spazee_mcgee',
                             '83111366'  => 'jeeeeeeeef',
