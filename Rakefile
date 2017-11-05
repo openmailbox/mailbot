@@ -1,9 +1,13 @@
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
 require 'mailbot'
-require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new(:spec)
+
+unless Mailbot.env == 'production'
+  require 'rspec/core/rake_task'
+
+  RSpec::Core::RakeTask.new(:spec)
+end
 
 desc 'Load a console with the environment'
 task :console do

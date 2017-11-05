@@ -2,4 +2,16 @@ twitch:
   username: OpenMailbot
   client_id: ***REMOVED***
 discord:
-  client_id: ***REMOVED***
+  client_id: '***REMOVED***'
+  kadgar:
+    discord_channel: '342737052703391765'
+    twitch_ids:
+      - '133652118'  # open_mailbox
+      - '122233584'  # spazee_mcgee
+      - '83111366'   # jeeeeeeeef
+      - '61328956'   # harl3m_struggl3
+      - '79397878'   # generalandrews1_0
+      - '68442684'   # flibbityflam
+      - '118029540'  # job_for_a_cody
+      - '69300188'   # thebossguy11
+      - '141540943'  # theatakapa
