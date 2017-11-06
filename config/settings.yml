@@ -1,4 +1,4 @@
 twitch:
   rest_api_root: https://api.twitch.tv/kraken
-  username: OpenMailbot
+  username: OpenMailbot # The username of the bot account
 discord: {}
