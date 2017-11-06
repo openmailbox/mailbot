@@ -1,4 +1,5 @@
 twitch:
+  rest_api_root: https://api.twitch.tv/kraken
   username: OpenMailbot
   client_id: ***REMOVED***
 discord:

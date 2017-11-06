@@ -1,19 +1,9 @@
 module Mailbot
   module Models
     class Kadgar < Job
-      serialize :details, JSON
-
       def perform
-        query   = {'channel' => details['twitch_ids'].join(',')}
-        headers = {
-          'Client-ID' => Mailbot.configuration.twitch.client_id,
-          'Accept'    => 'application/vnd.twitchtv.v5+json'
-        }
-
-        response = HTTParty.get('https://api.twitch.tv/kraken/streams',
-                                headers: headers,
-                                query:   query)
-
+        query       = {'channel' => details['twitch_ids'].join(',')}
+        response    = HTTParty.get(Mailbot.configuration.twitch.rest_api_root, headers: headers, query: query)
         names       = response['streams'].map { |i| i['channel']['name'] }
         new_message = kadgar_url(names)
 
@@ -32,18 +22,26 @@ module Mailbot
       def channel
         return @channel if @channel
 
-        server_id = details['server_id']
+        server_id = details['discord_server_id']
+        user_id   = details['discord_user_id']
 
         if server_id
           server   = discord.servers[server_id]
-          @channel = server.text_channels.find { |i| i.id == details['discord_channel_id'] }
-        else
-          # TODO: Get the user DM channel
+          @channel = server&.text_channels.find { |i| i.id == details['discord_channel_id'] }
+        elsif user_id
+          @channel = discord.user(user_id)&.pm
         end
       end
 
       def discord
         @discord ||= Mailbot.instance.discord.bot
+      end
+
+      def headers
+        {
+          'Client-ID' => Mailbot.configuration.twitch.client_id,
+          'Accept'    => 'application/vnd.twitchtv.v5+json'
+        }
       end
 
       def kadgar_url(names)

@@ -1,6 +1,8 @@
 module Mailbot
   module Models
     class Job < ActiveRecord::Base
+      serialize :details, JSON
+
       def perform
         raise NotImplementedError.new('Subclasses must implement #perform')
       end
