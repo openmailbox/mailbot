@@ -1,10 +1,8 @@
 require 'mailbot/models/channel'
 require 'mailbot/models/channel_membership'
 require 'mailbot/models/community'
-require 'mailbot/models/game'
 require 'mailbot/models/job'
 require 'mailbot/models/platform'
-require 'mailbot/models/review'
 require 'mailbot/models/user'
 require 'mailbot/models/jobs/kadgar'
 
