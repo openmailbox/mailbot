@@ -2,7 +2,6 @@ $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
 require 'mailbot'
 
-
 unless Mailbot.env == 'production'
   require 'rspec/core/rake_task'
 
