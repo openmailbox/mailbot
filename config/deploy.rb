@@ -5,7 +5,7 @@ lock "3.7.2"
 set :rvm_ruby_version, '2.3.3@mailbot'
 
 set :application, "mailbot"
-set :repo_url, "ssh://git@bitbucket.org/blrice/mailbot.git"
+set :repo_url, "ssh://git@github.com/nevern02/mailbot.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
