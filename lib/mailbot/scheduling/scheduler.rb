@@ -5,9 +5,6 @@ module Mailbot
 
       def initialize
         @jobs = []
-
-        # TODO: Move this
-        add(Mailbot::Scheduling::Kadgar.new(1800))
       end
 
       def add(job)
@@ -21,10 +18,10 @@ module Mailbot
           loop do
             Mailbot.logger.info("Running jobs...")
 
-            jobs.each do |job|
+            Mailbot::Models::Job.find_each do |job|
               next unless job.ready?
 
-              Mailbot.logger.info("Running #{job.class}")
+              Mailbot.logger.info("Running #{job.inspect}")
               job.perform
             end
 

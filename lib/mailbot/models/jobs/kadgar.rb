@@ -3,34 +3,26 @@ module Mailbot
     class Kadgar < Job
       def perform
         query       = {'channel' => details['twitch_ids'].join(',')}
-        response    = HTTParty.get(Mailbot.configuration.twitch.rest_api_root, headers: headers, query: query)
+        response    = HTTParty.get(twitch_url, headers: headers, query: query)
         names       = response['streams'].map { |i| i['channel']['name'] }
         new_message = kadgar_url(names)
 
         if message
           message.edit(new_message)
         else
-          discord.send_message(details['discord_channel_id'], new_message)
+          @message = discord.send_message(details['discord_channel_id'], new_message)
+          self.details['discord_message_id'] = @message.id.to_s
         end
 
         self.last_run_at = Time.now.utc
+
         save!
       end
 
       private
 
       def channel
-        return @channel if @channel
-
-        server_id = details['discord_server_id']
-        user_id   = details['discord_user_id']
-
-        if server_id
-          server   = discord.servers[server_id]
-          @channel = server&.text_channels.find { |i| i.id == details['discord_channel_id'] }
-        elsif user_id
-          @channel = discord.user(user_id)&.pm
-        end
+        @channel ||= discord.channel(details['discord_channel_id'])
       end
 
       def discord
@@ -45,7 +37,7 @@ module Mailbot
       end
 
       def kadgar_url(names)
-        "http://kadgar.net/live/" + names.join('/')
+        'http://kadgar.net/live/' + names.join('/')
       end
 
       def message
@@ -54,6 +46,10 @@ module Mailbot
         return unless message_id
 
         @message ||= channel&.load_message(message_id)
+      end
+
+      def twitch_url
+        Mailbot.configuration.twitch.rest_api_root + '/streams'
       end
     end
   end

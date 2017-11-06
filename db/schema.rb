@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20171105163601) do
   end
 
   create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "type"
     t.integer  "frequency"
     t.datetime "last_run_at"
     t.text     "details",     limit: 65535
