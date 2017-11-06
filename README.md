@@ -21,3 +21,18 @@ Mailbot is free to use under the terms of the license. If you don't want to spen
 7. `bin/mailbot start`
 
 **Note:** The bot will not work without valid API tokens and client IDs for both Twitch and Discord. Check the developer documentation for both services.
+
+## Adding Commands
+Commands are POROs (plain old Ruby classes) that inherit from `Mailbot::Commands::Base` and live in `lib/mailbot/commands`. They just need to implement the `perform` method which must return a string that will be the result of using the command in chat. After creating a class, add a `require` statement to `lib/mailbot/commands.rb`.
+
+## Adding Timers
+Scheduled tasks consist of two parts. First, a subclass of `Mailbot::Models::Job` that implements the `perform` method. Second, a record in the database representing a particular instance of said job. Every five minutes, `Mailbot::Scheduler` will query for jobs and run any that are due. This Mailbot scheduler does not guarantee exact times, but only that a job **will not run any sooner than** the configured interval.
+
+## Support
+Find me in [Discord](http://bit.ly/mailboxdiscord).
+
+## Contributing
+Contributions are welcome. Make sure the tests pass (`bundle exec rake spec`).
+
+## License
+The source code is available under the terms of the [GPL v3 license](https://opensource.org/licenses/GPL-3.0).
