@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20171105163601) do
     t.string "name"
   end
 
-<<<<<<< HEAD
   create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type"
     t.integer  "frequency"
@@ -44,8 +43,6 @@ ActiveRecord::Schema.define(version: 20171105163601) do
     t.index ["last_run_at"], name: "index_jobs_on_last_run_at", using: :btree
   end
 
-=======
->>>>>>> 4eaecad1272ee7a1146d152b5ef6f1e7af74bf60
   create_table "platforms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
   end
