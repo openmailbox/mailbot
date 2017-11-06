@@ -12,6 +12,10 @@ module Mailbot
   module Models
     ActiveRecord::Base.logger = Mailbot.logger
 
+    if Mailbot.env == 'production'
+      ActiveRecord::Base.logger.level = :info
+    end
+
     configuration = YAML.load_file(Mailbot.root + '/config/database.yml')
 
     ActiveRecord::Base.establish_connection(configuration[Mailbot.env])
