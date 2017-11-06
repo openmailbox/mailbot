@@ -53,11 +53,7 @@ require 'mailbot/commands'
 require 'mailbot/context'
 require 'mailbot/configuration'
 require 'mailbot/discord'
-<<<<<<< HEAD
 require 'mailbot/scheduler'
-=======
-require 'mailbot/scheduling'
->>>>>>> 4eaecad1272ee7a1146d152b5ef6f1e7af74bf60
 require 'mailbot/twitch'
 require 'mailbot/twitch/parser'
 require 'mailbot/models'
