@@ -1,9 +1,7 @@
 twitch:
   rest_api_root: https://api.twitch.tv/kraken
   username: OpenMailbot
-  client_id: ***REMOVED***
 discord:
-  client_id: '***REMOVED***'
   kadgar:
     discord_channel: '342737052703391765'
     twitch_ids:
