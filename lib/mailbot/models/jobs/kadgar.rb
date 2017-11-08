@@ -6,7 +6,7 @@ module Mailbot
       def perform
         query       = {'channel' => details['twitch_ids'].join(',')}
         response    = HTTParty.get(twitch_url, headers: headers, query: query)
-        names       = response['streams'].map { |i| i['channel']['name'] }
+        names       = response['streams'].to_a.map { |i| i['channel']['name'] }
         new_message = kadgar_url(names)
 
         if message
