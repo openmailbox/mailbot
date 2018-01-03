@@ -19,8 +19,8 @@ module Mailbot
         if @client && @client.open?
           client.send(json)
         else
-          @client && @client.close
-          @client = init_websocket(json)
+          @client && (@client.close if @client.open?)
+          @client = init_websocket(json, close_connection: !blocking && close_connection)
         end
 
         return identifier unless blocking
@@ -28,16 +28,18 @@ module Mailbot
         Timeout::timeout(SERVER_TIMEOUT) do
           loop do
             next_message = JSON.parse(buffer.pop)
-            return next_message if next_message['Identifier'] == identifier
+
+            if next_message['Identifier'] == identifier
+              @client.close if close_connection
+              return next_message
+            end
           end
         end
-      ensure
-        @client.close if close_connection
       end
 
       private
 
-      def init_websocket(initial_message = nil)
+      def init_websocket(initial_message = nil, close_connection: false)
         @next_identifier = 1
         @buffer          = Queue.new
         model            = self # self changes inside the websocket thread
@@ -54,6 +56,7 @@ module Mailbot
           ws.on(:open) do
             Mailbot.logger.info("Initialized websocket connection to RCon server @ #{ws.handshake.host}:#{ws.handshake.port}")
             initial_message && ws.send(initial_message)
+            ws.close if close_connection
           end
 
           ws.on(:error) do |e|
