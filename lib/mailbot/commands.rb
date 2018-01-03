@@ -1,6 +1,8 @@
 require 'mailbot/commands/base'
 require 'mailbot/commands/roll'
 require 'mailbot/commands/swanson'
+require 'mailbot/commands/rust'
+require 'mailbot/commands/rust/status'
 require 'mailbot/commands/trivia'
 require 'mailbot/commands/trivia/game'
 require 'mailbot/commands/trivia/start'

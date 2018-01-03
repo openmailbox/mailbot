@@ -11,7 +11,7 @@ module Mailbot
       # @param [String] command The command to send to the server
       #
       # @return [String, Hash] Returns the message identifier if non-blocking or the response otherwise
-      def rcon(command, blocking: true)
+      def rcon(command, blocking: true, close_connection: true)
         msg        = message(command)
         identifier = msg[:Identifier]
         json       = msg.to_json
@@ -31,6 +31,8 @@ module Mailbot
             return next_message if next_message['Identifier'] == identifier
           end
         end
+      ensure
+        @client.close if close_connection
       end
 
       private

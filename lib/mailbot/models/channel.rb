@@ -12,6 +12,7 @@ module Mailbot
     # Represents a Twitch channel.
     class Channel < ActiveRecord::Base
       has_many :channel_memberships
+      has_many :rust_servers
 
       def send_message(message, options = {})
         twitch.send_string(name, message)
