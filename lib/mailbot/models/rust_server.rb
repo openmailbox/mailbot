@@ -5,10 +5,13 @@ module Mailbot
 
       attr_reader :client, :buffer
 
+      belongs_to :channel
+      belongs_to :community
+
       # @param [String] command The command to send to the server
       #
       # @return [String, Hash] Returns the message identifier if non-blocking or the response otherwise
-      def send(command, blocking: true)
+      def rcon(command, blocking: true)
         msg        = message(command)
         identifier = msg[:Identifier]
         json       = msg.to_json

@@ -16,6 +16,8 @@ module Mailbot
       belongs_to :platform
       belongs_to :user
 
+      has_many :rust_servers, as: :service
+
       # Send a message to a Discord server.
       #
       # @param [String] message the message to send

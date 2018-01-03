@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171231193116) do
+ActiveRecord::Schema.define(version: 20180103131340) do
 
   create_table "channel_memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "channel_id"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20171231193116) do
     t.integer "port"
     t.integer "rcon_port"
     t.string  "rcon_password"
+    t.integer "community_id"
+    t.integer "channel_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
