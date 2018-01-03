@@ -1,33 +1,48 @@
 module Mailbot
   module Models
     class RustServer < ActiveRecord::Base
-      attr_reader :client
+      SERVER_TIMEOUT = 5 # seconds
 
-      # @param [Hash] message The incoming message from the websocket
-      def receive_message(message)
-        puts message
-      end
+      attr_reader :client, :buffer
 
-      def send(command)
-        msg = message(command)
+      # @param [String] command The command to send to the server
+      #
+      # @return [String, Hash] Returns the message identifier if non-blocking or the response otherwise
+      def send(command, blocking: true)
+        msg        = message(command)
+        identifier = msg[:Identifier]
+        json       = msg.to_json
 
-        if @client
-          client.send(msg)
+        if @client && @client.open?
+          client.send(json)
         else
-          @client = init_websocket(msg)
+          @client && @client.close
+          @client = init_websocket(json)
+        end
+
+        return identifier unless blocking
+
+        Timeout::timeout(SERVER_TIMEOUT) do
+          loop do
+            next_message = JSON.parse(buffer.pop)
+            return next_message if next_message['Identifier'] == identifier
+          end
         end
       end
 
       private
 
       def init_websocket(initial_message = nil)
+        @next_identifier = 1
+        @buffer          = Queue.new
+        model            = self # self changes inside the websocket thread
+
         WebSocket::Client::Simple.connect "ws://#{ip}:#{rcon_port}/#{rcon_password}" do |ws|
           ws.on(:message) do |msg|
             if msg.type == :ping
               ws.send(nil, type: :pong)
             else
-              model = ::Mailbot::Models::RustServer.find_by(ip: ws.handshake.host, rcon_port: ws.handshake.port)
-              model.receive_message(JSON.parse(msg.data))
+              model.buffer.push(msg.data)
             end
           end
 
@@ -47,10 +62,20 @@ module Mailbot
       end
 
       def message(msg)
-        { Identifier: 1,
-          Message: msg,
-          Name: 'WebRcon'
-        }.to_json
+        {
+          Identifier: next_identifier,
+          Message:    msg,
+          Name:       'WebRcon'
+        }
+      end
+
+      def next_identifier
+        @identifier ||= 1
+
+        identifier = @identifier
+        @identifier += 1
+
+        identifier
       end
     end
   end
