@@ -54,9 +54,9 @@ module Mailbot
     def initialize_context(event)
       context = Context.new
 
-      # TODO: Persist this stuff. Probably need to adjust the models.
+      # TODO: Persist the user. Probably need to adjust the model.
       context.user    = Mailbot::Models::User.new(name: event.author.username)
-      context.service = event.server && Mailbot::Models::Community.new(name: event.server.id)
+      context.service = event.server && Mailbot::Models::Community.find_or_create_by(name: event.server.id)
       context.event   = event
 
       context
