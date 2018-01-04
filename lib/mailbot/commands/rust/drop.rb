@@ -11,7 +11,7 @@ module Mailbot
         end
 
         def execute
-          expires_at = rust.last_supply_at.to_i + (COOLDOWN * 60)
+          expires_at = rust.server.last_supply_at.to_i + (COOLDOWN * 60)
 
           if DateTime.now.to_i >= expires_at
             @response   = rust.server.rcon('airdrop random')
