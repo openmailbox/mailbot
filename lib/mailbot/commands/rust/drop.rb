@@ -16,7 +16,10 @@ module Mailbot
           if DateTime.now.to_i >= expires_at
             @response   = rust.server.rcon('airdrop random')
             coordinates = response['Message'].match(/\(.+\)/)[0]
-            "#{user.name} has called in an air drop at #{coordinates}."
+
+            rust.server.update_attributes(last_supply_at: DateTime.now)
+
+            "#{rust.user.name} has called in an air drop at #{coordinates}."
           else
             remaining = expires_at - DateTime.now.to_i
             minutes   = remaining / 60
