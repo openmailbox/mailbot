@@ -9,8 +9,8 @@ module Mailbot
         end
 
         def execute
-          @response = rust.server.rcon('status')
-          status    = parse_response
+          @response = rust.server.rcon('serverinfo')
+          status    = response && JSON.parse(response['Message'])
 
           return 'Error retrieving Rust server info.' unless status
 
@@ -20,21 +20,14 @@ module Mailbot
         private
 
         def formatted(hash)
-          current, max = hash['players'].match(/(\d+) \((\d+)/)[1,2]
+          days  = hash['Uptime'] / (3600 * 24)
+          hours = (hash['Uptime'] % (3600 * 24)) / 3600
 
-          string  = "Rust server '#{hash['hostname']}' is up! "
-          string << "Current map: #{hash['map']}. "
-          string << "#{current} of #{max} players are connected."
+          string  = "Rust server '#{hash['Hostname']}' has been online for #{days} days, #{hours} hours. "
+          string << "Current map: #{hash['Map']}. "
+          string << "#{hash['Players']} of #{hash['MaxPlayers']} players are connected. "
+          string << "The in-game date and time is #{hash['GameTime']}. "
           string
-        end
-
-        # @return [Hash] Key-value pairs for the server status
-        def parse_response
-          return unless response
-          
-          tokens = response['Message'].split("\n\n").first.split("\n").map { |i| i.split(':') }.map { |i| i.map(&:strip) }
-
-          Hash[tokens]
         end
       end
     end
