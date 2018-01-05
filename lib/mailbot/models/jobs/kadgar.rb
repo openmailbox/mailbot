@@ -2,7 +2,6 @@ module Mailbot
   module Models
     # Maintain a kadgar.net link in Discord with a list of pre-configured streamer names. Automatically
     # keeps the link up to date so it only contains people who are live.
-    # TODO: Rename this to reflect that it no longer uses Kadgar
     class Kadgar < Job
       def perform
         query       = {'channel' => details['twitch_ids'].join(',')}
@@ -40,7 +39,7 @@ module Mailbot
       end
 
       def kadgar_url(names)
-        'http://www.open-mailbox.com/lurk.html?streams=' + names.join(',')
+        'http://kadgar.net/live/' + names.join('/')
       end
 
       def message
