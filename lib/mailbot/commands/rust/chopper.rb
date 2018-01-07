@@ -17,7 +17,7 @@ module Mailbot
             @response   = rust.server.rcon('chopper random')
             coordinates = response['Message'].match(/\(.+\)/)[0]
 
-            rust.server.update_attributes(last_supply_at: DateTime.now)
+            rust.server.update_attributes(last_heli_at: DateTime.now)
 
             "#{rust.user.name} has called in an attack helicopter at #{coordinates}."
           else
