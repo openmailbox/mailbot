@@ -12,6 +12,8 @@ module Mailbot
         case args.first.strip
         when 'help'
           help
+        when 'chopper'
+          Rust::Chopper.new(self).execute
         when 'drop'
           Rust::Drop.new(self).execute
         else
@@ -28,7 +30,8 @@ module Mailbot
       def help
         text = 'Available Rust commands: '
         text << "'!rust' shows the current server status. "
-        text << "'!rust drop' calls in a supply drop (#{Rust::Drop::COOLDOWN} min cooldown)."
+        text << "'!rust drop' calls in a supply drop (#{Rust::Drop::COOLDOWN} min cooldown). "
+        text << "'!rust chopper' calls in an attack helicopter (#{Rust::Chopper::COOLDOWN} min cooldown)."
       end
     end
   end
