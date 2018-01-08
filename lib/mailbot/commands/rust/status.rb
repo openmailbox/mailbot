@@ -2,15 +2,17 @@ module Mailbot
   module Commands
     class Rust
       class Status
-        attr_reader :response, :rust
+        attr_reader :max_players, :players, :response, :rust
 
         def initialize(rust)
           @rust = rust
         end
 
         def execute
-          @response = rust.server.rcon('serverinfo')
-          status    = response && JSON.parse(response['Message'])
+          @response    = rust.server.rcon('serverinfo')
+          status       = response && JSON.parse(response['Message'])
+          @players     = status['Players']
+          @max_players = status['MaxPlayers']
 
           return 'Error retrieving Rust server info.' unless status
 
@@ -20,12 +22,12 @@ module Mailbot
         private
 
         def formatted(hash)
-          days  = hash['Uptime'] / (3600 * 24)
+          days  = hash['Uptime'] / (3600 * 24k
           hours = (hash['Uptime'] % (3600 * 24)) / 3600
 
           string  = "Rust server '#{hash['Hostname']}' has been online for #{days} days, #{hours} hours. "
           string << "Current map: #{hash['Map']}. "
-          string << "#{hash['Players']} of #{hash['MaxPlayers']} players are connected. "
+          string << "#{players} of #{max_players} players are connected. "
           string << "The in-game date and time is #{hash['GameTime']}. "
           string
         end
