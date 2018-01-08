@@ -36,7 +36,7 @@ module Mailbot
 
         def player_count
           @status ||= Rust::Status.new(rust).execute
-          status.players
+          @status.players
         end
       end
     end
