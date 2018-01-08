@@ -22,7 +22,7 @@ module Mailbot
         private
 
         def formatted(hash)
-          days  = hash['Uptime'] / (3600 * 24k
+          days  = hash['Uptime'] / (3600 * 24)
           hours = (hash['Uptime'] % (3600 * 24)) / 3600
 
           string  = "Rust server '#{hash['Hostname']}' has been online for #{days} days, #{hours} hours. "
