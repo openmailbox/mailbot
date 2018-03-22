@@ -1,3 +1,5 @@
+require 'rss'
+
 module Mailbot
   module Models
     class News < Job
