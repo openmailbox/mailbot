@@ -6,6 +6,7 @@ require 'mailbot/models/platform'
 require 'mailbot/models/rust_server'
 require 'mailbot/models/user'
 require 'mailbot/models/jobs/kadgar'
+require 'mailbot/models/jobs/news'
 
 module Mailbot
   module Models
