@@ -14,6 +14,7 @@ module Mailbot
 
             Mailbot.logger.info("Running #{job.inspect}")
             job.perform
+            Mailbot.logger.info("Done with #{job.inspect}")
           end
 
           Mailbot.logger.info("Done running jobs...")

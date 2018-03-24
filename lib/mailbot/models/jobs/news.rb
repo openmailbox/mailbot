@@ -10,7 +10,8 @@ module Mailbot
 
         open(STEAM_RSS) { |rss| feed = RSS::Parser.parse(rss, false) }
 
-        latest = feed.items&.first
+        items  = feed.items.sort(&:date).reverse
+        latest = items.first
 
         feed.items.each do |item|
           break if item.date.utc.to_i <= details['last_message'].to_i
