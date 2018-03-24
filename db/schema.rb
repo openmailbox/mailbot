@@ -31,10 +31,6 @@ ActiveRecord::Schema.define(version: 20180103144446) do
     t.datetime "created_at"
   end
 
-  create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
-  end
-
   create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type"
     t.integer  "frequency"
@@ -45,13 +41,6 @@ ActiveRecord::Schema.define(version: 20180103144446) do
 
   create_table "platforms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-  end
-
-  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "rating"
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.datetime "created_at"
   end
 
   create_table "rust_servers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
