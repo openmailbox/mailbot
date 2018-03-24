@@ -18,10 +18,8 @@ module Mailbot
         feed.items.each do |item|
           break if latest.date.utc.to_i <= details['last_message'].to_i
 
-          discord.send_message(details['discord_channel_id'], formatted_message(latest))
+          discord.send_message(details['discord_channel_id'], formatted_message(item))
         end
-
-        discord.send_message(details['discord_channel_id'], formatted_message(latest))
 
         self.details['last_message'] = latest.date.utc.to_i
         self.last_run_at = Time.now.utc
