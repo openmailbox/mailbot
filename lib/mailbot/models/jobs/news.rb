@@ -16,9 +16,11 @@ module Mailbot
         return unless latest.date.utc.to_i > details['last_message'].to_i
 
         feed.items.each do |item|
-          break if latest.date.utc.to_i <= details['last_message'].to_i
+          break if item.date.utc.to_i <= details['last_message'].to_i
 
           discord.send_message(details['discord_channel_id'], formatted_message(item))
+
+          sleep(0.5) # don't flood
         end
 
         self.details['last_message'] = latest.date.utc.to_i
