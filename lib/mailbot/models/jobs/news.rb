@@ -20,6 +20,8 @@ module Mailbot
 
           discord.send_message(details['discord_channel_id'], formatted_message(item))
 
+          Mailbot.logger.info("Sending news story #{item.link} to channel #{details['discord_channel_id']}")
+
           sleep(0.5) # don't flood
         end
 
