@@ -3,6 +3,7 @@ require 'httparty'
 require 'htmlentities'
 require 'json'
 require 'time'
+require 'sanitize'
 
 Thread.abort_on_exception = true
 
