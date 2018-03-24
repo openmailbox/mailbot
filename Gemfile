@@ -8,6 +8,7 @@ gem 'httparty',     '~> 0.14'
 gem 'htmlentities', '~> 4.3'
 gem 'pry',          '~> 0.10'
 gem 'discordrb',    '~> 3.2'
+gem 'sanitize',     '~> 4.6'
 
 group :development do
   gem 'annotate',           '~> 2.7'

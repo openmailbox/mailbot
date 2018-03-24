@@ -15,6 +15,12 @@ module Mailbot
         return unless latest
         return unless latest.date.utc.to_i > details['last_message'].to_i
 
+        feed.items.each do |item|
+          break if latest.date.utc.to_i <= details['last_message'].to_i
+
+          discord.send_message(details['discord_channel_id'], formatted_message(latest))
+        end
+
         discord.send_message(details['discord_channel_id'], formatted_message(latest))
 
         self.details['last_message'] = latest.date.utc.to_i
@@ -31,7 +37,7 @@ module Mailbot
 
       # @param [RSS::RDF::Item] item
       def formatted_message(item)
-        "#{item.title} - #{item.link}"
+        "#{Sanitize.fragment(item.content_encoded)} - #{item.link}"
       end
     end
   end
