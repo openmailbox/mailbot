@@ -10,7 +10,7 @@ module Mailbot
 
         open(STEAM_RSS) { |rss| feed = RSS::Parser.parse(rss, false) }
 
-        items  = feed.items.sort(&:date).reverse
+        items  = feed.items.sort { |i| i.date }.reverse
         latest = items.first
 
         feed.items.each do |item|
