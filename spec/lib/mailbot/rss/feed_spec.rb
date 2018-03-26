@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.shared_examples 'an RSS feed' do
-  let(:adapter) { described_class.new }
+  subject(:adapter) { described_class.new }
 
   it 'fetches feed items' do
     expect(adapter.items.length).to eq(0)

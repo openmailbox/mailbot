@@ -10,7 +10,7 @@ module Mailbot
       end
 
       def ready?
-        Time.now.to_i >= (last_run_at.to_i + frequency)
+        DateTime.now.to_i >= (last_run_at.to_i + frequency)
       end
 
       private

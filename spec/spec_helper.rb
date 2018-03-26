@@ -12,3 +12,17 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
 end
+
+# TODO: Figure out a better way to do this
+class DiscordMock
+  attr_reader :buffer
+
+  def initialize
+    @buffer = []
+  end
+
+  def send_message(channel_id, message)
+    @buffer << {channel_id: channel_id, message: message}
+    OpenStruct.new(id: '42')
+  end
+end
