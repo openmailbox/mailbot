@@ -13,6 +13,13 @@ module Mailbot
         items  = feed.items.sort { |i| i.date }.reverse
         latest = items.first
 
+        self.last_run_at = Time.now.utc
+
+        unless latest && latest.date.utc.to_i > self.details['last_message']
+          save!
+          return
+        end
+
         feed.items.each do |item|
           break if item.date.utc.to_i <= details['last_message'].to_i
 
@@ -23,8 +30,7 @@ module Mailbot
           sleep(0.5) # don't flood
         end
 
-        self.details['last_message'] = latest&.date&.utc.to_i
-        self.last_run_at = Time.now.utc
+        self.details['last_message'] = latest.date.utc.to_i
 
         save!
       end
