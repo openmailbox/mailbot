@@ -14,7 +14,7 @@ module Mailbot
       # @return [Array<Mailbot::RSS::FeedItem>] The matching items
       def items_since(time)
         filtered = items.select do |item|
-          item.published_at >= time
+          item.published_at.utc >= time.utc
         end
 
         filtered.sort { |i| i.published_at }.reverse # newest first

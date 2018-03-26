@@ -3,34 +3,21 @@ require 'rss'
 module Mailbot
   module Models
     class News < Job
-      STEAM_RSS = 'http://store.steampowered.com/feeds/news.xml'.freeze
-
       def perform
-        feed = nil
+        feed             = Mailbot::RSS::Steam.new
+        last             = (self.last_run_at || DateTime.now).utc
+        channel_id       = details['discord_channel_id']
+        self.last_run_at = DateTime.now
 
-        open(STEAM_RSS) { |rss| feed = RSS::Parser.parse(rss, false) }
+        feed.refresh!
 
-        items  = feed.items.sort { |i| i.date }.reverse
-        latest = items.first
+        feed.items_since(last).each do |item|
+          Mailbot.logger.info("Sending news story #{item.link} to channel #{channel_id}")
 
-        self.last_run_at = Time.now.utc
-
-        unless latest && latest.date.utc.to_i > self.details['last_message']
-          save!
-          return
-        end
-
-        feed.items.each do |item|
-          break if item.date.utc.to_i <= details['last_message'].to_i
-
-          discord.send_message(details['discord_channel_id'], formatted_message(item))
-
-          Mailbot.logger.info("Sending news story #{item.link} to channel #{details['discord_channel_id']}")
+          discord.send_message(channel_id, formatted_message(item))
 
           sleep(0.5) # don't flood
         end
-
-        self.details['last_message'] = latest.date.utc.to_i
 
         save!
       end
@@ -41,9 +28,9 @@ module Mailbot
         @discord ||= Mailbot.instance.discord.bot
       end
 
-      # @param [RSS::RDF::Item] item
+      # @param [Mailbot::RSS::FeedItem] item
       def formatted_message(item)
-        "#{Sanitize.fragment(item.content_encoded)} - #{item.link}"
+        "#{Sanitize.fragment(item.description)} - #{item.link}"
       end
     end
   end
