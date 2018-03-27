@@ -4,19 +4,11 @@ module Mailbot
   module Models
     class News < Job
       def perform
-        feed             = Mailbot::RSS::Steam.new
         last             = (self.last_run_at || DateTime.now).utc
-        channel_id       = details['discord_channel_id']
         self.last_run_at = DateTime.now
 
-        feed.refresh!
-
-        feed.items_since(last).each do |item|
-          Mailbot.logger.info("Sending news story #{item.link} to channel #{channel_id}")
-
-          discord.send_message(channel_id, formatted_message(item))
-
-          sleep(0.5) # don't flood
+        Mailbot::RSS::Feed.subclasses.each do |klass|
+          update_feed(last, klass.new)
         end
 
         save!
@@ -31,6 +23,22 @@ module Mailbot
       # @param [Mailbot::RSS::FeedItem] item
       def formatted_message(item)
         "#{Sanitize.fragment(item.description)} - #{item.link}"
+      end
+
+      # @param [DateTime] begin_at Earliest time to search for stories
+      # @param [Mailbot::RSS::Feed] feed The news feed
+      def update_feed(begin_at, feed)
+        channel_id = details['discord_channel_id']
+
+        feed.refresh!
+
+        feed.items_since(begin_at).each do |item|
+          Mailbot.logger.info("Sending news story #{item.link} to channel #{channel_id}")
+
+          discord.send_message(channel_id, formatted_message(item))
+
+          sleep(0.5) # don't flood
+        end
       end
     end
   end

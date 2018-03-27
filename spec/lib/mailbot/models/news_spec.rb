@@ -3,7 +3,9 @@ require 'spec_helper'
 RSpec.describe Mailbot::Models::News do
   around(:each) do |example|
     VCR.use_cassette('rss/steam') do
-      example.run
+      VCR.use_cassette('rss/newegg') do
+        example.run
+      end
     end
   end
 
@@ -23,7 +25,7 @@ RSpec.describe Mailbot::Models::News do
     it 'posts new stories' do
       job.perform
 
-      expect(discord.buffer.length).to eq(3) # taken from rss/steam fixture
+      expect(discord.buffer.length).to eq(15) # taken from rss/steam + rss/newegg fixture
     end
   end
 end
