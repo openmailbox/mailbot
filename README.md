@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nevern02/mailbot.svg?branch=master)](https://travis-ci.org/nevern02/mailbot)
+
 # Mailbot
 A chat bot that works simultaneously in Twitch + Discord.
 
