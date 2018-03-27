@@ -1,0 +1,303 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.newegg.com/Product/RSS.aspx?Depa=0&Submit=RSSDailyDeals
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml; charset=utf-8
+      Cteonnt-Length:
+      - '38686'
+      X-Server-Id:
+      - '207'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Served-By:
+      - '110011'
+      X-Ver:
+      - '09051701'
+      X-Newegg-Flow:
+      - PASS
+      X-Newegg-Index:
+      - '0'
+      X-H:
+      - '200'
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Tue, 27 Mar 2018 03:19:21 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Tue, 27 Mar 2018 03:19:21 GMT
+      Content-Length:
+      - '38686'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - AKA_A2=1; expires=Tue, 27-Mar-2018 04:19:21 GMT; secure; HttpOnly
+      - NID=6I2Q4M9D6I1j2Q8O4M; domain=.newegg.com; expires=Fri, 26-Mar-21 03:19:21
+        GMT; path=/
+      - NVTC=248326808.0001.xip6ygi4p.1522120761.1522120761.1522120761.1; domain=.newegg.com;
+        expires=Fri, 26-Mar-21 03:19:21 GMT; path=/
+      - NV_NVTCTIMESTAMP=1522120762; domain=.newegg.com; expires=Fri, 26-Mar-21 03:19:21
+        GMT; path=/
+      Strict-Transport-Security:
+      - max-age=2628000
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n\r\n<rss version=\"2.0\"
+        \ >\r\n\t<channel>\r\n\t\t<title>Newegg.com RSS Feed - Daily Deals</title>\r\n\t\t<link>https://www.newegg.com/Product/ProductList.aspx?Submit&#61;DailyDeals&#38;Depa&#61;0&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS</link>\r\n\t\t<description>Official
+        Newegg.com RSS Feed - An up-to-date headlines on our latest sales, deals,
+        and promotions. Subscribe now and never miss a single Newegg.com deal.</description>\r\n\t\t<language>en-us</language>\r\n\t\t<lastBuildDate>Mon,
+        26 Mar 2018 20:19:21GMT</lastBuildDate>\r\n\t\t<ttl>15</ttl>\t\r\n\t\t\t\t\r\n\t\t<image>\r\n\t\t\t<title>Newegg.com</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;&#63;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS</link>\r\n\t\t\t<url>//c1.neweggimages.com/WebResource/Themes/2005/Nest/logo.gif</url>\r\n\t\t</image>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;369.99
+        - ASUS ROG Strix Radeon RX 570 O4G Gaming OC Edition GDDR5 DP HDMI DVI VR
+        Ready AMD Graphics Card &#40;ROG-STRIX-RX570-O4G-GAMING&#41;</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16814126189&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Graphics&#37;20Cards-_-ASUS-_-N82E16814126189</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;14-126-189-V07.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; ROG-STRIX-RX570-O4G&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16814126189&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;369.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16814126189&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Graphics&#37;20Cards-_-ASUS-_-N82E16814126189&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16814126189&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Graphics&#37;20Cards-_-ASUS-_-N82E16814126189</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16814126189&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;299.99
+        - AMD RYZEN 7 1700X 8-Core 3.4 GHz &#40;3.8 GHz Turbo&#41; Socket AM4 95W
+        YD170XBCAEWOF Desktop Processor</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16819113429&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Processors&#37;20-&#37;20Desktops-_-AMD-_-N82E16819113429</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;19-113-429-S01.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;color&#58;red&#34;&#62;8 Cores, 16 Threads, Great for High-Performance
+        Gaming&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; YD170XBCAEWOF&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16819113429&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;299.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;25&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16819113429&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Processors&#37;20-&#37;20Desktops-_-AMD-_-N82E16819113429&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16819113429&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Processors&#37;20-&#37;20Desktops-_-AMD-_-N82E16819113429</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16819113429&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;514.85
+        - AMD RYZEN 7 1700X 8-Core 3.4 GHz &#40;3.8 GHz Turbo&#41; Socket AM4 95W
+        YD170XBCAEWOF Desktop Processor, ASUS CROSSHAIR VI HERO &#40;WI-FI AC&#41;
+        AM4 AMD X370 SATA 6Gb&#47;s USB 3.1 ATX AMD Motherboard</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ComboBundleDetails.aspx&#63;ItemList&#61;Combo.3705936&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3705936</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;combo3705936.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;color&#58;red&#34;&#62;AMD RYZEN CPU w&#47; Motherboard Combo&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;514.85&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;7&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;combo.3705936&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3705936&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ComboBundleDetails.aspx&#63;ItemList&#61;Combo.3705936&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3705936</guid>\r\n\t\t\t<comments></comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;539.98
+        - Intel Core i7-8700K Coffee Lake 6-Core 3.7 GHz &#40;4.7 GHz Turbo&#41; LGA
+        1151 &#40;300 Series&#41; 95W BX80684I78700K Desktop Processor Intel UHD Graphics
+        630, ASUS ROG Strix Z370-E Gaming LGA 1151 &#40;300 Series&#41; Intel Z370
+        HDMI SATA 6Gb&#47;s USB 3.1 ATX</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ComboBundleDetails.aspx&#63;ItemList&#61;Combo.3723781&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3723781</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;combo3723781.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;color&#58;red&#34;&#62;i7-8700K &#43; ASUS Z370-E Strix&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;539.98&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;combo.3723781&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3723781&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ComboBundleDetails.aspx&#63;ItemList&#61;Combo.3723781&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-MasterCombo-_-01011-_-3723781</guid>\r\n\t\t\t<comments></comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;999.99
+        - ABS Battlebox Essential Prime-1600W  NVIDIA GeForce GTX 1060 6 GB AMD Ryzen
+        5 1600 &#40;3.20 GHz&#41; 8 GB DDR4 RAM 240 GB SSD 1 TB HDD Windows 10 64-Bit
+        Home Gaming Desktop ALA071</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16883102331&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Computers-_-ABS-_-N82E16883102331</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;83-102-331-Z11.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; ALA071&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16883102331&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;999.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16883102331&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Computers-_-ABS-_-N82E16883102331&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16883102331&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Desktop&#37;20Computers-_-ABS-_-N82E16883102331</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16883102331&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;149.99
+        - Acer G7 Series G277HL bid Black 27&#34; IPS 4ms &#40;GTG&#41; Black Widescreen
+        LED&#47;LCD Monitor 1920 x 1080, Slim Frame Design, w&#47; Acer Flicker Less
+        Technology, Visual Comfortable w&#47; D-sub, DVI &#38; HDMI Connectivity</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16824009735&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-LCD&#37;20&#37;2f&#37;20LED&#37;20Monitors-_-Acer&#37;20America-_-N82E16824009735</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;24-009-735-01.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; UM.HG7AA.002&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16824009735&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;149.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;25&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16824009735&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-LCD&#37;20&#37;2f&#37;20LED&#37;20Monitors-_-Acer&#37;20America-_-N82E16824009735&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16824009735&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-LCD&#37;20&#37;2f&#37;20LED&#37;20Monitors-_-Acer&#37;20America-_-N82E16824009735</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16824009735&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;879.00
+        - ASUS Zenbook UX510UX-NH74 15.6&#34; Intel Core i7 7th Gen 7500U &#40;2.70
+        GHz&#41; NVIDIA GeForce GTX 950M 8 GB Memory 256 GB SSD 1 TB HDD Windows 10
+        Home 64-Bit Gaming Laptop</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16834234896&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Gaming&#37;20Laptops-_-ASUS-_-N82E16834234896</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;34-234-896-V09.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;color&#58;red&#34;&#62;Extra savings w&#47; promo code MBLB032018A
+        w&#47; mobile checkout, ends 3&#47;26&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; UX510UX-NH74&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16834234896&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;879.00&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16834234896&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Gaming&#37;20Laptops-_-ASUS-_-N82E16834234896&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16834234896&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Gaming&#37;20Laptops-_-ASUS-_-N82E16834234896</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16834234896&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;59.99
+        - Patriot Burst 2.5&#34; 240GB SATA III Internal Solid State Drive &#40;SSD&#41;
+        PBU240GS25SSDR</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16820225082&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Internal&#37;20SSDs-_-Patriot&#37;20Memory-_-N82E16820225082</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;20-225-082-Z01.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; PBU240GS25SSDR&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16820225082&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;59.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;45&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16820225082&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Internal&#37;20SSDs-_-Patriot&#37;20Memory-_-N82E16820225082&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16820225082&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Internal&#37;20SSDs-_-Patriot&#37;20Memory-_-N82E16820225082</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16820225082&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;449.99
+        - Optoma Refurbished HD142X 1080p &#40;1920 x 1080&#41; 3000 ANSI Lumens DLP
+        Projector 23,000&#58;1</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16824219256&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Business&#37;20Projectors-_-OPTOMA-_-N82E16824219256</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;24-219-256-Z01.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;color&#58;red&#34;&#62;Free Krazilla power bank w&#47; purchase,
+        limited offer&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; HD142XRFBA&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16824219256&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;449.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16824219256&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Business&#37;20Projectors-_-OPTOMA-_-N82E16824219256&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16824219256&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Business&#37;20Projectors-_-OPTOMA-_-N82E16824219256</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16824219256&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;44.99
+        - WD Blue 500GB Mobile 7.00mm Hard Disk Drive - 5400 RPM SATA 6Gb&#47;s 16MB
+        Cache 2.5 Inch - WD5000LPCX</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;1Z4-0002-001C2&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laptop&#37;20Internal&#37;20Hard&#37;20Drives-_-Western&#37;20Digital-_-1Z4-0002-001C2</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;ProductImageCompressAll125&#47;1Z4-0002-001C2-V01.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; WD5000LPCX&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        1Z4-0002-001C2&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;44.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;36&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;1Z4-0002-001C2&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laptop&#37;20Internal&#37;20Hard&#37;20Drives-_-Western&#37;20Digital-_-1Z4-0002-001C2&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;1Z4-0002-001C2&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laptop&#37;20Internal&#37;20Hard&#37;20Drives-_-Western&#37;20Digital-_-1Z4-0002-001C2</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;1Z4-0002-001C2&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;71.99
+        - Logitech Recertified 980-000402 Z623 200 Watts 2.1 Speakers</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16836121092&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Speakers-_-Logitech-_-N82E16836121092</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;NeweggImage&#47;ProductImageCompressAll125&#47;36-121-092-02.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; S980-000402X&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        N82E16836121092&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;71.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;N82E16836121092&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Speakers-_-Logitech-_-N82E16836121092&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;N82E16836121092&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Speakers-_-Logitech-_-N82E16836121092</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;N82E16836121092&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\t\r\n\t\t<item>\r\n\t\t\t<title>&#36;199.99
+        - HP LaserJet Pro M402dne &#40;C5J91A&#35;BGJ&#41; Duplex USB Monochrome Laser
+        Printer</title>\r\n\t\t\t<link>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;1EE-0005-00DY5&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laser&#37;20Printers-_-HP-_-1EE-0005-00DY5</link>\r\n\t\t\t<description>&#13;&#10;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;width&#58;125px&#59;float&#58;left&#59;clear&#58;none&#59;border&#58;1px
+        solid &#35;ccc&#59;background-color&#58;&#35;fff&#59;padding&#58;15px 5px&#59;margin&#58;10px
+        10px 10px 0px&#59;&#34;&#62; &#13;&#10;&#9;&#9;&#9;&#9;&#60;img border&#61;&#34;0&#34;
+        src&#61;&#34;&#47;&#47;images10.newegg.com&#47;ProductImageCompressAll125&#47;1EE-0005-00DY5-05.jpg&#34;
+        width&#61;&#34;125&#34; height&#61;&#34;94&#34; title&#61;&#34;&#34; alt&#61;&#34;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;p
+        style&#61;&#34;margin&#58;15px 0 15px 150px&#59;&#34;&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Model
+        &#35;&#58;&#60;&#47;strong&#62; C5J91A&#35;BGJ&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#60;div
+        style&#61;&#34;margin-bottom&#58;15px&#59;&#34;&#62;&#60;strong&#62;Item &#35;&#58;&#60;&#47;strong&#62;
+        1EE-0005-00DY5&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Price&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;&#36;199.99&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;strong&#62;Save&#58;&#60;&#47;strong&#62;
+        &#60;span style&#61;&#34;color&#58;red&#59;font-weight&#58;bold&#59;&#34;&#62;33&#37;&#60;&#47;span&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#60;div&#62;&#60;a
+        href&#61;&#34;https&#58;&#47;&#47;secure.newegg.com&#47;Shopping&#47;AddToCart.aspx&#63;ItemList&#61;1EE-0005-00DY5&#38;Submit&#61;ADD&#38;target&#61;NEWEGGCART&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laser&#37;20Printers-_-HP-_-1EE-0005-00DY5&#34;&#62;Add
+        To Cart&#60;&#47;a&#62;&#60;&#47;div&#62;&#13;&#10;&#9;&#9;&#9;&#9;&#60;&#47;p&#62;&#60;&#33;--
+        BEGIN COREMETRICS --&#62;&#13;&#10;&#60;img alt&#61;&#34;&#34; class&#61;&#34;coremetrics&#34;
+        src&#61;&#34;http&#58;&#47;&#47;data.coremetrics.com&#47;eluminate&#63;tid&#61;1&#38;ci&#61;90172959&#38;vn2&#61;e4.0&#38;st&#61;1522095561679&#38;vn1&#61;4.0.23&#38;ec&#61;utf-8&#38;ul&#61;http&#37;3a&#37;2f&#37;2fwww.newegg.com&#37;3a8010&#37;2fProduct&#37;2fRSS.aspx&#37;3fSubmit&#37;3dRSSDailyDeals&#37;26Depa&#37;3d0&#38;pi&#61;tab&#37;3a&#37;7bRSS_All&#37;20store&#37;7d&#38;cg&#61;2000000000&#38;pv1&#61;E11WEB07&#34;&#47;&#62;&#13;&#10;&#60;&#33;--
+        END COREMETRICS --&#62;&#13;&#10;</description>\r\n\t\t\t<pubDate>Mon, 26
+        Mar 2018 20:19:21GMT</pubDate>\t\t\t\r\n\t\t\t\t\t\t\r\n\t\t\t<guid>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;Product.aspx&#63;Item&#61;1EE-0005-00DY5&#38;nm_mc&#61;OTC-RSS&#38;cm_sp&#61;OTC-RSS-_-Laser&#37;20Printers-_-HP-_-1EE-0005-00DY5</guid>\r\n\t\t\t<comments>https&#58;&#47;&#47;www.newegg.com&#47;Product&#47;ProductReview.aspx&#63;Item&#61;1EE-0005-00DY5&#38;nm_mc&#61;OTC-RSS</comments>\r\n\t\t</item>\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t<copyright>
+        2000-2018 Newegg Inc. <span id=\"ieFontCheck\" style=\"width:0px;\">A</span>ll
+        rights reserved.</copyright>\r\n\t</channel>\r\n</rss>"
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 03:19:20 GMT
+recorded_with: VCR 3.0.3

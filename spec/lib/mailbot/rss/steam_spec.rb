@@ -7,7 +7,7 @@ RSpec.describe Mailbot::RSS::Steam do
     end
   end
 
-  it_behaves_like 'an RSS feed'
+  it_behaves_like 'an RSS feed', 7
 
   subject(:feed) { described_class.new }
 
