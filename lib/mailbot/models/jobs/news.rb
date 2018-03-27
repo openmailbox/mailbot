@@ -32,7 +32,7 @@ module Mailbot
 
         feed.refresh!
 
-        feed.items_since(begin_at).each do |item|
+        feed.filtered_items_since(begin_at).each do |item|
           Mailbot.logger.info("Sending news story #{item.link} to channel #{channel_id}")
 
           discord.send_message(channel_id, formatted_message(item))

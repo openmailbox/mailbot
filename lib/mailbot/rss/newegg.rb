@@ -1,7 +1,8 @@
 module Mailbot
   module RSS
     class Newegg < Feed
-      RSS_URL = 'https://www.newegg.com/Product/RSS.aspx?Submit=RSSDailyDeals&Depa=0'.freeze
+      RSS_URL  = 'https://www.newegg.com/Product/RSS.aspx?Submit=RSSDailyDeals&Depa=0'.freeze
+      KEYWORDS = ['Graphics Card', 'Desktop Processor', 'Solid State Drive', 'Hard Disk Drive']
 
       def refresh!
         feed = nil
