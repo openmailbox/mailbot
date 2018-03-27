@@ -7,6 +7,6 @@ before_install:
   - cp config/secrets.yml.example config/secrets.yml
   - cp config/database.yml.example config/database.yml
 before_script: 
-  - bundle exec rake db:create db:migrate db:seed
+  - bundle exec rake db:create db:migrate
 env:
   - MAILBOT_ENV=test
