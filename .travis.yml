@@ -1,4 +1,12 @@
 language: ruby
 rvm:
- - 2.3
-before_script: bundle exec rake db:create db:migrate db:seed
+  - 2.3
+services:
+  - mysql
+before_install:
+  - cp config/secrets.yml.example config/secrets.yml
+  - cp config/database.yml.example config/database.yml
+before_script: 
+  - bundle exec rake db:create db:migrate db:seed
+env:
+  - MAILBOT_ENV=test
