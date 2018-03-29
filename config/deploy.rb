@@ -2,7 +2,8 @@
 lock "3.7.2"
 
 # rvm stuff
-set :rvm_ruby_version, '2.3.3@mailbot'
+set :rvm_ruby_version, '2.5.1@mailbot'
+set :rvm_custom_path, '/usr/share/rvm'
 
 set :application, "mailbot"
 set :repo_url, "ssh://git@github.com/nevern02/mailbot.git"

@@ -12,38 +12,41 @@
 
 ActiveRecord::Schema.define(version: 20180103144446) do
 
-  create_table "channel_memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "channel_memberships", force: :cascade do |t|
     t.integer  "channel_id"
     t.integer  "user_id"
     t.integer  "points",          default: 0
     t.datetime "last_message_at"
   end
 
-  create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "channels", force: :cascade do |t|
     t.string  "name"
     t.integer "owner_id"
   end
 
-  create_table "communities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "communities", force: :cascade do |t|
     t.string   "name"
     t.integer  "platform_id"
     t.integer  "user_id"
     t.datetime "created_at"
   end
 
-  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "jobs", force: :cascade do |t|
     t.string   "type"
     t.integer  "frequency"
     t.datetime "last_run_at"
-    t.text     "details",     limit: 65535
+    t.text     "details"
     t.index ["last_run_at"], name: "index_jobs_on_last_run_at", using: :btree
   end
 
-  create_table "platforms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "platforms", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "rust_servers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rust_servers", force: :cascade do |t|
     t.string   "ip"
     t.integer  "port"
     t.integer  "rcon_port"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180103144446) do
     t.datetime "last_heli_at"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
   end
 

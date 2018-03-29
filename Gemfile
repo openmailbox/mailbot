@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 
 gem 'activerecord', '~> 5.0'
-gem 'mysql2',       '~> 0.4'
+gem 'pg',           '~> 0.18'
 gem 'rake',         '~> 11.3'
 gem 'httparty',     '~> 0.14'
 gem 'htmlentities', '~> 4.3'
