@@ -4,6 +4,8 @@ require 'mailbot'
 require 'timecop'
 require 'vcr'
 
+ActiveRecord::Base.logger.level = 1
+
 Mailbot.configure do |config|
   config.log_file = nil
 end

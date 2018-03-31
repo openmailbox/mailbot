@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103144446) do
+ActiveRecord::Schema.define(version: 20180330195305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20180103144446) do
 
   create_table "platforms", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "rss_items", force: :cascade do |t|
+    t.string   "guid"
+    t.string   "title"
+    t.datetime "published_at"
+    t.string   "link"
+    t.string   "description"
+    t.index ["guid"], name: "index_rss_items_on_guid", using: :btree
   end
 
   create_table "rust_servers", force: :cascade do |t|
