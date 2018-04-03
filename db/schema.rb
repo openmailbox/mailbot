@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330195305) do
+ActiveRecord::Schema.define(version: 20180402224852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20180330195305) do
     t.index ["last_run_at"], name: "index_jobs_on_last_run_at", using: :btree
   end
 
+  create_table "news_feeds", force: :cascade do |t|
+    t.string   "title"
+    t.string   "link"
+    t.string   "decription"
+    t.string   "reader_class"
+    t.datetime "last_build_at"
+    t.index ["link"], name: "index_news_feeds_on_link", using: :btree
+  end
+
   create_table "platforms", force: :cascade do |t|
     t.string "name"
   end
@@ -52,7 +61,9 @@ ActiveRecord::Schema.define(version: 20180330195305) do
     t.datetime "published_at"
     t.string   "link"
     t.string   "description"
+    t.integer  "news_feed_id"
     t.index ["guid"], name: "index_rss_items_on_guid", using: :btree
+    t.index ["news_feed_id"], name: "index_rss_items_on_news_feed_id", using: :btree
   end
 
   create_table "rust_servers", force: :cascade do |t|

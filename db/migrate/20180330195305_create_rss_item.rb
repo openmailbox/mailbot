@@ -6,8 +6,10 @@ class CreateRssItem < ActiveRecord::Migration[5.0]
       t.datetime :published_at
       t.string :link
       t.string :description
+      t.integer :news_feed_id
     end
 
     add_index :rss_items, :guid
+    add_index :rss_items, :news_feed_id
   end
 end

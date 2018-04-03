@@ -3,11 +3,13 @@ require 'rss'
 module Mailbot
   module Models
     class News < Job
+      READERS = [Mailbot::RSS::Steam, Mailbot::RSS::Newegg]
+
       def perform
         last             = (self.last_run_at || DateTime.now).utc
         self.last_run_at = DateTime.now
 
-        Mailbot::RSS::Feed.subclasses.each do |klass|
+        READERS.each do |klass|
           update_feed(last, klass.new)
         end
 

@@ -28,3 +28,12 @@ class DiscordMock
     OpenStruct.new(id: '42')
   end
 end
+
+class RssReaderMock < Mailbot::RSS::Feed
+  def refresh!
+    @items = [
+      Mailbot::RSS::FeedItem.new('Title 1', 'abc', '1', Time.now),
+      Mailbot::RSS::FeedItem.new('Title 2', 'def', '2', Time.now)
+    ]
+  end
+end
