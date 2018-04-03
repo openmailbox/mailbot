@@ -18,10 +18,6 @@ module Mailbot
 
       private
 
-      def discord
-        @discord ||= Mailbot.instance.discord.bot
-      end
-
       # @param [Mailbot::RSS::FeedItem] item
       def formatted_message(item)
         "#{Sanitize.fragment(item.description)} - #{item.link}"

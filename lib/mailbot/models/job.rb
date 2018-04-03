@@ -14,6 +14,10 @@ module Mailbot
       end
 
       private
+
+      def discord
+        @discord ||= Mailbot.instance.discord.bot
+      end
       
       def initialize_details
         self.details ||= {}
