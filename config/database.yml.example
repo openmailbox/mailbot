@@ -6,6 +6,7 @@ development:
 test:
   adapter: 'postgresql'
   encoding: 'utf8'
+  database: 'mailbot_test'
 
 production:
   adapter: 'postgresql'
