@@ -1,8 +1,8 @@
 language: ruby
 rvm:
-  - 2.3
+  - 2.5.1
 services:
-  - mysql
+  - postgresql
 before_install:
   - cp config/secrets.yml.example config/secrets.yml
   - cp config/database.yml.example config/database.yml
