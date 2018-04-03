@@ -1,20 +1,13 @@
 development:
-  host: 'localhost'
-  adapter: 'mysql2'
+  adapter: 'postgresql'
   encoding: 'utf8'
   database: 'mailbot_development'
-  username: 'root'
-  password: 'master'
 
 test:
-  host: 'localhost'
-  adapter: 'mysql2'
+  adapter: 'postgresql'
   encoding: 'utf8'
-  database: 'mailbot_test'
-  username: 'root'
 
 production:
-  host: 'localhost'
-  adapter: 'mysql2'
+  adapter: 'postgresql'
   encoding: 'utf8'
   database: 'mailbot_production'
