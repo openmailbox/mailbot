@@ -6,8 +6,8 @@ services:
 before_install:
   - cp config/secrets.yml.example config/secrets.yml
   - cp config/database.yml.example config/database.yml
+  - gem update --system
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - bundle exec rake db:migrate
+  - bundle exec rake db:create db:migrate
 env:
   - MAILBOT_ENV=test
