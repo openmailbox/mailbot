@@ -16,7 +16,7 @@ module Mailbot
           wrapper.title        = item.title
           wrapper.published_at = item.date
           wrapper.link         = item.link
-          wrapper.description  = item.description
+          wrapper.description  = item.title # TODO: Parse the HTML-formatted desc
 
           wrapper
         end
