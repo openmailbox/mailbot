@@ -6,6 +6,7 @@ services:
 before_install:
   - cp config/secrets.yml.example config/secrets.yml
   - cp config/database.yml.example config/database.yml
+  - gem install bundler --no-rdoc --no-ri
   - gem update --system
 before_script:
   - bundle exec rake db:create db:migrate
