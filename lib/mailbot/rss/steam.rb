@@ -11,6 +11,7 @@ module Mailbot
         @items = feed.items.map do |item| # RSS::RDF::Item
           wrapper = Mailbot::RSS::FeedItem.new
 
+          wrapper.guid         = item.link
           wrapper.title        = item.title
           wrapper.published_at = item.date
           wrapper.link         = item.link

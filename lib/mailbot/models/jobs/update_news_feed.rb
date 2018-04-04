@@ -35,6 +35,7 @@ module Mailbot
           new_items << news_feed.rss_items.create!(guid:         item.guid,
                                                    title:        item.title,
                                                    published_at: item.published_at,
+                                                   link:         item.link,
                                                    description:  item.description)
         end
 
