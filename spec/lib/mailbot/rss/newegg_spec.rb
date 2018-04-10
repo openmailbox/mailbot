@@ -22,10 +22,4 @@ RSpec.describe Mailbot::RSS::Newegg do
     expect(latest.guid).to eq(latest.link)
     expect(latest.published_at.utc).to eq(DateTime.new(2018, 3, 26, 20, 19, 21).utc)
   end
-
-  it 'filters based on keywords' do
-    feed.refresh!
-
-    expect(feed.filtered_items_since(DateTime.new).length).to eq(6)
-  end
 end

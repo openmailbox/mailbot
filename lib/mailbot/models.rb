@@ -8,7 +8,6 @@ require 'mailbot/models/rss_item'
 require 'mailbot/models/rust_server'
 require 'mailbot/models/user'
 require 'mailbot/models/jobs/kadgar'
-require 'mailbot/models/jobs/news'
 require 'mailbot/models/jobs/update_news_feed'
 
 module Mailbot
