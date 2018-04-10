@@ -22,4 +22,13 @@ RSpec.describe Mailbot::RSS::Steam do
     expect(latest.guid).to eq(latest.link)
     expect(latest.published_at.utc).to eq(DateTime.new(2018, 3, 26, 17).utc)
   end
+
+  it 'formats the message' do
+    feed.refresh!
+
+    latest    = feed.items.first
+    formatted = feed.format_message(latest)
+
+    expect(formatted).to eq("Today's Deal: Save 50% on X-Morph: Defense!*  Look for the deals each day on the front page of Steam.  Or follow us on twitter or Facebook for instant notifications wherever you are!  *Offer ends Wednesday at 10AM Pacific Time  - http://store.steampowered.com/news/38498/")
+  end
 end

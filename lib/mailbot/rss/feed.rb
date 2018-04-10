@@ -11,6 +11,11 @@ module Mailbot
         @items = []
       end
 
+      # @param [Mailbot::RSS::FeedItem] item The item to format
+      def format_message(item)
+        "#{Sanitize.fragment(item.description)} - #{item.link}"
+      end
+
       def refresh!
         raise NotImplementedError.new('Subclasses must override #refresh!')
       end
