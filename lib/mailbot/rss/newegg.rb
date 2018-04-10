@@ -4,6 +4,7 @@ module Mailbot
       RSS_URL  = 'https://www.newegg.com/Product/RSS.aspx?Submit=RSSDailyDeals&Depa=0'.freeze
       KEYWORDS = ['Graphics Card', 'Desktop Processor', 'Solid State Drive', 'Hard Disk Drive']
 
+      # TODO: discord.bot.send_message(channel.id, 'testing', false, image: Discordrb::Webhooks::EmbedImage.new(url: 'https://www.ruby-lang.org/images/header-ruby-logo.png'))
       def refresh!
         feed = nil
 
