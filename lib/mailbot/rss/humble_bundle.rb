@@ -21,6 +21,8 @@ module Mailbot
           wrapper
         end
       end
+
+      # TODO: Override format_message
     end
   end
 end

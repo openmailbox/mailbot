@@ -8,6 +8,7 @@ module Mailbot
       #
       # @return [String] The formatted message
       def format_message(item)
+        # TODO: Convert item to instance of Mailbot::RSS::FeedItem | item.to_feed_item
         reader.format_message(item)
       end
 
