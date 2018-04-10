@@ -16,7 +16,7 @@ module Mailbot
           wrapper.title        = item.title
           wrapper.published_at = item.date
           wrapper.link         = item.link
-          wrapper.description  = item.content_encoded
+          wrapper.description  = item.description
 
           wrapper
         end
