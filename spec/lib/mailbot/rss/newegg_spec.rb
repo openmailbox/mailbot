@@ -11,7 +11,7 @@ RSpec.describe Mailbot::RSS::Newegg do
 
   subject(:feed) { described_class.new }
 
-  it 'retrieves the latest Steam news stories' do
+  it 'retrieves the latest Newegg news stories' do
     feed.refresh!
 
     latest = feed.items.first
