@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: rust_servers
+#
+#  id             :integer          not null, primary key
+#  ip             :string
+#  port           :integer
+#  rcon_port      :integer
+#  rcon_password  :string
+#  community_id   :integer
+#  channel_id     :integer
+#  last_supply_at :datetime
+#  last_heli_at   :datetime
+#
+
 module Mailbot
   module Models
     class RustServer < ActiveRecord::Base

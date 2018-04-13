@@ -3,7 +3,7 @@
 # Table name: channels
 #
 #  id       :integer          not null, primary key
-#  name     :string(255)
+#  name     :string
 #  owner_id :integer
 #
 

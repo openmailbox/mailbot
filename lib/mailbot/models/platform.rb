@@ -3,7 +3,7 @@
 # Table name: platforms
 #
 #  id   :integer          not null, primary key
-#  name :string(255)
+#  name :string
 #
 
 module Mailbot

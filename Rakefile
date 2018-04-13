@@ -8,6 +8,12 @@ unless Mailbot.env == 'production'
   RSpec::Core::RakeTask.new(:spec)
 end
 
+desc 'Annotate models'
+task :annotate do
+  exec('bundle exec annotate -i -pbefore -R./lib/mailbot.rb --model-dir lib')
+end
+
+
 desc 'Load a console with the environment'
 task :console do
   require 'pry'

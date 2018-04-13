@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: news_feeds
+#
+#  id            :integer          not null, primary key
+#  title         :string
+#  link          :string
+#  decription    :string
+#  reader_class  :string
+#  last_build_at :datetime
+#
+# Indexes
+#
+#  index_news_feeds_on_link  (link)
+#
+
 module Mailbot
   module Models
     # TODO: Update NewsFeed fields with RSS-provided data

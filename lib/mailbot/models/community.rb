@@ -3,7 +3,7 @@
 # Table name: communities
 #
 #  id          :integer          not null, primary key
-#  name        :string(255)
+#  name        :string
 #  platform_id :integer
 #  user_id     :integer
 #  created_at  :datetime

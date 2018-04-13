@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id          :integer          not null, primary key
+#  type        :string
+#  frequency   :integer
+#  last_run_at :datetime
+#  details     :text
+#
+# Indexes
+#
+#  index_jobs_on_last_run_at  (last_run_at)
+#
+
 module Mailbot
   module Models
     class Job < ActiveRecord::Base
