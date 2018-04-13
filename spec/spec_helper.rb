@@ -23,7 +23,7 @@ class DiscordMock
     @buffer = []
   end
 
-  def send_message(channel_id, message)
+  def send_message(channel_id, message, tts = false, embed = nil)
     @buffer << {channel_id: channel_id, message: message}
     OpenStruct.new(id: '42')
   end
