@@ -17,10 +17,15 @@ module Mailbot
           wrapper.title        = item.title
           wrapper.published_at = item.date
           wrapper.link         = item.link
-          wrapper.description  = item.title # TODO: Parse the HTML-formatted desc
+          wrapper.description  = item.description
 
           wrapper
         end
+      end
+
+      # @override
+      def format_message
+        "#{Sanitize.fragment(item.title)} - #{item.link}"
       end
     end
   end

@@ -45,6 +45,7 @@ module Mailbot
           existing = rss_items.find_by(guid: item.guid)
 
           next if existing
+          # TODO: Skip if timestamp prior to most recent article
 
           new_items << rss_items.create!(guid:         item.guid,
                                          title:        item.title,

@@ -21,5 +21,6 @@ RSpec.describe Mailbot::RSS::Newegg do
     expect(latest.link).to eq('https://www.newegg.com/Product/Product.aspx?Item=N82E16814126189&nm_mc=OTC-RSS&cm_sp=OTC-RSS-_-Desktop%20Graphics%20Cards-_-ASUS-_-N82E16814126189')
     expect(latest.guid).to eq(latest.link)
     expect(latest.published_at.utc).to eq(DateTime.new(2018, 3, 26, 20, 19, 21).utc)
+    expect(latest.description).not_to be_blank
   end
 end
