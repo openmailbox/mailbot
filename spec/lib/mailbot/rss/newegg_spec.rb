@@ -36,7 +36,7 @@ RSpec.describe Mailbot::RSS::Newegg do
     expect(embed.fields.length).to eq(4)
     expect(embed.footer.to_hash[:icon_url]).to eq('https://pbs.twimg.com/profile_images/265989396/shell_shocker.png')
     expect(embed.footer.to_hash[:text]).to eq('Newegg')
-    expect(embed.image.to_hash[:url]).to eq('//images10.newegg.com/NeweggImage/ProductImageCompressAll125/14-126-189-V07.jpg')
+    expect(embed.image.to_hash[:url]).to eq('https://images10.newegg.com/NeweggImage/ProductImageCompressAll125/14-126-189-V07.jpg')
     expect(embed.timestamp).to eq(DateTime.new(2018, 3, 26, 20, 19, 21).utc)
   end
 

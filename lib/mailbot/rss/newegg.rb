@@ -15,9 +15,10 @@ module Mailbot
         embed.url       = item.link
         embed.color     = COLOR
         embed.footer    = Discordrb::Webhooks::EmbedFooter.new(text: 'Newegg', icon_url: ICON_URL)
-        embed.image     = Discordrb::Webhooks::EmbedImage.new(url: html.css('img').first.attributes['src'].value)
+        embed.image     = Discordrb::Webhooks::EmbedImage.new(url: "https:#{html.css('img').first.attributes['src'].value}")
         embed.timestamp = item.published_at
 
+        # TODO: Dynamically create a field for each div
         embed.add_field(name: 'Model #', value: html.css('div')[1].content.split.last)
         embed.add_field(name: 'Item #', value: html.css('div')[2].content.split.last)
         embed.add_field(name: 'Buy Now', value: cart_url(html), inline: true)
