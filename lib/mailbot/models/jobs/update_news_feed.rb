@@ -43,8 +43,7 @@ module Mailbot
         end
 
         new_items.each do |item|
-          discord.send_message(channel_id, formatted_message(item))
-          # TODO: discord.send_message(channel_id, news_feed.format_message(item))
+          discord.send_message(channel_id, news_feed.format_message(item))
         end
       end
     end

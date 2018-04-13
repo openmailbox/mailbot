@@ -23,6 +23,7 @@ module Mailbot
 
       # @return [Mailbot::RSS::FeedItem] a struct representing the RSS item
       def to_feed_item
+        Mailbot::RSS::FeedItem.new(title, link, guid, published_at, description)
       end
     end
   end
