@@ -50,7 +50,7 @@ RSpec.describe Mailbot::RSS::Newegg do
 
       expect(field.to_hash[:name]).to eq('Model #')
       expect(field.to_hash[:value]).to eq('ROG-STRIX-RX570-O4G')
-      expect(field.to_hash[:inline]).to be_falsey
+      expect(field.to_hash[:inline]).to be true
     end
 
     it 'has an item number' do
@@ -58,11 +58,11 @@ RSpec.describe Mailbot::RSS::Newegg do
 
       expect(field.to_hash[:name]).to eq('Item #')
       expect(field.to_hash[:value]).to eq('N82E16814126189')
-      expect(field.to_hash[:inline]).to be_falsey
+      expect(field.to_hash[:inline]).to be true
     end
 
     it 'has a cart URL' do
-      field = embed.fields[2]
+      field = embed.fields[3]
 
       expect(field.to_hash[:name]).to eq('Buy Now')
       expect(field.to_hash[:value]).to eq('[Add To Cart](https://secure.newegg.com/Shopping/AddToCart.aspx?ItemList=N82E16814126189&Submit=ADD&target=NEWEGGCART&nm_mc=OTC-RSS&cm_sp=OTC-RSS-_-Desktop%20Graphics%20Cards-_-ASUS-_-N82E16814126189)')
@@ -70,7 +70,7 @@ RSpec.describe Mailbot::RSS::Newegg do
     end
 
     it 'has a price' do
-      field = embed.fields[3]
+      field = embed.fields[2]
 
       expect(field.to_hash[:name]).to eq('Price')
       expect(field.to_hash[:value]).to eq('$369.99')

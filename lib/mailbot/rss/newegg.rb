@@ -18,11 +18,11 @@ module Mailbot
         embed.image     = Discordrb::Webhooks::EmbedImage.new(url: "https:#{html.css('img').first.attributes['src'].value}")
         embed.timestamp = item.published_at
 
-        # TODO: Dynamically create a field for each div, use thumbnail over image, use inline for fields
-        embed.add_field(name: 'Model #', value: html.css('div')[1].content.split.last)
-        embed.add_field(name: 'Item #', value: html.css('div')[2].content.split.last)
+        html.css('div')[1..-2].each do |div|
+          embed.add_field(field_values(div))
+        end
+
         embed.add_field(name: 'Buy Now', value: cart_url(html), inline: true)
-        embed.add_field(name: 'Price', value: price, inline: true) if price
 
         embed
       end
@@ -51,9 +51,26 @@ module Mailbot
       end
 
       private
-      
+
       def cart_url(html)
         "[Add To Cart](#{html.css('div a').first.attributes['href'].value})"
+      end
+
+      # @param [Nokogiri::XML::Element] div The div to parse
+      def field_values(div)
+        name  = div.css('strong')&.first&.content.strip.chomp(':')
+        value = div.children.last.content.strip
+
+        if name.blank?
+          name  = value.split.first
+          value = value.split[1..-1].join(' ')
+        end
+
+        {
+          name: name,
+          value: value,
+          inline: true
+        }
       end
     end
   end
