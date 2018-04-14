@@ -3,11 +3,6 @@ module Mailbot
     class Blizzard < Feed
       SITE_URL = 'https://news.blizzard.com/en-us'
 
-      # @override
-      def format_message(item)
-        "#{Sanitize.fragment(item.description)} - https://#{item.link}"
-      end
-
       def refresh!
         html = Nokogiri::HTML(open(SITE_URL))
 
@@ -16,7 +11,7 @@ module Mailbot
 
           wrapper.guid  = div.css('a').first.attributes['href'].value
           wrapper.title = div.css('h3').first.content
-          wrapper.link  = wrapper.guid
+          wrapper.link  = "https://news.blizzard.com#{wrapper.guid}"
 
           timestamp_text = div.css('.ArticleListItem-footerTimestamp').first.content
 
