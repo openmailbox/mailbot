@@ -4,6 +4,7 @@ require 'htmlentities'
 require 'json'
 require 'time'
 require 'sanitize'
+require 'chronic'
 
 Thread.abort_on_exception = true
 

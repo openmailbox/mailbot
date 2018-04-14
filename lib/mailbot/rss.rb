@@ -1,6 +1,7 @@
 require 'rss'
 
 require 'mailbot/rss/feed'
+require 'mailbot/rss/blizzard'
 require 'mailbot/rss/humble_bundle'
 require 'mailbot/rss/newegg'
 require 'mailbot/rss/steam'
