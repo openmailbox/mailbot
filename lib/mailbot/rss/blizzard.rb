@@ -3,6 +3,11 @@ module Mailbot
     class Blizzard < Feed
       SITE_URL = 'https://news.blizzard.com/en-us'
 
+      # @override
+      def format_message(item)
+        "#{Sanitize.fragment(item.description)} - https://#{item.link}"
+      end
+
       def refresh!
         html = Nokogiri::HTML(open(SITE_URL))
 
