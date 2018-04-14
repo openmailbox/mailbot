@@ -58,7 +58,7 @@ module Mailbot
 
       # @param [Nokogiri::XML::Element] div The div to parse
       def field_values(div)
-        name  = div.css('strong')&.first&.content.strip.chomp(':')
+        name  = div.css('strong')&.first&.content&.strip&.chomp(':')
         value = div.children.last.content.strip
 
         if name.blank?
