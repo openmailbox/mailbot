@@ -21,6 +21,8 @@ module Mailbot
       has_many :rss_items
       has_many :news_feed_subscriptions
 
+      validate :reader_must_exist
+
       # @param [Mailbot::Models::RssItem] item The item to be formatted
       #
       # @return [String] The formatted message
@@ -36,6 +38,7 @@ module Mailbot
 
       # @return [Array<Mailbot::Models::RssItem>] Any newly created feed items
       def refresh!
+        latest    = rss_items.order('published_at DESC').first
         new_items = []
 
         return unless reader
@@ -46,7 +49,7 @@ module Mailbot
           existing = rss_items.find_by(guid: item.guid)
 
           next if existing
-          # TODO: Skip if timestamp prior to most recent article
+          next if latest && latest.published_at > item.published_at
 
           new_items << rss_items.create!(guid:         item.guid,
                                          title:        item.title,
@@ -56,6 +59,14 @@ module Mailbot
         end
 
         new_items
+      end
+
+      private
+
+      def reader_must_exist
+        unless Mailbot::RSS.const_defined?(reader_class)
+          errors.add(:reader_class, 'must be a valid reader class')
+        end
       end
     end
   end

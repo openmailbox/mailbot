@@ -30,6 +30,10 @@ module Mailbot
       def to_feed_item
         Mailbot::RSS::FeedItem.new(title, link, guid, published_at, description)
       end
+
+      def to_s
+        news_feed.reader.format_message(to_feed_item)
+      end
     end
   end
 end

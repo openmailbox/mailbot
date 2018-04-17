@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Mailbot::Models::UpdateNewsFeed do
   it_behaves_like 'a scheduled job', { details: {} }
 
-  let!(:feed) { Mailbot::Models::NewsFeed.create!(reader_class: 'RssReaderMock') }
+  let!(:feed) { Mailbot::Models::NewsFeed.create!(reader_class: 'Mailbot::RSS::RssReaderMock') }
 
   subject!(:update) { described_class.create!(details: {news_feed_id: feed.id, discord_channel_id: 42}) }
 
