@@ -18,6 +18,8 @@ module Mailbot
     class Job < ActiveRecord::Base
       serialize :details, JSON
 
+      validates :frequency, presence: true, numericality: true
+
       after_initialize :initialize_details
 
       def perform
@@ -33,7 +35,7 @@ module Mailbot
       def discord
         @discord ||= Mailbot.instance.discord.bot
       end
-      
+
       def initialize_details
         self.details ||= {}
       end

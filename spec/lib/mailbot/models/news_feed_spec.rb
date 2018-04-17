@@ -12,6 +12,8 @@ RSpec.describe Mailbot::Models::NewsFeed do
 
   after(:each) { Mailbot::Models::RssItem.destroy_all }
 
+  after(:all) { described_class.destroy_all }
+
   describe '#refresh!' do
     context 'when the stories do not yet exist' do
       it 'saves the stories' do

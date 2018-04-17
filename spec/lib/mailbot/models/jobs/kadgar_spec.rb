@@ -7,5 +7,5 @@ RSpec.describe Mailbot::Models::Kadgar do
     end
   end
 
-  it_behaves_like 'a scheduled job', { details: {twitch_ids: ['133652118']} }
+  it_behaves_like 'a scheduled job', { frequency: 42, details: {twitch_ids: ['133652118']} }
 end
