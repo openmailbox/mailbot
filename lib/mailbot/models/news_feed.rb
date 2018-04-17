@@ -31,9 +31,17 @@ module Mailbot
       end
 
       def reader
-        Mailbot.logger.warn("No RSS reader for #{self}") unless reader_class
-
         @reader ||= reader_class&.constantize&.new
+      end
+
+      def refresh_and_notify!
+        new_items = refresh!
+
+        news_feed_subscriptions.find_each do |sub|
+          new_items.each do |item|
+            sub.notify_discord(item)
+          end
+        end
       end
 
       # @return [Array<Mailbot::Models::RssItem>] Any newly created feed items

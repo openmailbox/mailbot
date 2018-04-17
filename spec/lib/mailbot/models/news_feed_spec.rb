@@ -53,4 +53,13 @@ RSpec.describe Mailbot::Models::NewsFeed do
       end
     end
   end
+
+  it 'posts new messages to discord for each subscription' do
+    feed.news_feed_subscriptions.create!(discord_channel_id: 42)
+    feed.news_feed_subscriptions.create!(discord_channel_id: 43)
+
+    feed.refresh_and_notify!
+
+    expect(discord.buffer.length).to eq(reader.new.refresh!.length * 2)
+  end
 end
