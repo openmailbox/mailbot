@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Mailbot::Models::UpdateNewsFeed do
+RSpec.describe Mailbot::Models::UpdateNewsFeeds do
   it_behaves_like 'a scheduled job', { details: {} }
 
   let!(:feed) { Mailbot::Models::NewsFeed.create!(reader_class: 'Mailbot::RSS::RssReaderMock') }

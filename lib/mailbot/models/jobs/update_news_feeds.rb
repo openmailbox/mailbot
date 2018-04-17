@@ -1,6 +1,6 @@
 module Mailbot
   module Models
-    class UpdateNewsFeed < Job
+    class UpdateNewsFeeds < Job
       def perform
         self.last_run_at = DateTime.now.utc
 
