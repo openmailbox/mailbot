@@ -15,7 +15,6 @@ VCR.configure do |config|
   config.hook_into :webmock
 end
 
-# TODO: Figure out a better way to do this
 class DiscordMock
   attr_reader :buffer
 

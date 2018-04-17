@@ -14,7 +14,7 @@ RSpec.describe Mailbot::Models::UpdateNewsFeed do
   let(:discord) { DiscordMock.new }
 
   before(:each) do
-    allow_any_instance_of(described_class).to receive(:discord).and_return(discord)
+    allow(Mailbot).to receive_message_chain(:instance, :discord, :bot).and_return(discord)
   end
 
   describe 'updating the feed' do
