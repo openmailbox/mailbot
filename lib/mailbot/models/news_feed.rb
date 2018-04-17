@@ -19,6 +19,7 @@ module Mailbot
     # TODO: Update NewsFeed fields with RSS-provided data
     class NewsFeed < ActiveRecord::Base
       has_many :rss_items
+      has_many :news_feed_subscriptions
 
       # @param [Mailbot::Models::RssItem] item The item to be formatted
       #

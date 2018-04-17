@@ -88,10 +88,7 @@ namespace :generate do
     File.open(path, 'w') do |file|
       file.write <<-EOF
 class #{migration_class} < ActiveRecord::Migration[5.0]
-  def self.up
-  end
-
-  def self.down
+  def change
   end
 end
       EOF

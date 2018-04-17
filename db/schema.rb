@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402224852) do
+ActiveRecord::Schema.define(version: 20180417144623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20180402224852) do
     t.datetime "last_run_at"
     t.text     "details"
     t.index ["last_run_at"], name: "index_jobs_on_last_run_at", using: :btree
+  end
+
+  create_table "news_feed_subscriptions", force: :cascade do |t|
+    t.integer "news_feed_id"
+    t.string  "discord_channel_id"
+    t.index ["news_feed_id"], name: "index_news_feed_subscriptions_on_news_feed_id", using: :btree
   end
 
   create_table "news_feeds", force: :cascade do |t|
