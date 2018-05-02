@@ -2,8 +2,9 @@ module Mailbot
   class WebClient
     URL_ROOT = 'http://bot.open-mailbox.com'.freeze
 
-    def news_feed_subscriptions
-      request('/news_feed_subscriptions.json')
+    # @param [DateTime] timestamp The lookback period
+    def news_feed_subscriptions(timestamp = 0)
+      request("/news_feed_subscriptions.json?since=#{timestamp.to_i}")
     end
 
     private

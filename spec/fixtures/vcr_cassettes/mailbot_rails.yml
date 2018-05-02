@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://bot.open-mailbox.com/news_feed_subscriptions.json
+    uri: http://bot.open-mailbox.com/news_feed_subscriptions.json?since=0
     body:
       encoding: US-ASCII
       string: ''
@@ -17,7 +17,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Wed, 02 May 2018 20:28:12 GMT
+      - Wed, 02 May 2018 20:36:00 GMT
       Connection:
       - keep-alive
       X-Frame-Options:
@@ -33,9 +33,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 88683f06-a5a6-47cc-9453-2a579d14cc39
+      - 71bb5353-c98f-423a-a90e-a8eb6c1b1aad
       X-Runtime:
-      - '0.028100'
+      - '0.014143'
       Transfer-Encoding:
       - chunked
       Via:
@@ -44,5 +44,5 @@ http_interactions:
       encoding: UTF-8
       string: '[{"news_feed_id":2,"discord_channel_id":"431217242123010053","guild_id":"224223413449916416","enabled":true},{"news_feed_id":3,"discord_channel_id":"433102426539556864","guild_id":"224223413449916416","enabled":true}]'
     http_version: 
-  recorded_at: Wed, 02 May 2018 20:28:12 GMT
+  recorded_at: Wed, 02 May 2018 20:36:01 GMT
 recorded_with: VCR 3.0.3
