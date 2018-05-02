@@ -2,18 +2,24 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:3000/news_feed_subscriptions.json?since=0
+    uri: http://bot.open-mailbox.com/news_feed_subscriptions.json
     body:
       encoding: US-ASCII
       string: ''
     headers:
       X-Mailbot-Api-Token:
-      - abc123
+      - "<TOKEN>"
   response:
     status:
       code: 200
       message: OK
     headers:
+      Server:
+      - Cowboy
+      Date:
+      - Wed, 02 May 2018 20:28:12 GMT
+      Connection:
+      - keep-alive
       X-Frame-Options:
       - SAMEORIGIN
       X-Xss-Protection:
@@ -23,18 +29,20 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"80521bb6a4630db0cf046703df98f058"
+      - W/"c2fdd9790ca92dce43b6b03b1c8e63f0"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 6e1c224a-5f12-4adb-974e-95b7701e85eb
+      - 88683f06-a5a6-47cc-9453-2a579d14cc39
       X-Runtime:
-      - '0.011173'
+      - '0.028100'
       Transfer-Encoding:
       - chunked
+      Via:
+      - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '[{"news_feed_id":1,"discord_channel_id":"224223413449916416","guild_id":"224223413449916416","enabled":true},{"news_feed_id":3,"discord_channel_id":"431217242123010053","guild_id":"224223413449916416","enabled":true}]'
+      string: '[{"news_feed_id":2,"discord_channel_id":"431217242123010053","guild_id":"224223413449916416","enabled":true},{"news_feed_id":3,"discord_channel_id":"433102426539556864","guild_id":"224223413449916416","enabled":true}]'
     http_version: 
-  recorded_at: Tue, 01 May 2018 04:02:53 GMT
+  recorded_at: Wed, 02 May 2018 20:28:12 GMT
 recorded_with: VCR 3.0.3
