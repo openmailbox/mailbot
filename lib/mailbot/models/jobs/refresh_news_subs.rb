@@ -6,6 +6,12 @@ module Mailbot
 
         save!
       end
+
+      private
+
+      def api
+        @api ||= Mailbot::WebClient.new
+      end
     end
   end
 end
