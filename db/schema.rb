@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417144623) do
+ActiveRecord::Schema.define(version: 20180504132654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20180417144623) do
   create_table "news_feed_subscriptions", force: :cascade do |t|
     t.integer "news_feed_id"
     t.string  "discord_channel_id"
+    t.string  "guild_id"
+    t.index ["guild_id"], name: "index_news_feed_subscriptions_on_guild_id", using: :btree
     t.index ["news_feed_id"], name: "index_news_feed_subscriptions_on_news_feed_id", using: :btree
   end
 

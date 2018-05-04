@@ -18,8 +18,8 @@ module Mailbot
   module Models
     # TODO: Update NewsFeed fields with RSS-provided data
     class NewsFeed < ActiveRecord::Base
-      has_many :rss_items
-      has_many :news_feed_subscriptions
+      has_many :rss_items, dependent: :destroy
+      has_many :news_feed_subscriptions, dependent: :destroy
 
       validate :reader_must_exist
 

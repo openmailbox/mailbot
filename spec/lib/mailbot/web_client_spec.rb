@@ -14,6 +14,6 @@ RSpec.describe Mailbot::WebClient do
 
     expect(results.length).to eq(2)
     expect(results.first['enabled']).to be true
-    expect(results.first['news_feed_id']).to eq(2)
+    expect(results.first.dig('news_feed', 'id')).to eq(2)
   end
 end
