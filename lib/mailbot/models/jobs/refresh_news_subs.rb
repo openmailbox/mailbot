@@ -2,9 +2,10 @@ module Mailbot
   module Models
     class RefreshNewsSubs < Job
       def perform
+        last = last_run_at.to_i
         self.last_run_at = DateTime.now.utc
 
-        api.news_feed_subscriptions.each do |data|
+        api.news_feed_subscriptions(last).each do |data|
           feed = Mailbot::Models::NewsFeed.find_by(link: data.dig('news_feed', 'link'))
 
           next unless feed
