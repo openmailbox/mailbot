@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'activerecord', '~> 5.0'
-gem 'pg',           '~> 0.18'
-gem 'rake',         '~> 11.3'
-gem 'httparty',     '~> 0.14'
-gem 'htmlentities', '~> 4.3'
-gem 'pry',          '~> 0.10'
-gem 'discordrb',    '~> 3.2'
-gem 'sanitize',     '~> 4.6'
-gem 'chronic',      '~> 0.10'
+gem 'activerecord',     '~> 5.0'
+gem 'pg',               '~> 0.18'
+gem 'rake',             '~> 11.3'
+gem 'httparty',         '~> 0.14'
+gem 'htmlentities',     '~> 4.3'
+gem 'pry',              '~> 0.10'
+gem 'discordrb',        '~> 3.2'
+gem 'sanitize',         '~> 4.6'
+gem 'chronic',          '~> 0.10'
+gem 'utterance_parser', '~> 0.1'
 
 group :development do
   gem 'annotate',           '~> 2.7'

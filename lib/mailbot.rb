@@ -5,6 +5,7 @@ require 'json'
 require 'time'
 require 'sanitize'
 require 'chronic'
+require 'utterance_parser'
 
 Thread.abort_on_exception = true
 
