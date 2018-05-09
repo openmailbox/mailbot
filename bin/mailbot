@@ -4,6 +4,10 @@ $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 require 'mailbot'
 
+#require 'mailbot/command_line'
+#command = Mailbot::CommandLine.new(ARGV)
+#command.parse!
+
 if ARGV[0] == 'start'
   File.open('tmp/mailbot.pid', 'w') do |file|
     file.write(Process.pid.to_s)
