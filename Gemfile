@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-gem 'activerecord',     '~> 5.0'
+gem 'activerecord',     '~> 5.2'
 gem 'pg',               '~> 0.18'
 gem 'rake',             '~> 11.3'
 gem 'httparty',         '~> 0.14'
