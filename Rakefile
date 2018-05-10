@@ -43,7 +43,7 @@ namespace :db do
   desc 'Migrate the database'
   task :migrate do
     ActiveRecord::Base.establish_connection(db_config)
-    ActiveRecord::Migrator.migrate(Mailbot.root + '/db/migrate')
+    ActiveRecord::MigrationContext.new(Mailbot.root + '/db/migrate').migrate
 
     Rake::Task['db:schema'].invoke
 
@@ -53,7 +53,7 @@ namespace :db do
   desc 'Rollback the latest migration'
   task :rollback do
     ActiveRecord::Base.establish_connection(db_config)
-    ActiveRecord::Migrator.rollback(Mailbot.root + '/db/migrate')
+    ActiveRecord::MigrationContext.new(Mailbot.root + '/db/migrate').rollback
 
     Rake::Task['db:schema'].invoke
 
