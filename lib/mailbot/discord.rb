@@ -48,7 +48,7 @@ module Mailbot
 
       bot.mention do |event|
         context      = initialize_context(event)
-        parser       = NLP::Parser.new(content)
+        parser       = NLP::Parser.new(event.content)
         action_klass = parser.parse
 
         context.command = action_klass&.new(context.user, parser.arguments)
