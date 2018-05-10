@@ -50,6 +50,7 @@ module Mailbot
   end
 end
 
+require 'bundler/setup'
 Bundler.require(:default, Mailbot.env)
 
 require 'mailbot/bot'
