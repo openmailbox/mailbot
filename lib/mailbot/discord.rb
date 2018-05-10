@@ -45,6 +45,18 @@ module Mailbot
       bot.disconnected do |event|
         Mailbot.logger.info("Disconnected from Discord due to #{event.inspect}")
       end
+
+      bot.mention do |event|
+        context      = initialize_context(event)
+        parser       = NLP::Parser.new(content)
+        action_klass = parser.parse
+
+        context.command = action_klass&.new(context.user, parser.arguments)
+
+        result = context.command&.execute(context)
+
+        context.service.nil? ? result : nil
+      end
     end
 
     def initialize_commands

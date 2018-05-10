@@ -19,7 +19,7 @@ module Mailbot
         #
         # @return [String, nil] The message sent back to the user or nil if there is none
         def execute(context)
-          Mailbot.logger.info "USER COMMAND: #{user.name} - #{self.class.action_name} #{args}"
+          Mailbot.logger.info "USER ACTION: #{user.name} - #{self.class.action_name} #{args}"
 
           @context = context
           result   = perform
