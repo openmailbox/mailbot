@@ -15,6 +15,8 @@ module Mailbot
 
       # @return [Class, nil] The subclass of NLP::Action::Base or nil
       def parse
+        Mailbot.logger.info("PARSING: #{input}")
+
         parsed     = parser.parse(input)
         @intent    = parsed.first.to_sym
         @arguments = parsed.last
