@@ -18,7 +18,7 @@ module Mailbot
         Mailbot.logger.info("PARSING: #{input}")
 
         scrubbed   = input.gsub(/<.+>/, '')
-        parsed     = parser.parse(input)
+        parsed     = parser.parse(scrubbed)
         @intent    = parsed.first.to_sym
         @arguments = parsed.last
 
