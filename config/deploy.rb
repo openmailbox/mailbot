@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.7.2"
+lock "3.10.2"
 
 # rvm stuff
 set :rvm_ruby_version, '2.5.1@mailbot'
