@@ -1,4 +1,9 @@
-text,intent
-Hi,greeting
-Hello,greeting
-"What time is it",time
+hi,greeting
+hello,greeting
+time,time
+"what time is it",time
+"what is the time",time
+"what's the time",time
+"roll <dice>1d20</dice>",roll
+"roll <dice>2d6</dice>",roll
+"roll <dice>3d8</dice>",roll

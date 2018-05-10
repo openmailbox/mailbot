@@ -2,13 +2,13 @@
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
-require 'mailbot'
+require 'mailbot/command_line'
+command = Mailbot::CommandLine.new(ARGV)
+command.parse!
 
-#require 'mailbot/command_line'
-#command = Mailbot::CommandLine.new(ARGV)
-#command.parse!
+if command.options.command == :start
+  require 'mailbot'
 
-if ARGV[0] == 'start'
   File.open('tmp/mailbot.pid', 'w') do |file|
     file.write(Process.pid.to_s)
   end
@@ -29,13 +29,13 @@ if ARGV[0] == 'start'
     end
   end
 
-  Mailbot.start
-elsif ARGV[0] == 'stop'
+  Mailbot.start(command.options)
+elsif command.options.command == :stop
   pid = File.read('tmp/mailbot.pid')
 
   Process.kill(0, pid.to_i) # make sure process exists
 
   Process.kill('INT', pid.to_i)
 else
-  puts "Command not recognized. Try 'start' or 'stop'."
+  puts command.parser
 end

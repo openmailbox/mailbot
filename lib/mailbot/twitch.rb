@@ -50,6 +50,8 @@ module Mailbot
     end
 
     def stop
+      return unless thread
+
       Mailbot.logger.info 'Disconnecting from Twitch...'
       socket.close
       Mailbot.logger.info 'Disconnected from Twitch.'

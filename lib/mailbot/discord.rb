@@ -23,6 +23,8 @@ module Mailbot
     end
 
     def stop
+      return unless thread
+
       Mailbot.logger.info 'Disconnecting from Discord...'
       no_sync = Mailbot.env == 'production' ? true : false
       bot.stop(no_sync)

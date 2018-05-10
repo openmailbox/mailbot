@@ -25,6 +25,8 @@ module Mailbot
     end
 
     def stop
+      return unless thread
+
       Mailbot.logger.info 'Stopping scheduler...'
       thread.exit
       Mailbot.logger.info 'Scheduler stopped.'

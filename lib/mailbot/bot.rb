@@ -13,6 +13,11 @@ module Mailbot
     def run
       @running = true
 
+      training_data = Hash[CSV.read(Mailbot.root + '/config/parser_training.csv')]
+      parser        = UtteranceParser.new
+
+      parser.train(training_data)
+
       if Mailbot.env == 'development'
         main_thread = Thread.start do
           while running do
@@ -28,7 +33,7 @@ module Mailbot
               twitch.stop
               discord.stop
             elsif !command.empty?
-              twitch.send(command)
+              puts parser.parse(command).inspect
             end
           end
         end
@@ -36,15 +41,15 @@ module Mailbot
         threads << main_thread
       end
 
-      scheduler.start
-      twitch.start
-      discord.start
+      scheduler.start if Mailbot.configuration.enable_scheduler
+      twitch.start if Mailbot.configuration.enable_twitch
+      discord.start if Mailbot.configuration.enable_discord
 
       threads << scheduler.thread
       threads << twitch.thread
       threads << discord.thread
 
-      threads.each(&:join)
+      threads.each { |i| i&.join }
 
       Mailbot.logger.info 'Exited.'
     end
