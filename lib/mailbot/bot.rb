@@ -8,6 +8,8 @@ module Mailbot
       @discord   = Mailbot::Discord.new
       @scheduler = Mailbot::Scheduler.new
       @threads   = []
+
+      Mailbot::NLP::Parser.initialize_parser
     end
 
     def run
@@ -20,16 +22,22 @@ module Mailbot
 
             print prompt
 
-            command = gets.chomp
+            text = gets.chomp
 
-            if command == 'quit'
+            if text == 'quit'
               @running = false
               scheduler.stop
               twitch.stop
               discord.stop
-            elsif !command.empty?
-              parser = Mailbot::Parser.new(command.downcase)
-              puts parser.parse
+            elsif !text.empty?
+              context      = Context.new
+              parser       = NLP::Parser.new(text)
+              action_klass = parser.parse
+
+              context.user    = Mailbot::Models::User.new(name: 'User')
+              context.command = action_klass&.new(context.user, parser.arguments)
+
+              puts context.command&.execute(context)
             end
           end
         end
