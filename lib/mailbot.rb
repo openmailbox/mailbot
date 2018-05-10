@@ -1,12 +1,3 @@
-require 'active_record'
-require 'httparty'
-require 'htmlentities'
-require 'json'
-require 'time'
-require 'sanitize'
-require 'chronic'
-require 'utterance_parser'
-
 Thread.abort_on_exception = true
 
 module Mailbot
@@ -58,6 +49,8 @@ module Mailbot
     VERSION
   end
 end
+
+Bundler.require(:default, Mailbot.env)
 
 require 'mailbot/bot'
 require 'mailbot/commands'
