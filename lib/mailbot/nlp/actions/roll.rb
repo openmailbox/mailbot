@@ -5,7 +5,10 @@ module Mailbot
         def perform
           dice = args[:dice] || '1d20'
 
-          Mailbot::Commands::Roll.new(user, [dice]).execute(context)
+          result = Mailbot::Commands::Roll.new(user, [dice]).execute(context)
+
+          # TODO: #execute called by both Command and Action
+          result unless context.service
         end
       end
     end
