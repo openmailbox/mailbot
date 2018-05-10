@@ -1,8 +1,10 @@
+require 'yaml'
+
+ENV['MAILBOT_ENV'] ||= 'development'
+
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
-require 'mailbot'
-
-unless Mailbot.env == 'production'
+unless ENV['MAILBOT_ENV'] == 'production'
   require 'rspec/core/rake_task'
 
   RSpec::Core::RakeTask.new(:spec)
@@ -13,37 +15,41 @@ task :annotate do
   exec('bundle exec annotate -i -pbefore -R./lib/mailbot.rb --model-dir lib')
 end
 
-
 desc 'Load a console with the environment'
 task :console do
+  require 'mailbot'
   require 'pry'
   binding.pry
 end
 
 namespace :db do
-  db_config       = YAML.load_file(Mailbot.root + '/config/database.yml')[Mailbot.env]
+  db_config       = YAML.load_file(File.expand_path('../config/database.yml', __FILE__))[ENV['MAILBOT_ENV']]
   db_config_admin = db_config.dup
 
   db_config_admin.delete('database')
 
+  task :environment do
+    require 'active_record'
+  end
+
   desc 'Create the database'
-  task :create do
+  task create: :environment do
     ActiveRecord::Base.establish_connection(db_config_admin)
     ActiveRecord::Base.connection.create_database(db_config['database'])
     puts 'Database created.'
   end
 
   desc 'Drop the database'
-  task :drop do
+  task drop: :environment do
     ActiveRecord::Base.establish_connection(db_config_admin)
     ActiveRecord::Base.connection.drop_database(db_config['database'])
     puts 'Database deleted.'
   end
 
   desc 'Migrate the database'
-  task :migrate do
+  task migrate: :environment do
     ActiveRecord::Base.establish_connection(db_config)
-    ActiveRecord::MigrationContext.new(Mailbot.root + '/db/migrate').migrate
+    ActiveRecord::MigrationContext.new(File.expand_path('../db/migrate', '__FILE__')).migrate
 
     Rake::Task['db:schema'].invoke
 
@@ -51,7 +57,7 @@ namespace :db do
   end
 
   desc 'Rollback the latest migration'
-  task :rollback do
+  task rollback: :environment do
     ActiveRecord::Base.establish_connection(db_config)
     ActiveRecord::MigrationContext.new(Mailbot.root + '/db/migrate').rollback
 
@@ -61,12 +67,12 @@ namespace :db do
   end
 
   desc 'Create a db/schema.rb file that is portable against any AR DB.'
-  task :schema do
+  task schema: :environment do
     ActiveRecord::Base.establish_connection(db_config)
 
     require 'active_record/schema_dumper'
 
-    File.open(Mailbot.root + '/db/schema.rb', 'w:utf-8') do |file|
+    File.open(File.expand_path('../db/schema.rb', '__FILE__'), 'w:utf-8') do |file|
       ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
     end
   end
@@ -82,7 +88,7 @@ namespace :generate do
   task :migration do
     name            = ARGV[1] || raise('Specify name: rake generate:migration your_migration')
     timestamp       = Time.now.strftime('%Y%m%d%H%M%S')
-    path            = File.expand_path(Mailbot.root + "/db/migrate/#{timestamp}_#{name}.rb", __FILE__)
+    path            = File.expand_path("../db/migrate/#{timestamp}_#{name}.rb", __FILE__)
     migration_class = name.split('_').map(&:capitalize).join
 
     File.open(path, 'w') do |file|

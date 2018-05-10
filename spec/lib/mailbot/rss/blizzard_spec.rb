@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative './feed_spec'
 
 RSpec.describe Mailbot::RSS::Blizzard do
   around(:each) do |example|

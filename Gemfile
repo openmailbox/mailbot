@@ -3,10 +3,10 @@ source "https://rubygems.org"
 
 gem 'activerecord',     '~> 5.2'
 gem 'pg',               '~> 0.18'
-gem 'rake',             '~> 11.3'
+gem 'rake',             '~> 11.3', require: false
 gem 'httparty',         '~> 0.14'
 gem 'htmlentities',     '~> 4.3'
-gem 'pry',              '~> 0.10'
+gem 'pry',              '~> 0.10', require: false
 gem 'discordrb',        '~> 3.2'
 gem 'sanitize',         '~> 4.6'
 gem 'chronic',          '~> 0.10'

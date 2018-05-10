@@ -1,8 +1,12 @@
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
+ENV['MAILBOT_ENV'] = 'test'
+
 require 'mailbot'
 require 'timecop'
 require 'vcr'
+
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 
 ActiveRecord::Base.logger.level = 1
 

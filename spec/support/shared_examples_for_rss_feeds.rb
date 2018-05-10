@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.shared_examples 'an RSS feed' do |new_story_count|
   subject(:adapter) { described_class.new }
 
