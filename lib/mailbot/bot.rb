@@ -13,11 +13,6 @@ module Mailbot
     def run
       @running = true
 
-      training_data = Hash[CSV.read(Mailbot.root + '/config/parser_training.csv')]
-      parser        = UtteranceParser.new
-
-      parser.train(training_data)
-
       if Mailbot.env == 'development'
         main_thread = Thread.start do
           while running do
@@ -33,7 +28,8 @@ module Mailbot
               twitch.stop
               discord.stop
             elsif !command.empty?
-              puts parser.parse(command).inspect
+              parser = Mailbot::Parser.new(command.downcase)
+              puts parser.parse
             end
           end
         end
