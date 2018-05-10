@@ -55,7 +55,7 @@ module Mailbot
 
         result = context.command&.execute(context)
 
-        context.service.nil? ? result : nil
+        event.channel.send_message(result) if context.service.nil?
       end
     end
 
