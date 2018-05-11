@@ -1,11 +1,9 @@
 module Mailbot
-  class Twitch
-    private
-
+  module Twitch
     class Parser
       attr_reader :twitch
 
-      # @param [Mailbot::Twitch] twitch the instance of the Twitch object
+      # @param [Mailbot::Twitch::Connection] twitch the instance of the Twitch object
       def initialize(twitch)
         @twitch = twitch
       end

@@ -55,6 +55,7 @@ Bundler.require(:default, Mailbot.env)
 
 require 'mailbot/bot'
 require 'mailbot/commands'
+require 'mailbot/connection'
 require 'mailbot/context'
 require 'mailbot/configuration'
 require 'mailbot/discord'
