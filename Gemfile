@@ -17,6 +17,8 @@ group :development do
   gem 'capistrano',         '~> 3.7'
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano-rvm',     '~> 0.1'
+  gem 'guard',              '~> 2.14'
+  gem 'guard-rspec',        '~> 4.7', require: false
 end
 
 group :development, :test do

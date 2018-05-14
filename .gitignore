@@ -1,5 +1,5 @@
 .*.swp
 log/*.log
-tmp/*.pid
+tmp/*
 config/secrets.yml
 config/database.yml
