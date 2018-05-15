@@ -5,7 +5,7 @@ module Mailbot
     def initialize
       @running   = false
       @twitch    = Mailbot::Twitch::Connection.new
-      @discord   = Mailbot::Discord.new
+      @discord   = Mailbot::Discord::Conection.new
       @scheduler = Mailbot::Scheduler.new
       @threads   = []
 
