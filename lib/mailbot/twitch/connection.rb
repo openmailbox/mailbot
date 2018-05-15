@@ -65,12 +65,14 @@ module Mailbot
 
         @thread = Thread.start do
           loop do
-            ready = IO.select([socket])
+            ready = poll_sockets
 
             ready[0].each do |s|
               line = s.gets
 
-              raise Exception.new("EOF in stream: #{line.inspect}") if line.nil?
+              if line.nil? && Mailbot.env != 'test'
+                raise Exception.new("EOF in stream: #{line.inspect}")
+              end
 
               Mailbot.logger.info "> #{line}"
 
@@ -91,10 +93,12 @@ module Mailbot
 
       def initialize_channels
         username = Mailbot.configuration.twitch.username
+        host     = Mailbot.configuration.twitch.chat_host
+        port     = Mailbot.configuration.twitch.chat_port
 
         Mailbot.logger.info "Preparing to connect to Twitch as #{username}..."
 
-        @socket = TCPSocket.new('irc.chat.twitch.tv', 6667)
+        @socket = TCPSocket.new(host, port)
 
         socket.puts("PASS #{Mailbot.configuration.twitch.api_token}") # socket.puts hidden from log
         send("NICK #{username}")
@@ -104,6 +108,15 @@ module Mailbot
         end
 
         send('CAP REQ :twitch.tv/membership')
+      end
+
+      # Kludgy hack because can't mock IO.select in a background thread
+      def poll_sockets
+        if Mailbot.env == 'test'
+          [[socket], [], []]
+        else
+          IO.select([socket])
+        end
       end
 
       def pong

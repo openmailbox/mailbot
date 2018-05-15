@@ -1,4 +1,6 @@
 twitch:
+  chat_host: irc.chat.twitch.tv
+  chat_port: 6667
   rest_api_root: https://api.twitch.tv/kraken
   username: OpenMailbot # The username of the bot account
 discord: {}

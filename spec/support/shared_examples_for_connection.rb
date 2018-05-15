@@ -1,6 +1,10 @@
 RSpec.shared_examples 'a Connection' do
   subject(:connection) { described_class.new }
 
+  after(:each) do
+    connection.thread&.kill
+  end
+
   it 'creates a background thread' do
     expect(connection.thread).to be nil
     connection.start

@@ -12,6 +12,7 @@ ActiveRecord::Base.logger.level = 1
 
 Mailbot.configure do |config|
   config.log_file = nil
+  config.twitch.chat_host = 'localhost'
 end
 
 VCR.configure do |config|
