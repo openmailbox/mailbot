@@ -21,12 +21,12 @@ module Mailbot
       if response.success?
         JSON.parse(response.body)
       else
-        Rails.logger.warn("API request to #{path} failed: #{response.inspect}")
+        Mailbot.logger.warn("API request to #{path} failed: #{response.inspect}")
         nil
       end
     rescue => e
-      Rails.logger.warn("Error while making API request: #{e.message}")
-      Rails.logger.warn(e.backtrace)
+      Mailbot.logger.warn("Error while making API request: #{e.message}")
+      Mailbot.logger.warn(e.backtrace)
       nil
     end
   end
