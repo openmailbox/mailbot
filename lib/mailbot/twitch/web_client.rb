@@ -8,8 +8,10 @@ module Mailbot
         request("/streams?#{params.join('&')}") || {}
       end
 
-      def users(user_names = [])
-        params = user_names.map { |i| "login=#{i}" }
+      def users(user_names: [], user_ids: [])
+        params = user_names.any? && user_names.map { |i| "login=#{i}" }
+        params ||= user_ids.any? && user_ids.map { |i| "id=#{i}" }
+
         request("/users?#{params.join('&')}") || {}
       end
 
