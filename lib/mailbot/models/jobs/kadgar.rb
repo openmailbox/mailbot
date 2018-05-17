@@ -35,13 +35,6 @@ module Mailbot
         @discord ||= Mailbot.instance.discord.bot
       end
 
-      def headers
-        {
-          'Client-ID' => Mailbot.configuration.twitch.client_id,
-          'Accept'    => 'application/vnd.twitchtv.v5+json'
-        }
-      end
-
       def kadgar_url(names)
         'http://kadgar.net/live/' + names.join('/')
       end
@@ -52,10 +45,6 @@ module Mailbot
         return unless message_id
 
         @message ||= channel&.load_message(message_id)
-      end
-
-      def twitch_url
-        Mailbot.configuration.twitch.rest_api_root + '/streams'
       end
     end
   end
