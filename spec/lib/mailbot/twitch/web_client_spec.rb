@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Mailbot::Twitch::WebClient do
   around(:each) do |example|
-    VCR.use_cassette('twitch/web_api) do
+    VCR.use_cassette('twitch/web_api') do
       example.run
     end
   end
