@@ -4,14 +4,14 @@ module Mailbot
     # keeps the link up to date so it only contains people who are live.
     class Kadgar < Job
       def perform
-        query       = {'channel' => details['twitch_ids'].join(',')}
-        response    = HTTParty.get(twitch_url, headers: headers, query: query)
-        names       = response['streams'].to_a.map { |i| i['channel']['name'] }
-        new_message = kadgar_url(names)
+        streams_data = api.streams(details['twitch_users'])
+        user_ids     = streams_data['data'].map { |i| i['user_id'] }
+        users_data   = api.users(user_ids: user_ids)
+        names        = users_data['data'].map { |i| i['display_name'] }
+        new_message  = kadgar_url(names)
 
-        if message
-          message.edit(new_message)
-        else
+        if message && message.content != new_message
+          message.delete
           @message = discord.send_message(details['discord_channel_id'], new_message)
           self.details['discord_message_id'] = @message.id.to_s
         end
@@ -22,6 +22,10 @@ module Mailbot
       end
 
       private
+
+      def api
+        @api ||= Mailbot::Twitch::WebClient.new
+      end
 
       def channel
         @channel ||= discord.channel(details['discord_channel_id'])
