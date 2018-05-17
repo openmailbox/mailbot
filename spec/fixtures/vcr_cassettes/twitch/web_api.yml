@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitch.tv/helix/streams?user_login=captainredwolf
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Client-Id:
+      - "<TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Ratelimit-Limit:
+      - '30'
+      Ratelimit-Remaining:
+      - '29'
+      Ratelimit-Reset:
+      - '1526587160'
+      Twitch-Trace-Id:
+      - fb62505d94be966857660033b7597ab7
+      X-Ctxlog-Logid:
+      - 1-5afddedd-2110494472de6670c5571f3e
+      Front-End-Https:
+      - 'on'
+      Timing-Allow-Origin:
+      - https://www.twitch.tv
+      Date:
+      - Thu, 17 May 2018 19:58:22 GMT
+      Content-Length:
+      - '1009'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"28729045744","user_id":"113852750","game_id":"488552","community_ids":["06ebdba0-3a79-42f5-9dba-6c441305879d","23653182-871f-44d5-990c-68fc600abcf0","fd0eab99-832a-4d7e-8cc0-04d73deb2e54"],"type":"live","title":"Another
+        perfect day live from the 55th floor.","viewer_count":13,"started_at":"2018-05-17T14:11:00Z","language":"en","thumbnail_url":"https://static-cdn.jtvnw.net/previews-ttv/live_user_theceo_-{width}x{height}.jpg"},{"id":"28731813136","user_id":"49623984","game_id":"488191","community_ids":["06ebdba0-3a79-42f5-9dba-6c441305879d","5f62e99a-5c6d-4119-9209-bee72715a11a","eb355f4d-3c95-4f67-94f5-e8cc06764d64"],"type":"live","title":"Coloring
+        all of the things!  #MercilessOnes #BeautyGamers #InceptionEsports #TwitchKittens
+        @raijin_team","viewer_count":13,"started_at":"2018-05-17T19:15:08Z","language":"en","thumbnail_url":"https://static-cdn.jtvnw.net/previews-ttv/live_user_captainredwolf-{width}x{height}.jpg"}],"pagination":{"cursor":"eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6Mn19"}}'
+    http_version: 
+  recorded_at: Thu, 17 May 2018 19:58:22 GMT
+- request:
+    method: get
+    uri: https://api.twitch.tv/helix/users?login=captainredwolf
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Client-Id:
+      - "<TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Ratelimit-Limit:
+      - '30'
+      Ratelimit-Remaining:
+      - '29'
+      Ratelimit-Reset:
+      - '1526587680'
+      Twitch-Trace-Id:
+      - 36e2711ae65794f9f8830551cb124ac5
+      X-Ctxlog-Logid:
+      - 1-5afde0e8-c2a1fd4014d88840aa97be80
+      Front-End-Https:
+      - 'on'
+      Timing-Allow-Origin:
+      - https://www.twitch.tv
+      Date:
+      - Thu, 17 May 2018 20:07:04 GMT
+      Content-Length:
+      - '1544'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"data":[{"id":"133652118","login":"open_mailbox","display_name":"open_mailbox","type":"","broadcaster_type":"affiliate","description":"Standing
+        in an open field west of a white house. Trying not to get eaten by a grue.","profile_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/open_mailbox-profile_image-2e3302b82f71fc11-300x300.png","offline_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/open_mailbox-channel_offline_image-d4c438af8679e6de-1920x1080.jpeg","view_count":61641},{"id":"113852750","login":"theceo_","display_name":"TheCEO_","type":"","broadcaster_type":"affiliate","description":"The
+        president and CEO of the only billion dollar company on twitch.","profile_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/7d86c6ef-e92f-45ff-a606-1a9383a1fbb7-profile_image-300x300.jpg","offline_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/28fa381b180cdc70-channel_offline_image-1920x1080.jpeg","view_count":35492},{"id":"49623984","login":"captainredwolf","display_name":"CaptainRedWolf","type":"","broadcaster_type":"affiliate","description":"#TwitchAffiliate/#Spoonie
+        (Fibromyalgia)/Native American \u0026 Norse inspired sea wolf/Caffeinated
+        shield maiden who gives lots of amazing hugs #beautygamers #AlwaysKeepFighting","profile_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/61a8746319b24e09-profile_image-300x300.jpeg","offline_image_url":"https://static-cdn.jtvnw.net/jtv_user_pictures/captainredwolf-channel_offline_image-5ca42857464d3a28-1920x1080.png","view_count":82690}]}'
+    http_version: 
+  recorded_at: Thu, 17 May 2018 20:07:04 GMT
+recorded_with: VCR 3.0.3

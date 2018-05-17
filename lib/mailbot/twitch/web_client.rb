@@ -5,7 +5,12 @@ module Mailbot
 
       def streams(user_names = [])
         params = user_names.map { |i| "user_login=#{i}" }
-        request("/streams?#{params.join('&')}")
+        request("/streams?#{params.join('&')}") || {}
+      end
+
+      def users(user_names = [])
+        params = user_names.map { |i| "login=#{i}" }
+        request("/users?#{params.join('&')}") || {}
       end
 
       private
