@@ -25,7 +25,7 @@ module Mailbot
         nil
       end
     rescue => e
-      Mailbot.logger.warn("Error while making API request: #{e.message}")
+      Mailbot.logger.warn("Error while making API request to #{path}: #{e.message}")
       Mailbot.logger.warn(e.backtrace)
       nil
     end

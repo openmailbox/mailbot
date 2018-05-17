@@ -21,6 +21,9 @@ VCR.configure do |config|
   config.filter_sensitive_data('<TOKEN>') do
     Mailbot.configuration.api_token
   end
+  config.filter_sensitive_data('<TOKEN>') do
+    Mailbot.configuration.twitch.client_id
+  end
 end
 
 class DiscordMock
