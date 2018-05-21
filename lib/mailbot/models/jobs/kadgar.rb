@@ -8,10 +8,10 @@ module Mailbot
         user_ids     = streams_data['data'].map { |i| i['user_id'] }
         users_data   = api.users(user_ids: user_ids)
         names        = users_data['data']&.map { |i| i['display_name'] }
-        new_message  = names && kadgar_url(names)
+        new_message  = kadgar_url(names)
 
-        if new_message
-          message.delete if message && message.content != new_message
+        if message && message.content != new_message
+          message.delete
           @message = discord.send_message(details['discord_channel_id'], new_message)
           self.details['discord_message_id'] = @message.id.to_s
         end
@@ -35,7 +35,7 @@ module Mailbot
         @discord ||= Mailbot.instance.discord.bot
       end
 
-      def kadgar_url(names)
+      def kadgar_url(names = [])
         'http://kadgar.net/live/' + names.join('/')
       end
 
