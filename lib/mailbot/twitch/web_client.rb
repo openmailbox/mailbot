@@ -12,7 +12,7 @@ module Mailbot
         params = user_names.any? && user_names.map { |i| "login=#{i}" }
         params ||= user_ids.any? && user_ids.map { |i| "id=#{i}" }
 
-        request("/users?#{params.join('&')}") || {}
+        (params && request("/users?#{params.join('&')}")) || {}
       end
 
       private

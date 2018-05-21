@@ -7,11 +7,11 @@ module Mailbot
         streams_data = api.streams(details['twitch_users'])
         user_ids     = streams_data['data'].map { |i| i['user_id'] }
         users_data   = api.users(user_ids: user_ids)
-        names        = users_data['data'].map { |i| i['display_name'] }
-        new_message  = kadgar_url(names)
+        names        = users_data['data']&.map { |i| i['display_name'] }
+        new_message  = names && kadgar_url(names)
 
-        if message && message.content != new_message
-          message.delete
+        if new_message
+          message.delete if message && message.content != new_message
           @message = discord.send_message(details['discord_channel_id'], new_message)
           self.details['discord_message_id'] = @message.id.to_s
         end
