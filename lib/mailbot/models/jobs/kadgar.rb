@@ -36,7 +36,7 @@ module Mailbot
       end
 
       def kadgar_url(names = [])
-        'http://kadgar.net/live/' + names.join('/')
+        'http://kadgar.net/live/' + names.to_a.join('/')
       end
 
       def message
