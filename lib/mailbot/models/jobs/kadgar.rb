@@ -10,8 +10,8 @@ module Mailbot
         names        = users_data['data']&.map { |i| i['display_name'] }
         new_message  = kadgar_url(names)
 
-        if message && message.content != new_message
-          message.delete
+        if message&.content != new_message
+          message.delete if message
           @message = discord.send_message(details['discord_channel_id'], new_message)
           self.details['discord_message_id'] = @message.id.to_s
         end
