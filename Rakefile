@@ -58,6 +58,7 @@ namespace :db do
 
   desc 'Rollback the latest migration'
   task rollback: :environment do
+    require 'mailbot'
     ActiveRecord::Base.establish_connection(db_config)
     ActiveRecord::MigrationContext.new(Mailbot.root + '/db/migrate').rollback
 

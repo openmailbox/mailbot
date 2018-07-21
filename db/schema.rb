@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2018_07_21_162655) do
     t.string "discord_channel_id"
     t.string "guild_id"
     t.text "twitch_names"
+    t.integer "mailbot_rails_id"
+    t.index ["mailbot_rails_id"], name: "index_lurk_lists_on_mailbot_rails_id", unique: true
   end
 
   create_table "news_feed_subscriptions", id: :serial, force: :cascade do |t|

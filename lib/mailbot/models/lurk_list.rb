@@ -7,6 +7,11 @@
 #  discord_channel_id :string
 #  guild_id           :string
 #  twitch_names       :text
+#  mailbot_rails_id   :integer
+#
+# Indexes
+#
+#  index_lurk_lists_on_mailbot_rails_id  (mailbot_rails_id) UNIQUE
 #
 
 module Mailbot
@@ -17,6 +22,7 @@ module Mailbot
       validates :nickname,           presence: true
       validates :discord_channel_id, presence: true
       validates :guild_id,           presence: true
+      validates :mailbot_rails_id,   presence: true, uniqueness: true
 
       validate :twitch_names_present
 
