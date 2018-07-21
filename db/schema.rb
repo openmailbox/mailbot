@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_04_132654) do
+ActiveRecord::Schema.define(version: 2018_07_21_162655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 2018_05_04_132654) do
     t.datetime "last_run_at"
     t.text "details"
     t.index ["last_run_at"], name: "index_jobs_on_last_run_at"
+  end
+
+  create_table "lurk_lists", id: :serial, force: :cascade do |t|
+    t.string "nickname"
+    t.string "discord_channel_id"
+    t.string "guild_id"
+    t.text "twitch_names"
   end
 
   create_table "news_feed_subscriptions", id: :serial, force: :cascade do |t|
