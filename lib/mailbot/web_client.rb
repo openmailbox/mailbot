@@ -3,6 +3,11 @@ module Mailbot
     URL_ROOT = 'http://bot.open-mailbox.com'.freeze
 
     # @param [DateTime] timestamp The lookback period
+    def lurk_lists(timestamp = 0)
+      request("/lurk_lists.json?since=#{timestamp.to_i}") || []
+    end
+
+    # @param [DateTime] timestamp The lookback period
     def news_feed_subscriptions(timestamp = 0)
       request("/news_feed_subscriptions.json?since=#{timestamp.to_i}") || []
     end

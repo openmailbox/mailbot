@@ -45,4 +45,50 @@ http_interactions:
       string: '[{"discord_channel_id":"431217242123010053","guild_id":"224223413449916416","enabled":true,"news_feed":{"id":2,"link":"https://www.newegg.com/Product/RSS.aspx?Submit=RSSDailyDeals\u0026Depa=0"}},{"discord_channel_id":"433102426539556864","guild_id":"224223413449916416","enabled":false,"news_feed":{"id":3,"link":"http://blog.humblebundle.com/rss"}}]'
     http_version: 
   recorded_at: Wed, 02 May 2018 20:46:11 GMT
+- request:
+    method: get
+    uri: http://bot.open-mailbox.com/lurk_lists.json?since=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Mailbot-Api-Token:
+      - "<TOKEN>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sat, 21 Jul 2018 19:44:58 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"af672046a1dcfa7db21ef428968c374d"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 4ec95b8d-31d5-4428-8fd7-692b720594d0
+      X-Runtime:
+      - '0.075473'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '[{"id":1,"nickname":"Test List","twitch_names":["open_mailbox","somebody","else"],"discord_channel_id":"224223413449916416","guild_id":"224223413449916416","created_at":"2018-07-21T19:42:06.202Z","updated_at":"2018-07-21T19:42:06.202Z","url":"http://bot.open-mailbox.com/lurk_lists/1.json"},{"id":2,"nickname":"Test
+        List 2","twitch_names":["one","two","three"],"discord_channel_id":"269621281991688193","guild_id":"224223413449916416","created_at":"2018-07-21T19:42:20.304Z","updated_at":"2018-07-21T19:42:20.304Z","url":"http://bot.open-mailbox.com/lurk_lists/2.json"}]'
+    http_version: 
+  recorded_at: Sat, 21 Jul 2018 19:44:56 GMT
 recorded_with: VCR 3.0.3

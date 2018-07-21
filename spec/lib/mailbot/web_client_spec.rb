@@ -16,4 +16,12 @@ RSpec.describe Mailbot::WebClient do
     expect(results.first['enabled']).to be true
     expect(results.first.dig('news_feed', 'id')).to eq(2)
   end
+
+  it 'retrieves updated lurk lists' do
+    results = client.lurk_lists
+
+    expect(results.length).to eq(2)
+    expect(results.first['nickname']).to eq('Test List')
+    expect(results.first['twitch_names'].length).to eq(3)
+  end
 end
