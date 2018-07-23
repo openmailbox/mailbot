@@ -18,6 +18,4 @@ RSpec.describe Mailbot::Models::RefreshLurkLists do
       job.perform
     }.to change { Mailbot::Models::LurkList.count }.by(2)
   end
-
-  it 'removes lurk lists'
 end

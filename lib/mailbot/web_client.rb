@@ -12,6 +12,11 @@ module Mailbot
       request("/news_feed_subscriptions.json?since=#{timestamp.to_i}") || []
     end
 
+    # @param [DateTime] timestamp The lookback period
+    def removed_records(timestamp = 0)
+      request("/removed_records.json?since=#{timestamp.to_i}") || []
+    end
+
     private
 
     def headers

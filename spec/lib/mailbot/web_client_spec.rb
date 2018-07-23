@@ -24,4 +24,12 @@ RSpec.describe Mailbot::WebClient do
     expect(results.first['nickname']).to eq('Test List')
     expect(results.first['twitch_names'].length).to eq(3)
   end
+
+  it 'retrieves removed records' do
+    results = client.removed_records
+
+    expect(results.length).to eq(1)
+    expect(results.first['model_type']).to eq('LurkList')
+    expect(results.first['model_id']).to eq(1)
+  end
 end
