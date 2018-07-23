@@ -8,6 +8,7 @@
 #  guild_id           :string
 #  twitch_names       :text
 #  mailbot_rails_id   :integer
+#  discord_message_id :string
 #
 # Indexes
 #

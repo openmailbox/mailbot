@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_21_162655) do
+ActiveRecord::Schema.define(version: 2018_07_23_161838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2018_07_21_162655) do
     t.string "guild_id"
     t.text "twitch_names"
     t.integer "mailbot_rails_id"
+    t.string "discord_message_id"
     t.index ["mailbot_rails_id"], name: "index_lurk_lists_on_mailbot_rails_id", unique: true
   end
 

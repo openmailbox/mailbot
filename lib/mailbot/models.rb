@@ -13,6 +13,7 @@ require 'mailbot/models/jobs/kadgar'
 require 'mailbot/models/jobs/refresh_lurk_lists'
 require 'mailbot/models/jobs/refresh_news_subs'
 require 'mailbot/models/jobs/sync_removed_records'
+require 'mailbot/models/jobs/update_lurk_lists'
 require 'mailbot/models/jobs/update_news_feeds'
 
 module Mailbot
