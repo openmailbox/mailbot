@@ -63,7 +63,10 @@ module Mailbot
 
           if existing&.content != new_message
             existing.delete if existing
-            list.discord_message_id = discord.send_message(list.discord_channel_id, new_message)
+
+            message = discord.send_message(list.discord_channel_id, new_message)
+            list.discord_message_id = message.id.to_s
+
             list.save! if list.changed?
           end
         end
