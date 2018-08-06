@@ -62,10 +62,14 @@ module Mailbot
           existing    = old_message(list)
 
           if existing&.content != new_message
-            existing.delete if existing
+            begin
+              existing.delete if existing
 
-            message = discord.send_message(list.discord_channel_id, new_message)
-            list.discord_message_id = message.id.to_s
+              message = discord.send_message(list.discord_channel_id, new_message)
+              list.discord_message_id = message.id.to_s
+            rescue Discordrb::Errors::NoPermission => e
+              Mailbot.logger.warn("Insufficient permissions for list #{list.inspect}")
+            end
 
             list.save! if list.changed?
           end
