@@ -57,7 +57,7 @@ module Mailbot
 
       def notify_changes
         LurkList.find_each do |list|
-          streams     = @stream_cache.select { |i| list.twitch_names.map(&:downcase).include?(i['display_name'].downcase) }
+          streams     = @stream_cache.select { |i| list.twitch_names.map(&:downcase).include?(i['display_name']&.downcase) }
           new_message = message_for(streams.map  { |i| i['display_name'] })
           existing    = old_message(list)
 
