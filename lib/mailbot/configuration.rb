@@ -54,6 +54,7 @@ module Mailbot
     private
 
     def initialize_logger
+      STDOUT.sync = true if Mailbot.env == 'production'
       if Mailbot.env == 'test'
         @logger = Logger.new(nil)
       else
