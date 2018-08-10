@@ -29,16 +29,18 @@ module Mailbot
 
   # @param [OpenStuct] options The parsed command-line arguments
   def self.start(options)
-    # TODO: Make this better
-    configure do |config|
-      config.enable_twitch = options.twitch
-      config.enable_discord = options.discord
-      config.enable_scheduler = options.scheduler
-    end
+    Raven.capture do
+      # TODO: Make this better
+      configure do |config|
+        config.enable_twitch = options.twitch
+        config.enable_discord = options.discord
+        config.enable_scheduler = options.scheduler
+      end
 
-    logger.info "Starting bot in #{Mailbot.env} environment..."
-    @bot = Mailbot::Bot.new
-    @bot.run
+      logger.info "Starting bot in #{Mailbot.env} environment..."
+      @bot = Mailbot::Bot.new
+      @bot.run
+    end
   end
 
   def self.stop
@@ -52,6 +54,15 @@ end
 
 require 'bundler/setup'
 Bundler.require(:default, Mailbot.env)
+
+if ['development', 'test'].include?(Mailbot.env)
+  Dotenv.load
+end
+
+Raven.configure do |config|
+  config.dsn = ENV['MAILBOT_SENTRY_DSN']
+  config.current_environment = Mailbot.env
+end
 
 require 'mailbot/bot'
 require 'mailbot/commands'

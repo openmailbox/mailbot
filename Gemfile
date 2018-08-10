@@ -9,6 +9,7 @@ gem 'htmlentities',     '~> 4.3'
 gem 'pry',              '~> 0.10', require: false
 gem 'discordrb',        '~> 3.2'
 gem 'sanitize',         '~> 4.6'
+gem 'sentry-raven',     '~> 2.7'
 gem 'chronic',          '~> 0.10'
 gem 'utterance_parser', '~> 0.1'
 
@@ -22,6 +23,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv',   '~> 2.5'
   gem 'rspec',    '~> 3.5'
   gem 'timecop',  '~> 0.8'
   gem 'vcr',      '~> 3.0'
