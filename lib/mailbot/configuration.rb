@@ -59,6 +59,7 @@ module Mailbot
         @logger = Logger.new(nil)
       else
         log_file = File.open(LOG_FILE, 'a')
+        log_file.sync = true
         @logger = Logger.new(MultiIO.new(STDOUT, log_file))
       end
     end
