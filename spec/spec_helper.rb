@@ -11,7 +11,6 @@ Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 ActiveRecord::Base.logger.level = 1
 
 Mailbot.configure do |config|
-  config.log_file = nil
   config.twitch.chat_host = 'localhost'
 end
 

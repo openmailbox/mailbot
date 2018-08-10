@@ -6,6 +6,21 @@ module Mailbot
   class Configuration
     SECRETS_FILE  = Mailbot.root + '/config/secrets.yml'
     SETTINGS_FILE = Mailbot.root + '/config/settings.yml'
+    LOG_FILE      = Mailbot.root + '/log/mailbot.log'
+
+    class MultiIO
+      def initialize(*targets)
+        @targets = targets
+      end
+
+      def write(*args)
+        @targets.each { |t| t.write(*args) }
+      end
+
+      def close
+        @targets.each(&:close)
+      end
+    end
 
     attr_accessor :enable_twitch, :enable_discord, :enable_scheduler
     attr_reader :twitch, :discord, :log_file, :api_token
@@ -16,7 +31,6 @@ module Mailbot
       @api_token        = secrets['api_token']
       @twitch           = OpenStruct.new
       @discord          = OpenStruct.new
-      @log_file         = STDOUT
       @enable_twitch    = false
       @enable_discord   = false
       @enable_scheduler = false
@@ -33,12 +47,6 @@ module Mailbot
       end
     end
 
-    def log_file=(new_file)
-      @log_file = new_file
-      initialize_logger
-      nil
-    end
-
     def logger
       @logger ||= initialize_logger
     end
@@ -46,8 +54,12 @@ module Mailbot
     private
 
     def initialize_logger
-      STDOUT.sync = true if Mailbot.env == 'production'
-      @logger = Logger.new(log_file)
+      if Mailbot.env == 'test'
+        @logger = Logger.new(nil)
+      else
+        log_file = File.open(LOG_FILE, 'a')
+        @logger = Logger.new(MultiIO.new(STDOUT, log_file))
+      end
     end
 
     def load_file(file)
