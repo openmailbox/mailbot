@@ -23,6 +23,10 @@ module Mailbot
       # @param [Mailbot::Models::RssItem] item The item to send to Discord
       def notify_discord(item)
         discord.send_message(discord_channel_id, item.to_s, false, item.to_discord_embed)
+      rescue RestClient::NotFound, Discordrb::Errors::NoPermission => e
+        Mailbot.logger.warn("#{e.message}\n#{e.backtrace}")
+        Raven.capture_exception(e, extra: list.attributes)
+        nil
       end
 
       private

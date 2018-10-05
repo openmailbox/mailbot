@@ -67,8 +67,10 @@ module Mailbot
 
               message = discord.send_message(list.discord_channel_id, new_message)
               list.discord_message_id = message.id.to_s
-            rescue Discordrb::Errors::NoPermission => e
-              Mailbot.logger.warn("Insufficient permissions for list #{list.inspect}")
+            rescue RestClient::NotFound, Discordrb::Errors::NoPermission => e
+              Mailbot.logger.warn("#{e.message}\n#{e.backtrace}")
+              Raven.capture_exception(e, extra: list.attributes)
+              nil
             end
 
             list.save! if list.changed?
