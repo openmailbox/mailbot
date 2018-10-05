@@ -8,6 +8,27 @@ module Mailbot
         initialize_commands
       end
 
+      # Helper to delegate channel lookups to the underlying client.
+      #
+      # @param [Integer] id The Discord channel ID.
+      #
+      # @return [Discordrb::Channel] The located Discord channel.
+      def channel(id)
+        bot.channel(id)
+      end
+
+      # Helper to delegate message sending to the underlying client.
+      #
+      # @param [Integer] channel_id The Discord channel ID.
+      # @param [String] content The text of the message. Max 2000 characters.
+      # @param [true, false] tts If the message should be text-to-speech.
+      # @param [Hash, Discordrb::Webhooks::Embed, nil] The rich embed to send.
+      #
+      # @return [Discordrb::Message] The message that was sent
+      def send_message(channel_id, content, tts = false, embed = nil)
+        bot.send_message(channel_id, content, tts, embed)
+      end
+
       def start
         bot.run(:async)
 

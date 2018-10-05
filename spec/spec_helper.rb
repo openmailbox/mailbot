@@ -25,22 +25,6 @@ VCR.configure do |config|
   end
 end
 
-class DiscordMock
-  attr_reader :buffer
-
-  def initialize
-    @buffer = []
-  end
-
-  def channel(details = {})
-  end
-
-  def send_message(channel_id, message, tts = false, embed = nil)
-    @buffer << {channel_id: channel_id, message: message}
-    OpenStruct.new(id: '42')
-  end
-end
-
 module Mailbot::RSS
   class RssReaderMock < Mailbot::RSS::Feed
     def refresh!

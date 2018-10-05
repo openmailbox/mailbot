@@ -2,12 +2,12 @@ require 'spec_helper'
 
 RSpec.describe Mailbot::Models::NewsFeed do
   let(:reader)  { Mailbot::RSS::RssReaderMock }
-  let(:discord) { DiscordMock.new }
+  let(:discord) { Mailbot::Discord::Connection.new }
 
   subject!(:feed) { described_class.create!(reader_class: reader.to_s) }
 
   before(:each) do
-    allow(Mailbot).to receive_message_chain(:instance, :discord, :bot).and_return(discord)
+    allow(Mailbot).to receive_message_chain(:instance, :discord).and_return(discord)
   end
 
   after(:each) { Mailbot::Models::RssItem.destroy_all }
@@ -60,8 +60,9 @@ RSpec.describe Mailbot::Models::NewsFeed do
     feed.news_feed_subscriptions.create!(discord_channel_id: 42)
     feed.news_feed_subscriptions.create!(discord_channel_id: 43)
 
-    feed.refresh_and_notify!
+    expect(discord).to receive(:send_message).with('42', *any_args).twice
+    expect(discord).to receive(:send_message).with('43', *any_args).twice
 
-    expect(discord.buffer.length).to eq(reader.new.refresh!.length * 2)
+    feed.refresh_and_notify!
   end
 end

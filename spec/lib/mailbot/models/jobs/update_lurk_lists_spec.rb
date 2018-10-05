@@ -9,10 +9,12 @@ RSpec.describe Mailbot::Models::UpdateLurkLists do
 
   it_behaves_like 'a scheduled job', { frequency: 42 }
 
-  let(:discord) { DiscordMock.new }
+  let(:discord) { Mailbot::Discord::Connection.new }
+  let(:channel) { instance_double('Discordrb::Channel', load_message: nil) }
 
   before(:each) do
-    allow_any_instance_of(described_class).to receive(:discord).and_return(discord)
+    allow(discord).to receive(:channel).and_return(channel)
+    allow(Mailbot).to receive_message_chain(:instance, :discord).and_return(discord)
   end
 
   after(:each) { Mailbot::Models::LurkList.destroy_all }
@@ -28,10 +30,12 @@ RSpec.describe Mailbot::Models::UpdateLurkLists do
   subject(:job) { described_class.new(frequency: 42) }
 
   it 'sends the new Kadgar list to the Discord channel' do
-    job.perform
-    expect(discord.buffer.length).to eq(1)
-    expect(discord.buffer.first[:channel_id]).to eq('42')
+    expect(discord).
+      to receive(:send_message).
+      with('42', 'http://kadgar.net/live/TheCEO_/CaptainRedWolf').
+      and_return(OpenStruct.new).
+      once
 
-    expect(discord.buffer.first[:message]).to eq('http://kadgar.net/live/TheCEO_/CaptainRedWolf')
+    job.perform
   end
 end

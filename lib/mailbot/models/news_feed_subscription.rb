@@ -28,7 +28,7 @@ module Mailbot
       private
 
       def discord
-        @discord ||= Mailbot.instance.discord.bot
+        @discord ||= Mailbot.instance.discord
       end
     end
   end
