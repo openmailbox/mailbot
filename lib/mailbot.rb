@@ -29,18 +29,15 @@ module Mailbot
 
   # @param [OpenStuct] options The parsed command-line arguments
   def self.start(options)
-    Raven.capture do
-      # TODO: Make this better
-      configure do |config|
-        config.enable_twitch = options.twitch
-        config.enable_discord = options.discord
-        config.enable_scheduler = options.scheduler
-      end
-
-      logger.info "Starting bot in #{Mailbot.env} environment..."
-      @bot = Mailbot::Bot.new
-      @bot.run
+    configure do |config|
+      config.enable_twitch = options.twitch
+      config.enable_discord = options.discord
+      config.enable_scheduler = options.scheduler
     end
+
+    logger.info "Starting bot in #{Mailbot.env} environment..."
+    @bot = Mailbot::Bot.new
+    @bot.run
   end
 
   def self.stop

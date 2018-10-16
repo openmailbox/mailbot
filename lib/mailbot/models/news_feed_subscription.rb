@@ -24,9 +24,16 @@ module Mailbot
       def notify_discord(item)
         discord.send_message(discord_channel_id, item.to_s, false, item.to_discord_embed)
       rescue RestClient::NotFound, Discordrb::Errors::NoPermission => e
-        Mailbot.logger.warn("#{e.message}\n#{e.backtrace}")
-        Raven.capture_exception(e, extra: list.attributes)
-        nil
+        Mailbot.logger.warn("Unable to send Discord message to channel 
+                            #{discord_channel_id} due to #{e.message}. Skipping.")
+
+        context = {
+          channel: discord_channel_id,
+          message: item.to_s,
+          guild:   guild_id
+        }
+
+        Raven.capture_exception(e, extra: context)
       end
 
       private

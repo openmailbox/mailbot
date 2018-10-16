@@ -68,9 +68,16 @@ module Mailbot
               message = discord.send_message(list.discord_channel_id, new_message)
               list.discord_message_id = message.id.to_s
             rescue RestClient::NotFound, Discordrb::Errors::NoPermission => e
-              Mailbot.logger.warn("#{e.message}\n#{e.backtrace}")
-              Raven.capture_exception(e, extra: list.attributes)
-              nil
+              Mailbot.logger.warn("Unable to send Discord message to channel 
+                                  #{list.discord_channel_id} due to #{e.message}. Skipping.")
+              context = {
+                channel:          list.discord_channel_id,
+                message:          new_message,
+                guild:            list.guild_id,
+                mailbot_rails_id: list.mailbot_rails_id
+              }
+
+              Raven.capture_exception(e, extra: context)
             end
 
             list.save! if list.changed?

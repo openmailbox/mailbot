@@ -27,9 +27,6 @@ module Mailbot
       # @return [Discordrb::Message] The message that was sent
       def send_message(channel_id, content, tts = false, embed = nil)
         bot.send_message(channel_id, content, tts, embed)
-      rescue RestClient::NotFound, Discordrb::Errors::NoPermission
-        Raven.extra_context(discord_channel_id: channel_id, content: content)
-        raise
       end
 
       def start

@@ -35,6 +35,7 @@ module Mailbot
       rescue => e
         Mailbot.logger.warn("Error while making API request to #{path}: #{e.message}")
         Mailbot.logger.warn(e.backtrace)
+        Raven.capture_exception(e)
         nil
       end
     end

@@ -56,6 +56,9 @@ module Mailbot
       threads.each { |i| i&.join }
 
       Mailbot.logger.info 'Exited.'
+    rescue => e
+      Raven.capture_exception(e)
+      raise
     end
 
     def stop
