@@ -17,6 +17,10 @@ module Mailbot
       request("/removed_records.json?since=#{timestamp.to_i}") || []
     end
 
+    def update_news_feed_subscription(attributes = {})
+      # TODO: Implement this
+    end
+
     private
 
     def headers

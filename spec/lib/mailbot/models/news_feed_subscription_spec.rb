@@ -41,7 +41,10 @@ RSpec.describe Mailbot::Models::NewsFeedSubscription do
         }.to change(subscription, :enabled).to(false)
       end
       
-      it 'notifies the web API'
+      it 'notifies the web API' do
+        expect_any_instance_of(Mailbot::WebClient).to receive(:update_news_feed_subscription)
+        subscription.notify_discord(item)
+      end
     end
   end
 end

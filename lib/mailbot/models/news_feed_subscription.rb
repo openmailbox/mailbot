@@ -41,10 +41,18 @@ module Mailbot
         Raven.capture_exception(e, extra: context)
 
         self.enabled = false
-        self.save if self.changed?
+
+        if self.changed?
+          self.save
+          api.update_news_feed_subscription(attributes)
+        end
       end
 
       private
+
+      def api
+        @api ||= Mailbot::WebClient.new
+      end
 
       def discord
         @discord ||= Mailbot.instance.discord
