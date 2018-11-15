@@ -17,8 +17,17 @@ module Mailbot
       request("/removed_records.json?since=#{timestamp.to_i}") || []
     end
 
-    def update_news_feed_subscription(attributes = {})
-      # TODO: Implement this
+    # @param [Mailbot::Models::NewsFeedSubscription] subscription The subscription that is being updated
+    def update_news_feed_subscription(subscription)
+      HTTParty.put(URL_ROOT + "/admin/news_feed_subscriptions/#{subscription.api_id}",
+                   body: subscription.attributes.to_json,
+                   headers: headers,
+                   timeout: 20)
+    rescue => e
+      Mailbot.logger.warn("Error while updating news feed subscription: #{e.message}")
+      Mailbot.logger.warn(e.backtrace)
+      Raven.capture_exception(e)
+      nil
     end
 
     private

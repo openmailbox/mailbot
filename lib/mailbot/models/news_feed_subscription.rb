@@ -45,7 +45,7 @@ module Mailbot
 
         if self.changed?
           self.save
-          api.update_news_feed_subscription(attributes)
+          api.update_news_feed_subscription(self)
         end
       end
 
