@@ -7,7 +7,7 @@ RSpec.describe Mailbot::Models::NewsFeedSubscription do
   let!(:feed) { Mailbot::Models::NewsFeed.create!(reader_class: reader.to_s) }
   let!(:item) { Mailbot::Models::RssItem.create!(news_feed_id: feed.id) }
 
-  subject(:subscription) { described_class.new(news_feed: feed) }
+  subject!(:subscription) { described_class.create!(discord_channel_id: 42, news_feed: feed) }
 
   before(:each) do
     allow(Mailbot).to receive_message_chain(:instance, :discord).and_return(discord)
@@ -22,12 +22,26 @@ RSpec.describe Mailbot::Models::NewsFeedSubscription do
     end
 
     context 'when the subscription is not enabled' do
-      subject(:subscription) { described_class.new(news_feed: feed, enabled: false) }
+      subject!(:subscription) { described_class.create!(discord_channel_id: 42, news_feed: feed, enabled: false) }
 
       it 'does not send the message' do
         expect(discord).not_to receive(:send_message)
         subscription.notify_discord(item)
       end
+    end
+
+    context 'when the channel did not exist or had insufficient permissions' do
+      before do
+        allow(discord).to receive(:send_message).and_raise(RestClient::NotFound)
+      end
+
+      it 'disables the subscription' do
+        expect {
+          subscription.notify_discord(item)
+        }.to change(subscription, :enabled).to(false)
+      end
+      
+      it 'notifies the web API'
     end
   end
 end

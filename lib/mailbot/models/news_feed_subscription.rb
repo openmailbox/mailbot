@@ -39,6 +39,9 @@ module Mailbot
         }
 
         Raven.capture_exception(e, extra: context)
+
+        self.enabled = false
+        self.save if self.changed?
       end
 
       private
