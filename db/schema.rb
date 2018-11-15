@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_11_14_222255) do
     t.integer "news_feed_id"
     t.string "discord_channel_id"
     t.string "guild_id"
-    t.boolean "active", default: true
+    t.boolean "enabled", default: true
     t.index ["guild_id"], name: "index_news_feed_subscriptions_on_guild_id"
     t.index ["news_feed_id"], name: "index_news_feed_subscriptions_on_news_feed_id"
   end

@@ -6,7 +6,7 @@
 #  news_feed_id       :integer
 #  discord_channel_id :string
 #  guild_id           :string
-#  active             :boolean          default(TRUE)
+#  enabled            :boolean          default(TRUE)
 #
 # Indexes
 #
