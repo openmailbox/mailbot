@@ -7,6 +7,7 @@
 #  discord_channel_id :string
 #  guild_id           :string
 #  enabled            :boolean          default(TRUE)
+#  api_id             :bigint(8)
 #
 # Indexes
 #
