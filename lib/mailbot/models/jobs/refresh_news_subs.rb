@@ -13,6 +13,7 @@ module Mailbot
           sub = feed.news_feed_subscriptions.find_or_initialize_by(guild_id: data['guild_id'])
 
           sub.discord_channel_id = data['discord_channel_id']
+          sub.enabled = data['enabled']
 
           sub.save! if data['enabled'] && sub.changed?
           sub.destroy if !data['enabled'] && sub.persisted?
