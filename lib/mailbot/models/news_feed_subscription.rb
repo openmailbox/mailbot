@@ -23,7 +23,11 @@ module Mailbot
 
       # @param [Mailbot::Models::RssItem] item The item to send to Discord
       def notify_discord(item)
-        discord.send_message(discord_channel_id, item.to_s, false, item.to_discord_embed)
+        if enabled
+          discord.send_message(discord_channel_id, item.to_s, false, item.to_discord_embed)
+        else
+          Mailbot.logger.warn("Disabled NewsFeedSubscription. Skipping message sending. #{self.inspect}")
+        end
       rescue RestClient::NotFound, Discordrb::Errors::NoPermission => e
         Mailbot.logger.warn("Unable to send Discord message to channel 
                             #{discord_channel_id} due to #{e.message}. Skipping.")
