@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment'
+
+$LOAD_PATH << File.expand_path('../lib', __dir__)
+
+require 'hal/discord_connection'
+
+discord = Hal::DiscordConnection.new
+
+%w{INT QUIT TERM}.each do |signal|
+  Signal.trap(signal) do
+    discord.stop
+  end
+end
+
+puts 'Starting Hal.'
+
+discord.start
+
+while discord.running?
+  sleep(1) # yield thread to OS
+end
+
+puts 'Stopping Hal.'
