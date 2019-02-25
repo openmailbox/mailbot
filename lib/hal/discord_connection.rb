@@ -2,68 +2,68 @@ require 'discordrb'
 
 module Hal
   class DiscordConnection
-		RETRY_INTERVAL = 60 # seconds
+    RETRY_INTERVAL = 60 # seconds
 
-		def initialize
-			initialize_bot
-		end
+    def initialize
+      initialize_bot
+    end
 
-		# Are we actually connected to Discord?
-		def connected?
-			@bot.connected?
-		end
+    # Are we actually connected to Discord?
+    def connected?
+      @bot.connected?
+    end
 
-		# Is the connection active? This can be true and #connected? false if
-		# we're having trouble connecting to Discord.
-		def running?
-			@running
-		end
+    # Is the connection active? This can be true and #connected? false if
+    # we're having trouble connecting to Discord.
+    def running?
+      @running
+    end
 
-		# Connects to Discord. Returns immediately. The caller is responsible for blocking if needed.
-		def start
-			Rails.logger.info 'Starting Discord bot.'
+    # Connects to Discord. Returns immediately. The caller is responsible for blocking if needed.
+    def start
+      Rails.logger.info 'Starting Discord bot.'
 
-			@running = true
+      @running = true
 
-			@bot.run(true)
+      @bot.run(true)
 
-			# Allow other threads to signal this one to make sure we stay connected to Discord.
-			@connection_thread = Thread.start do
-				while running?
-					break if !running?
+      # Allow other threads to signal this one to make sure we stay connected to Discord.
+      @connection_thread = Thread.start do
+        while running?
+          break if !running?
 
-					if running? && !connected?
-						Rails.logger.info 'Attempting to reconnect Discord bot.'
-						@bot.run(true)
-					end
+          if running? && !connected?
+            Rails.logger.info 'Attempting to reconnect Discord bot.'
+            @bot.run(true)
+          end
 
-					Thread.stop
-				end
+          Thread.stop
+        end
 
-				Rails.logger.info 'Disconnecting Discord bot.'
-			end
+        Rails.logger.info 'Disconnecting Discord bot.'
+      end
 
-			# Periodically signal the connection thread to make sure we reconnect if needed.
-			@retry_thread = Thread.start do
-				while running?
-					@connection_thread.run
-					sleep(RETRY_INTERVAL)
-				end
-			end
-		end
+      # Periodically signal the connection thread to make sure we reconnect if needed.
+      @retry_thread = Thread.start do
+        while running?
+          @connection_thread.run
+          sleep(RETRY_INTERVAL)
+        end
+      end
+    end
 
-		def stop
-			@running = false
+    def stop
+      @running = false
 
-			@retry_thread.exit
-			@connection_thread.run
-			@connection_thread.join
+      @retry_thread.exit
+      @connection_thread.run
+      @connection_thread.join
 
-			if @bot.connected?
-				@bot.stop(true)
-				@bot.join
-			end
-		end
+      if @bot.connected?
+        @bot.stop(true)
+        @bot.join
+      end
+    end
 
     private
 
