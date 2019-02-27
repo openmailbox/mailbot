@@ -1,11 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
+  after(:all) { User.destroy_all }
 
   describe "GET #create" do
+    before(:each) { mock_discord_auth }
+    after(:each)  { clear_discord_mock }
+
     it "returns http success" do
+      request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:discord]
+
       get :create, params: { provider: :discord }
+
       expect(response).to have_http_status(:success)
+      expect(flash[:notice]).to eq('Signed in as ')
     end
   end
 
