@@ -2,15 +2,16 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'bootsnap',   '>= 1.1.0', require: false # Reduces boot times through caching
-gem 'discordrb',  '~> 3.3',   require: false
-gem 'jbuilder',   '~> 2.5'                   # For making JSON APIs
-gem 'pg',         '>= 0.18', '< 2.0'         # Use postgresql for ActiveRecord
-gem 'puma',       '~> 3.11'                  # Use Puma for the app server
-gem 'rails',      '~> 5.2.2'
-gem 'sass-rails', '~> 5.0'                   # Use SCSS for stylesheets
-gem 'turbolinks', '~> 5'
-gem 'uglifier',   '>= 1.3.0'                 # Use Uglifier for compressing JavaScript
+gem 'bootsnap',         '>= 1.1.0', require: false # Reduces boot times through caching
+gem 'discordrb',        '~> 3.3',   require: false
+gem 'jbuilder',         '~> 2.5'                   # For making JSON APIs
+gem 'omniauth-discord', '~> 1.0'
+gem 'pg',               '>= 0.18', '< 2.0'         # Use postgresql for ActiveRecord
+gem 'puma',             '~> 3.11'                  # Use Puma for the app server
+gem 'rails',            '~> 5.2.2'
+gem 'sass-rails',       '~> 5.0'                   # Use SCSS for stylesheets
+gem 'turbolinks',       '~> 5'
+gem 'uglifier',         '>= 1.3.0'                 # Use Uglifier for compressing JavaScript
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
