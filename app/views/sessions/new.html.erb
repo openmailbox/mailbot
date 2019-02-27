@@ -1,0 +1,9 @@
+<div>
+  <%= link_to('Login with Discord', '/auth/discord') %>
+</div>
+
+<% unless Rails.env.production? %>
+  <div>
+    <%= link_to('Login as a Developer', '/auth/developer') %>
+  </div>
+<% end %>
