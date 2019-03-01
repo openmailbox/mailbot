@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_212346) do
+ActiveRecord::Schema.define(version: 2019_03_01_202304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "discord_identities", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "email"
+    t.string "image_url"
+    t.string "token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.boolean "expires"
+    t.string "username"
+    t.string "discriminator"
+    t.boolean "mfa_enabled"
+    t.string "extra_id"
+    t.string "avatar"
+    t.bigint "user_id"
+    t.boolean "bot", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_discord_identities_on_uid"
+    t.index ["user_id"], name: "index_discord_identities_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -22,4 +44,5 @@ ActiveRecord::Schema.define(version: 2019_02_27_212346) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "discord_identities", "users"
 end

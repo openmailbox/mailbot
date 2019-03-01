@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      flash[:notice] = "Signed in as #{user.id}"
+      flash[:notice] = "Signed in as #{user.name}"
       render plain: 'Logged in.'
     else
       flash[:notice] = 'Unable to sign in.'
