@@ -13,7 +13,7 @@ RSpec.describe SessionsController, type: :controller do
       get :create, params: { provider: :discord }
 
       expect(response).to have_http_status(:success)
-      expect(flash[:notice]).to eq('Signed in as ')
+      expect(flash[:notice]).to eq('Signed in as open_mailbox')
     end
   end
 

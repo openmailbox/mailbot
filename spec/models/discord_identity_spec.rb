@@ -34,5 +34,36 @@
 require 'rails_helper'
 
 RSpec.describe DiscordIdentity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'token expiration' do
+    context 'for bots' do
+      subject(:identity) { described_class.new(bot: true) }
+      it 'is never expired' do
+        expect(identity.token_expired?).to be false
+      end
+    end
+
+    context 'when the token expiration is in the future' do
+      subject(:identity) { described_class.new(expires_at: DateTime.now + 2.days) }
+
+      it 'says the token is not expired' do
+        expect(identity.token_expired?).to be false
+      end
+    end
+
+    context 'when the token expiration is in the past' do
+      subject(:identity) { described_class.new(expires_at: DateTime.now - 2.days) }
+
+      it 'says the token is expired' do
+        expect(identity.token_expired?).to be true
+      end
+    end
+
+    context 'when there is no specified expiration date' do
+      subject(:identity) { described_class.new }
+
+      it 'says the token is expired' do
+        expect(identity.token_expired?).to be true
+      end
+    end
+  end # token expiration
 end

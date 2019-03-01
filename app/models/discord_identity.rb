@@ -33,4 +33,8 @@
 
 class DiscordIdentity < ApplicationRecord
   belongs_to :user
+
+  def token_expired?
+    !bot && (expires_at.nil? || expires_at <= DateTime.now)
+  end
 end
