@@ -48,7 +48,7 @@ module Mailbot
 
           wrapper
         end
-      rescue RSS::NotWellFormedError => e
+      rescue ::RSS::NotWellFormedError => e
         Mailbot.logger.warn("Unable to parse Newegg RSS. Skipping.")
         @items = []
       end
