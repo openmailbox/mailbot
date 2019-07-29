@@ -2,7 +2,7 @@
 lock "3.10.2"
 
 # rvm stuff
-set :rvm_ruby_version, '2.5.1@mailbot'
+set :rvm_ruby_version, '2.5.3@mailbot'
 set :rvm_custom_path, '/usr/share/rvm'
 
 set :application, "mailbot"
