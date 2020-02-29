@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gem 'activerecord',     '~> 5.2', require: 'active_record'
 gem 'pg',               '~> 0.18'
-gem 'rake',             '~> 11.3', require: false
+gem 'rake',             '~> 12.3', require: false
 gem 'httparty',         '~> 0.14'
 gem 'htmlentities',     '~> 4.3'
 gem 'pry',              '~> 0.10', require: false
