@@ -8,7 +8,7 @@ gem 'httparty',         '~> 0.14'
 gem 'htmlentities',     '~> 4.3'
 gem 'pry',              '~> 0.10', require: false
 gem 'discordrb',        '~> 3.2'
-gem 'sanitize',         '~> 4.6'
+gem 'sanitize',         '~> 5.2'
 gem 'sentry-raven',     '~> 2.7'
 gem 'chronic',          '~> 0.10'
 gem 'utterance_parser', '~> 0.1'
